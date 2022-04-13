@@ -6,24 +6,31 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/03/23 09:51:23 by cado-car         ###   ########.fr        #
+#    Updated: 2022/04/13 16:11:32 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= minishell
 LIBFT			= libft.a
 
-LIBFT_PATH 		= ./libft/
-SRC_PATH 		= ./src/
-OBJ_PATH		= ./obj/
-INCLUDE 		= ./include/
-
 #compilation
 CC 				= gcc
 CF 				= -Wall -Wextra -Werror
 CFI 			= -I $(INCLUDE)
 
-SRC				= main.c
+LIBFT_PATH 		= ./libft/
+SRC_PATH 		= ./src/
+OBJ_PATH		= ./obj/
+INCLUDE 		= ./include/
+
+SRC				= main.c \
+				error.c \
+				create_hashmap.c \
+				ft_listlen.c
+
+VPATH 			:= $(SRC_PATH)\
+				$(SRC_PATH)hashmap\
+				$(SRC_PATH)utilities
 
 OBJ				= $(addprefix $(OBJ_PATH), $(notdir $(SRC:.c=.o)))
 
@@ -31,7 +38,7 @@ OBJ				= $(addprefix $(OBJ_PATH), $(notdir $(SRC:.c=.o)))
 RM 				= rm -rf
 
 #rules
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+$(OBJ_PATH)%.o: %.c
 				@printf "\n$(CY)Generating object...$(RC)\n"
 				mkdir -p $(OBJ_PATH)
 				$(CC) $(CF) $(CFI) -c $< -o $@
