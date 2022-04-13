@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:43:28 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/13 16:17:05 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/13 17:01:01 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_hashtable	*create_hashtable(char **list)
 {
-	t_hashtable *table;
+	t_hashtable	*table;
 	size_t		list_len;
 
 	table = malloc(sizeof(t_hashtable));
@@ -28,10 +28,10 @@ t_hashtable	*create_hashtable(char **list)
 	return (table);
 }
 
-t_hashlist **create_table(size_t list_len, char **list)
+t_hashlist	**create_table(size_t list_len, char **list)
 {
-	t_hashlist **table;
-	int i;
+	t_hashlist	**table;
+	int			i;
 
 	i = -1;
 	table = malloc(sizeof(t_hashlist *) * list_len);
