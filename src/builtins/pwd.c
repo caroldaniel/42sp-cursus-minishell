@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   envp_to_hashmap.c                                  :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/13 17:05:13 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/14 10:44:06 by cado-car         ###   ########.fr       */
+/*   Created: 2022/04/14 12:46:39 by cado-car          #+#    #+#             */
+/*   Updated: 2022/04/14 14:51:59 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "minishell.h"
 
-void	envp_to_hashmap(t_hashtable **table, char **variables)
+/*	GET_PWD
+**	-------
+**	DESCRIPTION
+**	Gets the current working directory.
+**	PARAMETERS
+**	-
+**	RETURN VALUES
+**	The NULL terminated, malloc(3) allocated string with the directory path.
+*/
+
+char	*get_pwd(void)
 {
-	int		i;
+	char	*buffer;
 
-	i = 0;
-	while (variables[i])
-		hash_insert(table, variables[i++]);
+	buffer = NULL;
+	return (getcwd(buffer, 0));
 }

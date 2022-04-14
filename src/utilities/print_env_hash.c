@@ -6,11 +6,11 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:02:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/14 12:05:36 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/14 14:55:03 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "minishell.h"
 
 void	print_envp_hash(char **envp)
 {
