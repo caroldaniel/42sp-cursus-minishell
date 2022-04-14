@@ -6,13 +6,23 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 17:12:35 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/14 13:09:28 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/14 14:54:14 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static void	hash_add_back(t_hashlist **list, char *key, char *value);
+
+/*	HASH_INSERT
+**	-----------
+**	Inserts a new variable at the end of the hashtable's correct hashlist. 
+**	PARAMETERS
+**	#1. The hashtable in which to insert the new variable;
+**	#2. The new variable. 
+**	RETURN VALUES
+**	-
+*/
 
 void	hash_insert(t_hashtable **table, char *variable)
 {
