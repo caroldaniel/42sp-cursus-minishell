@@ -6,11 +6,11 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:43:28 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/14 10:36:01 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/14 13:09:28 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "minishell.h"
 
 t_hashtable	*create_hashtable(char **variables)
 {

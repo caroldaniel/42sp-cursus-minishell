@@ -6,16 +6,18 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:48:20 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/14 12:04:59 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/14 13:45:42 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "../libft/libft.h"
 # include <unistd.h>
 # include <stdio.h>
-# include "../libft/libft.h"
+# include <readline/readline.h>
+# include <readline/history.h>
 
 /*
 ** Structs definitions
@@ -44,16 +46,12 @@ typedef struct s_minishell {
 
 t_minishell	g_data;
 
-void		error(int exit_code);
-
 /*
-**
+** Main
 */
 
-enum e_hashid {
-	ENVIRON,
-	LOCAL
-};
+void		open_terminal(void);
+void		error(int exit_code);
 
 /*
 ** Hashtable
@@ -72,5 +70,11 @@ void		hash_insert(t_hashtable **table, char *variable);
 
 size_t		ft_listlen(char **list);
 void		print_envp_hash(char **envp);
+
+/*
+** Built-ins
+*/
+
+char		*get_pwd(void);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/04/14 12:06:27 by cado-car         ###   ########.fr        #
+#    Updated: 2022/04/14 13:22:28 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ LIBFT			= libft.a
 CC 				= gcc
 CF 				= -Wall -Wextra -Werror
 CFI 			= -I $(INCLUDE)
+CREADLINE		= -lreadline
 
 LIBFT_PATH 		= ./libft/
 SRC_PATH 		= ./src/
@@ -30,11 +31,14 @@ SRC				= main.c \
 				hash_insert.c \
 				hash_key_value.c \
 				ft_listlen.c \
-				print_env_hash.c
+				print_env_hash.c \
+				open_terminal.c \
+				pwd.c
 
 VPATH 			:= $(SRC_PATH)\
 				$(SRC_PATH)hashmap\
-				$(SRC_PATH)utilities
+				$(SRC_PATH)utilities\
+				$(SRC_PATH)builtins
 
 OBJ				= $(addprefix $(OBJ_PATH), $(notdir $(SRC:.c=.o)))
 
@@ -52,7 +56,7 @@ $(NAME):		$(OBJ)
 				@printf "\n$(CY)Generating libft...$(RC)\n"
 				make -C $(LIBFT_PATH) $(LIBFT)
 				@printf "\n$(CY)Generating minishell executable...$(RC)\n"
-				$(CC) $(CF) -I $(INCLUDE) -o $(NAME) $(OBJ) -L $(LIBFT_PATH) -lft
+				$(CC) $(CF) -I $(INCLUDE) -o $(NAME) $(OBJ) -L $(LIBFT_PATH) -lft $(CREADLINE)
 				@printf "$(GR)Done!$(RC)\n\n"
 
 all:			$(NAME)
@@ -68,6 +72,10 @@ fclean:			clean
 				make -C $(LIBFT_PATH) fclean
 				$(RM) $(NAME)
 				@printf "$(RE)Executables removed!$(RC)\n\n"
+
+install:		
+				sudo apt-get install libreadline-dev
+				@printf "$(GR)All dependencies ready!$(RC)\n\n"
 
 .PHONY:			all clean fclean re bonus rebonus
 
