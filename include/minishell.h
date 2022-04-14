@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:48:20 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/14 10:43:19 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/14 12:04:59 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,16 @@ typedef struct s_hashtable {
 
 typedef struct s_minishell {
 	t_hashtable	*envp;
-	t_hashtable *local;
+	t_hashtable	*local;
 }	t_minishell;
-
 
 /*
 **	Global variable for session data
 */
 
-t_minishell g_data;
+t_minishell	g_data;
 
-void	error(int exit_code);
+void		error(int exit_code);
 
 /*
 **
@@ -71,6 +70,7 @@ void		hash_insert(t_hashtable **table, char *variable);
 ** Utilities
 */
 
-size_t	ft_listlen(char **list);
+size_t		ft_listlen(char **list);
+void		print_envp_hash(char **envp);
 
 #endif
