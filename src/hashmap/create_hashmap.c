@@ -6,39 +6,27 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:43:28 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/13 17:01:01 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/14 10:36:01 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-t_hashtable	*create_hashtable(char **list)
+t_hashtable	*create_hashtable(char **variables)
 {
 	t_hashtable	*table;
-	size_t		list_len;
 
 	table = malloc(sizeof(t_hashtable));
 	if (!table)
 		error(2);
-	list_len = ft_listlen(list);
-	if (!list_len)
-		list_len = 50;
-	table->list = create_table(list_len, list);
-	table->size = list_len;
-	return (table);
-}
-
-t_hashlist	**create_table(size_t list_len, char **list)
-{
-	t_hashlist	**table;
-	int			i;
-
-	i = -1;
-	table = malloc(sizeof(t_hashlist *) * list_len);
-	if (!table)
+	table->size = ft_listlen(variables);
+	if (!table->size)
+		table->size = 50;
+	table->count = 0;
+	table->list = ft_calloc(sizeof(t_hashlist *), table->size);
+	if (!table->list)
 		error(3);
-	if (list)
-		while (list[++i])
-			printf("%s\n", list[i]);
+	if (variables)
+		envp_to_hashmap(&table, variables);
 	return (table);
 }

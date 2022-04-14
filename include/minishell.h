@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:48:20 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/13 17:14:50 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/14 10:43:19 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_hashlist {
 typedef struct s_hashtable {
 	t_hashlist	**list;
 	size_t		size;
+	size_t		count;
 }	t_hashtable;
 
 typedef struct s_minishell {
@@ -59,12 +60,12 @@ enum e_hashid {
 ** Hashtable
 */
 
-t_hashtable	*create_hashtable(char **list);
-t_hashlist **create_table(size_t list_len, char **list);
-char	*get_key(char *variable);
-char	*get_value(char *variable);
-void	env_to_hashmap(char **list);
-void	hash_insert(char *key, char *value, int id, int index);
+t_hashtable	*create_hashtable(char **variables);
+void		envp_to_hashmap(t_hashtable **table, char **variables);
+char		*get_key(char *variable);
+char		*get_value(char *variable);
+int			hash(char *key, size_t size);
+void		hash_insert(t_hashtable **table, char *variable);
 
 /*
 ** Utilities
