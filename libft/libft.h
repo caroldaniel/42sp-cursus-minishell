@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+# include <stdarg.h>
 
 // Part 1 functions
 int		ft_isalpha(int c);
@@ -70,5 +71,6 @@ char	*get_next_line(int fd);
 // New libft functions
 char	*ft_uitoa_base(unsigned long nbr, char *base);
 int		ft_atoi_base(char *str, char *base);
+char	*ft_strnjoin(int argn, ...);
 
 #endif

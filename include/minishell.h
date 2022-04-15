@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:48:20 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/14 14:57:36 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/15 13:57:49 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 
 # include "../libft/libft.h"
 # include "hashmap.h"
+# include "colors.h"
+# include "executables.h"
+# include "parser.h"
 
 /*
 ** Struct definition
@@ -29,6 +32,8 @@ typedef struct s_minishell {
 	t_hashtable	*envp;
 	t_hashtable	*local;
 }	t_minishell;
+
+
 
 /*
 **	Global variable for session data
@@ -42,6 +47,12 @@ t_minishell	g_data;
 
 void		open_terminal(void);
 void		error(int exit_code);
+
+/*
+** Prompt
+*/
+
+char		*create_prompt(void);
 
 /*
 ** Environment
@@ -62,6 +73,6 @@ void		print_envp_hash(char **envp);
 ** Built-ins
 */
 
-char		*get_pwd(void);
+char		*pwd(void);
 
 #endif
