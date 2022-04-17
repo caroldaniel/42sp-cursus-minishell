@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:26:34 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/15 14:59:13 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/16 21:30:05 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	open_terminal(void)
 	while (1)
 	{
 		prompt = create_prompt();
+		change_signals();
 		input = readline(prompt);
 		free(prompt);
 		add_history(input);

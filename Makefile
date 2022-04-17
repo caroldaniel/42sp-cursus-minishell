@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/04/15 13:31:02 by cado-car         ###   ########.fr        #
+#    Updated: 2022/04/16 21:28:13 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,13 @@ SRC				= main.c \
 				create_hashmap.c \
 				hash_function.c \
 				hash_insert.c \
+				hash_search.c \
 				envp_to_hashmap.c \
 				envp_key_value.c \
 				envp_length.c \
 				print_env_hash.c \
 				open_terminal.c \
+				change_signals.c \
 				pwd.c
 
 VPATH 			:= $(SRC_PATH)\
