@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_env_hash.c                                   :+:      :+:    :+:   */
+/*   populate_hashmap.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/14 12:02:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/28 10:24:39 by cado-car         ###   ########.fr       */
+/*   Created: 2022/04/13 17:05:13 by cado-car          #+#    #+#             */
+/*   Updated: 2022/04/28 15:16:29 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_envp_hash(void)
-{
-	t_hashlist	*list;
-	size_t		i;
+/*	populate_hashmap
+**	----------------
+**	DESCRIPTION
+**	Takes the list of environment variables and, for each one of them, inserts 
+**	them into the hash table passed.
+**	PARAMETERS
+**	#1. The type of table to populate,
+**	#2. The list of variables passed.
+**	RETURN VALUES
+**	-
+*/
 
-	// i = -1;
-	// while (envp[++i])
-	// 	printf("%s\n", envp[i]);
-	// printf("\n\n");
-	printf("There are a total of %li variables\n\n", g_data.envp->count);
+void	populate_hashmap(int type, char **variables)
+{
+	int			i;
+
 	i = -1;
-	while (++i < g_data.envp->size)
-	{
-		list = g_data.envp->list[i];
-		while (list)
-		{
-			printf("%s=%s in index %li\n", list->key, list->value, i);
-			list = list->next;
-		}
-	}
-}	
+	while (variables[++i])
+		hash_insert(type, variables[i]);
+}

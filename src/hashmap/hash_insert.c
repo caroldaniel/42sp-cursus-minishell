@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 17:12:35 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/28 10:03:39 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/28 14:25:59 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,19 @@ static void	hash_add_back(t_hashlist **list, char *key, char *value);
 **	-
 */
 
-void	hash_insert(t_hashtable **table, char *variable)
+void	hash_insert(int type, char *variable)
 {
-	char	*key;
-	char	*value;
-	int		index;
+	t_hashtable	*table;
+	char		*key;
+	char		*value;
+	int			index;
 
+	table = g_data.vars[type];
 	key = get_key(variable);
 	value = get_value(variable);
-	index = hash(key, (*table)->size);
-	hash_add_back(&((*table)->list[index]), key, value);
-	(*table)->count++;
+	index = hash(key, table->size);
+	hash_add_back(&(table->list[index]), key, value);
+	table->count++;
 }
 
 static void	hash_add_back(t_hashlist **list, char *key, char *value)
@@ -45,8 +47,8 @@ static void	hash_add_back(t_hashlist **list, char *key, char *value)
 	new = malloc(sizeof(t_hashlist));
 	if (!new)
 		error(NULL, -1, 12);
-	new->key = ft_strdup(key);
-	new->value = ft_strdup(value);
+	new->key = key;
+	new->value = value;
 	new->next = NULL;
 	tmp = *list;
 	if (!tmp)

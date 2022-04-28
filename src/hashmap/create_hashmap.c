@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_hashmap.c                                   :+:      :+:    :+:   */
+/*   create_hashmap.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:43:28 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/28 10:02:48 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/28 14:00:52 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*	CREATE_HASHTABLE
+/*	CREATE_HASHMAP
 **	----------------
 **	DESCRIPTION
 **	Takes a list of variables and put them into a hashtable. If list is NULL, 
@@ -23,7 +23,7 @@
 **	The hashtable with the variables sorted into it.
 */
 
-t_hashtable	*create_hashtable(char **variables)
+t_hashtable	*create_hashmap(char **variables)
 {
 	t_hashtable	*table;
 
@@ -37,7 +37,5 @@ t_hashtable	*create_hashtable(char **variables)
 	table->list = ft_calloc(sizeof(t_hashlist *), table->size);
 	if (!table->list)
 		error(NULL, -1, 12);
-	if (variables)
-		envp_to_hashmap(&table, variables);
 	return (table);
 }

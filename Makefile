@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/04/28 09:41:36 by cado-car         ###   ########.fr        #
+#    Updated: 2022/04/28 15:41:32 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,29 +24,32 @@ SRC_PATH 		= ./src/
 OBJ_PATH		= ./obj/
 INCLUDE 		= ./include/
 
-SRC				= main.c \
-				error.c \
-				create_hashmap.c \
-				hash_function.c \
-				hash_insert.c \
-				hash_search.c \
-				envp_to_hashmap.c \
-				envp_key_value.c \
-				envp_length.c \
-				print_env_hash.c \
-				open_terminal.c \
-				change_signals.c \
-				create_prompt.c \
-				pwd.c
+SRC				= main.c\
+				pwd.c\
+				clean.c\
+				error.c\
+				create_hashmap.c\
+				delete_hashmap.c\
+				populate_hashmap.c\
+				print_hashmap.c\
+				envp_key_value.c\
+				envp_length.c\
+				hash_insert.c\
+				hash_remove.c\
+				hash_substitute.c\
+				hash.c\
+				key_location.c\
+				key_search.c\
+				change_signals.c\
+				create_prompt.c\
+				init_minishell.c\
+				open_terminal.c
 
 VPATH 			:= $(SRC_PATH)\
 				$(SRC_PATH)builtins\
-				$(SRC_PATH)environment\
-				$(SRC_PATH)executable\
+				$(SRC_PATH)exit\
 				$(SRC_PATH)hashmap\
-				$(SRC_PATH)parser\
 				$(SRC_PATH)system\
-				$(SRC_PATH)utilities\
 
 OBJ				= $(addprefix $(OBJ_PATH), $(notdir $(SRC:.c=.o)))
 

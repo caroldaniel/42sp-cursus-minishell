@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 14:19:42 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/28 10:26:32 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/28 15:40:58 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,36 @@ typedef struct s_hashtable {
 }	t_hashtable;
 
 /*
-** Hashmap functions prototypes
+** Environment variables list
 */
 
-t_hashtable	*create_hashtable(char **variables);
+size_t		envp_length(char **envp);
+char		*get_key(char *variable);
+char		*get_value(char *variable);
+
+/*
+** Hashmap initialization
+*/
+
+t_hashtable	*create_hashmap(char **variables);
+void		populate_hashmap(int type, char **variables);
+void		delete_hashmap(int type);
+void		print_hashmap(int type);
+
+/*
+** Hashmap functions
+*/
+
 int			hash(char *key, size_t size);
-void		hash_insert(t_hashtable **table, char *variable);
-char		*hash_search(t_hashtable *table, char *key);
+
+/*
+** Hashmap variable management
+*/
+
+void		hash_insert(int type, char *variable);
+void		hash_substitute(int type, char *key, char *value);
+void		hash_remove(int type, char *key);
+int			key_location(char *key);
+char		*key_search(int type, char *key);
 
 #endif

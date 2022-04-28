@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   envp_to_hashmap.c                                  :+:      :+:    :+:   */
+/*   envp_length.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/13 17:05:13 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/14 14:51:56 by cado-car         ###   ########.fr       */
+/*   Created: 2022/04/13 14:56:27 by cado-car          #+#    #+#             */
+/*   Updated: 2022/04/28 11:21:45 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*	ENVP_TO_HASHMAP
-**	---------------
+/*	ENVP_LENGTH
+**	-----------
 **	DESCRIPTION
-**	Takes the list of environment variables and, for each one of them, inserts 
-**	them into the hash table passed.
+**	Gets the length of the environment variables' list. 
 **	PARAMETERS
-**	#1. The hashtable in which to inser the variables;
-**	#2. The list of variables passed
+**	#1. The environment variables' list.
 **	RETURN VALUES
-**	-
+**	The size_t number correspondent to the list's length.
 */
 
-void	envp_to_hashmap(t_hashtable **table, char **variables)
+size_t	envp_length(char **envp)
 {
-	int		i;
+	size_t	i;
 
+	if (!envp)
+		return (0);
 	i = 0;
-	while (variables[i])
-		hash_insert(table, variables[i++]);
+	while (envp[i])
+		i++;
+	return (i);
 }
