@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:48:20 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/28 16:27:19 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:55:08 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void		print_envp_hash(void);
 ** Built-ins
 */
 
-char		*pwd(void);
+char		*get_pwd(void);
 void		export(char *variable);
 
 #endif

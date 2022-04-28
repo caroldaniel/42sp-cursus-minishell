@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:44:47 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/28 15:17:23 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:45:30 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	hash_remove(int type, char *key)
 			free(tmp->key);
 			free(tmp->value);
 			free(tmp);
-			return ;
 		}
 		last = tmp;
 		tmp = tmp->next;
