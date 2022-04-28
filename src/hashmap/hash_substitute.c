@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:23:02 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/28 15:23:34 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:37:55 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,22 @@
 **	-
 */
 
-void	hash_substitute(int type, char *key, char *value)
+void	hash_substitute(int type, char *variable)
 {
 	t_hashtable	*table;
-	t_hashlist	*list;
 	char		*swap;
+	char		*key;
+	char		*value;
 	int			index;
 
+	key = get_key(variable);
+	value = get_value(variable);
 	table = g_data.vars[type];
 	index = hash(key, table->size);
-	list = table->list[index];
-	while (!ft_strncmp(list->key, key, ft_strlen(key) + 1))
-		list = list->next;
-	swap = list->value;
-	list->value = value;
+	while (ft_strncmp(table->list[index]->key, key, ft_strlen(key)))
+		table->list[index] = table->list[index]->next;
+	swap = table->list[index]->value;
+	table->list[index]->value = value;
 	free(key);
 	free(swap);
 }

@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/23 09:46:31 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/28 16:41:38 by cado-car         ###   ########.fr       */
+/*   Created: 2022/04/28 16:18:21 by cado-car          #+#    #+#             */
+/*   Updated: 2022/04/28 16:41:53 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_minishell	g_data;
-
-int	main(int argc, char **argv, char **envp)
+void	export(char *variable)
 {
-	if (argc > 1 && argv)
-		error(argv[0], 1, 1);
-	init_minishell(envp);
-	open_terminal();
-	return (0);
+	char	*key;
+	int		location;
+
+	key = get_key(variable);
+	location = key_location(key);
+	if (location == -1)
+		hash_insert(ENV, variable);
+	else if (location == ENV)
+		hash_substitute(ENV, variable);
+	else
+	{
+		hash_remove(LOCAL, key);
+		hash_insert(ENV, variable);
+	}
+	free(key);
 }

@@ -6,14 +6,14 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:28:11 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/28 15:54:13 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:42:17 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static void	print_table(int type);
-static void print_list(t_hashlist *list);
+static void	print_list(t_hashlist *list);
 
 static void	print_table(int type);
 
@@ -49,7 +49,7 @@ static void	print_table(int type)
 		print_list(table->list[i++]);
 }
 
-static void print_list(t_hashlist *list)
+static void	print_list(t_hashlist *list)
 {
 	while (list)
 	{
