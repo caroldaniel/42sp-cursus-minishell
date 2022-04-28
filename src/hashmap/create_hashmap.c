@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:43:28 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/14 14:48:13 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/28 10:02:48 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ t_hashtable	*create_hashtable(char **variables)
 
 	table = malloc(sizeof(t_hashtable));
 	if (!table)
-		error(2);
+		error(NULL, -1, 12);
 	table->size = envp_length(variables);
 	if (!table->size)
 		table->size = 50;
 	table->count = 0;
 	table->list = ft_calloc(sizeof(t_hashlist *), table->size);
 	if (!table->list)
-		error(3);
+		error(NULL, -1, 12);
 	if (variables)
 		envp_to_hashmap(&table, variables);
 	return (table);

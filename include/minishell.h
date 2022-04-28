@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:48:20 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/16 21:28:53 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/28 10:23:49 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,21 @@
 typedef struct s_minishell {
 	t_hashtable	*envp;
 	t_hashtable	*local;
+	int			exit_code;
 }	t_minishell;
 
 /*
 **	Global variable for session data
 */
 
-t_minishell	g_data;
+extern t_minishell	g_data;
 
 /*
 ** System
 */
 
 void		open_terminal(void);
-void		error(int exit_code);
+void		error(char *token, int flag, int code);
 void		change_signals(void);
 
 /*

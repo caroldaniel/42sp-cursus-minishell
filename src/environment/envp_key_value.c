@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 14:22:30 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/14 14:51:50 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/28 10:04:26 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*get_key(char *variable)
 		i++;
 	key = malloc(sizeof(char) * (++i));
 	if (!key)
-		error(4);
+		error(NULL, -1, 12);
 	ft_strlcpy(key, variable, i);
 	return (key);
 }

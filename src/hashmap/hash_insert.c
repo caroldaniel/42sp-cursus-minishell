@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 17:12:35 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/14 14:54:14 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/28 10:03:39 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	hash_add_back(t_hashlist **list, char *key, char *value)
 
 	new = malloc(sizeof(t_hashlist));
 	if (!new)
-		error(5);
+		error(NULL, -1, 12);
 	new->key = ft_strdup(key);
 	new->value = ft_strdup(value);
 	new->next = NULL;
