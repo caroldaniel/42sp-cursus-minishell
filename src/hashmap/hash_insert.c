@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 17:12:35 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/28 14:25:59 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/29 07:47:16 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,12 @@ static void	hash_add_back(t_hashlist **list, char *key, char *value);
 **	-
 */
 
-void	hash_insert(int type, char *variable)
+void	hash_insert(int type, char *key, char *value)
 {
 	t_hashtable	*table;
-	char		*key;
-	char		*value;
 	int			index;
 
 	table = g_data.vars[type];
-	key = get_key(variable);
-	value = get_value(variable);
 	index = hash(key, table->size);
 	hash_add_back(&(table->list[index]), key, value);
 	table->count++;

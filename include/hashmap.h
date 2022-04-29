@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 14:19:42 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/28 16:24:41 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/29 07:50:51 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int			hash(char *key, size_t size);
 ** Hashmap variable management
 */
 
-void		hash_insert(int type, char *variable);
-void		hash_substitute(int type, char *variable);
+void		hash_insert(int type, char *key, char *value);
+void		hash_substitute(int type, char *key, char *value);
 void		hash_remove(int type, char *key);
 int			key_location(char *key);
 char		*key_search(int type, char *key);
