@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 21:21:14 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/28 11:21:45 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/02 09:52:11 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	reprompt(int signal);
 void	change_signals(void)
 {
 	signal(SIGINT, reprompt);
-	signal(SIGQUIT, SIG_IGN);
+	signal(SIGQUIT, SIG_DFL);
 }
 
 static void	reprompt(int signal)

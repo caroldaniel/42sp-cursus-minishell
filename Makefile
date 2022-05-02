@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/04/29 12:51:00 by cado-car         ###   ########.fr        #
+#    Updated: 2022/05/02 08:45:34 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC				= main.c\
 				export.c\
 				cd.c\
 				echo.c\
+				env.c\
 				set.c\
 				unset.c\
 				clean.c\

@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:48:20 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/29 15:28:50 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/02 09:25:23 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 
 typedef struct s_minishell {
 	t_hashtable	*vars[2];
+	t_line		*line;
 	int			exit_code;
 }	t_minishell;
 
@@ -94,5 +95,6 @@ void		export(char *key, char *value);
 void		set(char *key, char *value);
 void		unset(char *key);
 void		echo(char *flags, char **parameter);
+void		env(void);
 
 #endif

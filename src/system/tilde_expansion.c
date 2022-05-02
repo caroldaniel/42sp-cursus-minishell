@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 10:09:27 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/29 16:16:10 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/02 09:01:11 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*tilde_expansion(char *parameter)
 	char	*home;
 	char	*logname;
 	size_t	size;
-	
+
 	home = key_search(BOTH, "HOME");
 	logname = ft_strdup(&ft_strrchr(home, '/')[1]);
 	size = ft_strlen(logname);

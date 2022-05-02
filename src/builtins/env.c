@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/14 15:06:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/02 09:27:14 by cado-car         ###   ########.fr       */
+/*   Created: 2022/05/02 08:41:13 by cado-car          #+#    #+#             */
+/*   Updated: 2022/05/02 08:44:36 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#include "minishell.h"
 
-/*
-** Line Struct
-*/
+static void	print_list(t_hashlist *list);
 
-typedef struct s_line
+void	env(void)
 {
-	char	*input;
-} t_line;
+	t_hashtable	*table;
+	size_t		i;
 
-#endif
+	i = 0;
+	table = g_data.vars[ENV];
+	while (i < table->size)
+		print_list(table->list[i++]);
+}
+
+static void	print_list(t_hashlist *list)
+{
+	while (list)
+	{
+		printf("%s=%s\n", list->key, list->value);
+		list = list->next;
+	}
+}
