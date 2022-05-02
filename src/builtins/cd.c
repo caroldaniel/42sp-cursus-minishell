@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 08:26:30 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/29 16:33:36 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/02 08:39:30 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void	cd_cmd(char *path)
 	char	*key_oldpwd;
 	char	*key_pwd;
 	char	*value_oldpwd;
+	char	*value_pwd;
 
 	value_oldpwd = get_pwd();
 	if (chdir(path) == -1)
@@ -67,7 +68,8 @@ static void	cd_cmd(char *path)
 	}
 	key_pwd = ft_strdup("PWD");
 	key_oldpwd = ft_strdup("OLDPWD");
+	value_pwd = get_pwd();
 	set(key_oldpwd, value_oldpwd);
-	set(key_pwd, path);
+	set(key_pwd, value_pwd);
 	g_data.exit_code = 0;
 }
