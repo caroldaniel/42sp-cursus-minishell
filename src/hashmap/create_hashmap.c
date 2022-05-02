@@ -29,13 +29,13 @@ t_hashtable	*create_hashmap(char **variables)
 
 	table = malloc(sizeof(t_hashtable));
 	if (!table)
-		error(NULL, -1, 12);
+		error(NULL, 0, 12);
 	table->size = envp_length(variables);
 	if (!table->size)
 		table->size = 50;
 	table->count = 0;
 	table->list = ft_calloc(sizeof(t_hashlist *), table->size);
 	if (!table->list)
-		error(NULL, -1, 12);
+		error(NULL, 0, 12);
 	return (table);
 }

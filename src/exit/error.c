@@ -6,11 +6,13 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:19:37 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/02 13:40:42 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/02 16:46:25 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	exit_minishell(void);
 
 /*	ERROR
 **	-----
@@ -33,13 +35,18 @@ void	error(char *token, int flag, int code)
 		printf("%s: Invalid number of arguments\n", token);
 	if (flag == 2)
 		printf("%s\n", token);
+	if (flag == 3)
+		printf("Quote missing\n");
 	if (flag == -1)
 		printf("minishell: cd: %s not set\n", token);
 	if (flag == -2)
 		printf("minishell: cd: %s: No such file or directory\n", token);
-	if (flag > 0)
-	{
-		clear();
-		exit(g_data.exit_code);
-	}
+	if (flag >= 0)
+		exit_minishell();
+}
+
+static void	exit_minishell(void)
+{
+	clear();
+	exit(g_data.exit_code);
 }

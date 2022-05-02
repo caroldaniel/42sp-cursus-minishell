@@ -1,20 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_line.c                                       :+:      :+:    :+:   */
+/*   clear_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 13:30:50 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/02 14:24:41 by cado-car         ###   ########.fr       */
+/*   Created: 2022/05/02 16:46:46 by cado-car          #+#    #+#             */
+/*   Updated: 2022/05/02 16:46:57 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	clear_line(void)
+static void	clear_tokens(void);
+
+void	clear_parser(void)
 {
-	if (g_data.line->input)
-		free(g_data.line->input);
-	free(g_data.line);
+	if (g_data.parser->input)
+		free(g_data.parser->input);
+	if (g_data.parser->tokens)
+		clear_tokens();
+	free(g_data.parser);
+}
+
+static void	clear_tokens(void)
+{
+	char	**list;
+	int		i;
+
+	list = g_data.parser->tokens->list;
+	i = 0;
+	while (list[i])
+		free(list[i++]);
+	free(list);
+	free(g_data.parser->tokens);
 }

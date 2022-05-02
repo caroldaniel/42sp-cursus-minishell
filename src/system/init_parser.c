@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_line.c                                        :+:      :+:    :+:   */
+/*   init_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 13:28:22 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/02 14:36:37 by cado-car         ###   ########.fr       */
+/*   Created: 2022/05/02 16:45:48 by cado-car          #+#    #+#             */
+/*   Updated: 2022/05/02 16:46:00 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_line	*init_line(void)
+t_parser	*init_parser(void)
 {
-	t_line	*line;
+	t_parser	*parser;
 
-	line = malloc(sizeof(t_line));
-	if (!line)
-		error(NULL, 1, 1);
-	return (line);
+	parser = malloc(sizeof(t_parser));
+	if (!parser)
+		error(NULL, 0, 12);
+	parser->input = NULL;
+	parser->tokens = NULL;
+	return (parser);
+}
+
+t_tokens	*init_tokens(void)
+{
+	t_tokens	*tokens;
+
+	tokens = malloc(sizeof(t_tokens));
+	if (!tokens)
+		error(NULL, 0, 12);
+	tokens->list = NULL;
+	return (tokens);
 }

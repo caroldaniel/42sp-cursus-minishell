@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 18:50:19 by cado-car          #+#    #+#             */
-/*   Updated: 2022/03/20 10:19:52 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/02 16:42:24 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*get_line(char **buff_read, char **line);
 *	RETURN VALUES
 *	The number of bytes read during the function call, or 0 if EOF.
 *	---------
-*	GET_LINE
+*	GEt_line
 *	---------
 *	Extracts the line (ending in either line break and `\0` or only `\0` in EOF)
 *	from static buffer.
