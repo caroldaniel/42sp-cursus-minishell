@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   change_signals.c                                   :+:      :+:    :+:   */
+/*   init_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/16 21:21:14 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/02 13:46:25 by cado-car         ###   ########.fr       */
+/*   Created: 2022/05/02 13:28:22 by cado-car          #+#    #+#             */
+/*   Updated: 2022/05/02 14:36:37 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	reprompt(int signal);
-
-void	change_input_signals(void)
+t_line	*init_line(void)
 {
-	signal(SIGINT, reprompt);
-	signal(SIGQUIT, SIG_IGN);
-}
+	t_line	*line;
 
-static void	reprompt(int signal)
-{
-	(void)signal;
-	printf("\n");
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	rl_redisplay();
+	line = malloc(sizeof(t_line));
+	if (!line)
+		error(NULL, 1, 1);
+	return (line);
 }

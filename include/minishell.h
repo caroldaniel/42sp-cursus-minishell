@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:48:20 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/02 09:25:23 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/02 14:34:11 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,14 @@ extern t_minishell	g_data;
 */
 
 void		init_minishell(char **variables);
+t_line		*init_line(void);
 
 /*
 ** System
 */
 
 void		open_terminal(void);
-void		change_signals(void);
+void		change_input_signals(void);
 char		*tilde_expansion(char *parameter);
 
 /*
@@ -70,7 +71,8 @@ char		*tilde_expansion(char *parameter);
 */
 
 void		error(char *token, int flag, int code);
-void		clean(void);
+void		clear(void);
+void		clear_line(void);
 
 /*
 ** Prompt

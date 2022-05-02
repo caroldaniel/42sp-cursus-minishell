@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 12:02:00 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/29 15:29:51 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/02 14:34:48 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	echo(char *flags, char **parameter)
 	char	*content;
 	char	*end;
 	int		i;
-	
+
 	end = "\n";
 	i = 0;
 	if (flags && ft_strchr(flags, 'n'))

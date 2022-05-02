@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/05/02 08:45:34 by cado-car         ###   ########.fr        #
+#    Updated: 2022/05/02 13:41:08 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRC				= main.c\
 				env.c\
 				set.c\
 				unset.c\
-				clean.c\
+				clear.c\
+				clear_line.c\
 				error.c\
 				create_hashmap.c\
 				delete_hashmap.c\
@@ -49,6 +50,7 @@ SRC				= main.c\
 				change_signals.c\
 				create_prompt.c\
 				init_minishell.c\
+				init_line.c\
 				open_terminal.c\
 				tilde_expansion.c
 

@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   change_signals.c                                   :+:      :+:    :+:   */
+/*   clear_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/16 21:21:14 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/02 13:46:25 by cado-car         ###   ########.fr       */
+/*   Created: 2022/05/02 13:30:50 by cado-car          #+#    #+#             */
+/*   Updated: 2022/05/02 14:24:41 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	reprompt(int signal);
-
-void	change_input_signals(void)
+void	clear_line(void)
 {
-	signal(SIGINT, reprompt);
-	signal(SIGQUIT, SIG_IGN);
-}
-
-static void	reprompt(int signal)
-{
-	(void)signal;
-	printf("\n");
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	rl_redisplay();
+	if (g_data.line->input)
+		free(g_data.line->input);
+	free(g_data.line);
 }

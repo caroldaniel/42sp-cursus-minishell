@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 10:09:27 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/02 09:01:11 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/02 14:38:29 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,9 @@ char	*tilde_expansion(char *parameter)
 		else if (parameter[0] == '/')
 			extension = ft_strnjoin(2, home, parameter);
 		else if (parameter && logname)
-		{
 			if (!ft_strncmp(parameter, logname, size))
-			{
 				if (!parameter[size] || parameter[size] == '/')
 					extension = ft_strnjoin(2, home, &parameter[size]);
-			}
-		}
 	}
 	free(home);
 	free(logname);

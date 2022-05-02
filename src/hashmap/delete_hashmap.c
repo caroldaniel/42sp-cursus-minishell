@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:11:50 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/28 15:14:24 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/02 14:30:27 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ void	delete_hashmap(int type)
 
 	i = 0;
 	table = g_data.vars[type];
-	while (i++ < table->size)
-		list_delete(table->list[i]);
+	while (i < table->size)
+		list_delete(table->list[i++]);
+	free(table->list);
 	free(table);
 }
 
