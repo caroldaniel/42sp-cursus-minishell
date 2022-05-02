@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:48:20 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/28 16:55:08 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/29 15:28:50 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void		init_minishell(char **variables);
 
 void		open_terminal(void);
 void		change_signals(void);
+char		*tilde_expansion(char *parameter);
 
 /*
 ** Program exit functions
@@ -87,6 +88,11 @@ void		print_envp_hash(void);
 */
 
 char		*get_pwd(void);
-void		export(char *variable);
+void		pwd(void);
+void		cd(char *parameter);
+void		export(char *key, char *value);
+void		set(char *key, char *value);
+void		unset(char *key);
+void		echo(char *flags, char **parameter);
 
 #endif

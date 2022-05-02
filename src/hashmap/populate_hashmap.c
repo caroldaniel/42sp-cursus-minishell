@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 17:05:13 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/29 07:48:31 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/29 09:30:53 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	populate_hashmap(int type, char **variables)
 	char		*value;
 	int			i;
 
-	i = -1;
+	i = 0;
 	while (variables[i])
 	{
 		key = get_key(variables[i]);

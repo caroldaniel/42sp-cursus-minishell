@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/04/28 16:27:29 by cado-car         ###   ########.fr        #
+#    Updated: 2022/04/29 12:51:00 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,10 @@ INCLUDE 		= ./include/
 SRC				= main.c\
 				pwd.c\
 				export.c\
+				cd.c\
+				echo.c\
+				set.c\
+				unset.c\
 				clean.c\
 				error.c\
 				create_hashmap.c\
@@ -44,7 +48,8 @@ SRC				= main.c\
 				change_signals.c\
 				create_prompt.c\
 				init_minishell.c\
-				open_terminal.c
+				open_terminal.c\
+				tilde_expansion.c
 
 VPATH 			:= $(SRC_PATH)\
 				$(SRC_PATH)builtins\

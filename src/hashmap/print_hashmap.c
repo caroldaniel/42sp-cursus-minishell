@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:28:11 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/28 16:42:17 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/04/29 13:32:12 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,6 @@ static void	print_table(int type)
 
 	i = 0;
 	table = g_data.vars[type];
-	if (type == ENV)
-		printf("\nENVIRONMENT VARIABLES\n\n");
-	else
-		printf("\nLOCAL VARIABLES\n\n");
 	while (i < table->size)
 		print_list(table->list[i++]);
 }
