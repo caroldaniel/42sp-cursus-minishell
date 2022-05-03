@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:26:34 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/02 15:14:18 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/03 20:51:13 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	open_terminal(void)
 	while (1)
 	{
 		read_line();
+		tokenizer();
+		token_print();
 	}
 }
 

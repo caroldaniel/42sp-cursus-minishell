@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/02 16:48:38 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/03 20:54:23 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,16 @@ typedef struct s_parser
 ** Constants definitions
 */
 
-# define METACHARS	"|<>"
+# define METACHAR	"|<>&"
 
 /*
-** Parser Functions
+** Tokenizer Functions
 */
 
-void		tokenizer(void);
-t_tokens	*get_tokens(void);
+void	tokenizer(void);
+size_t	token_count(const char *input);
+char	**token_split(const char *input, size_t size);
+int		is_new_token(const char *input, size_t index);
+void	token_print(void);
 
 #endif

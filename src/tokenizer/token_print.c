@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer.c                                        :+:      :+:    :+:   */
+/*   token_print.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 15:20:53 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/03 20:50:34 by cado-car         ###   ########.fr       */
+/*   Created: 2022/05/03 20:49:08 by cado-car          #+#    #+#             */
+/*   Updated: 2022/05/03 20:53:43 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	tokenizer(void)
+void	token_print(void)
 {
-	size_t	size;
+	size_t	i;
 
-	size = token_count(g_data.parser->input);
-	printf("%ld\n", size);
-	g_data.parser->tokens = init_tokens();
-	g_data.parser->tokens->count = size;
-	g_data.parser->tokens->list = token_split(g_data.parser->input, size);
+	i = 0;
+	while (i < g_data.parser->tokens->count)
+	{
+		printf("[TOKEN %2ld] |%s|\n", i + 1, g_data.parser->tokens->list[i]);
+		i++;
+	}
 }

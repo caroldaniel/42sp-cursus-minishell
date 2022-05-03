@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer.c                                        :+:      :+:    :+:   */
+/*   init_tokens.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 15:20:53 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/03 20:50:34 by cado-car         ###   ########.fr       */
+/*   Created: 2022/05/03 10:43:51 by cado-car          #+#    #+#             */
+/*   Updated: 2022/05/03 10:44:02 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	tokenizer(void)
+t_tokens	*init_tokens(void)
 {
-	size_t	size;
+	t_tokens	*tokens;
 
-	size = token_count(g_data.parser->input);
-	printf("%ld\n", size);
-	g_data.parser->tokens = init_tokens();
-	g_data.parser->tokens->count = size;
-	g_data.parser->tokens->list = token_split(g_data.parser->input, size);
+	tokens = malloc(sizeof(t_tokens));
+	if (!tokens)
+		error(NULL, 0, 12);
+	tokens->list = NULL;
+	return (tokens);
 }
