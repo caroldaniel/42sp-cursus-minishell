@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/05/03 20:50:11 by cado-car         ###   ########.fr        #
+#    Updated: 2022/05/04 13:26:23 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC				= main.c\
 				unset.c\
 				clear.c\
 				clear_parser.c\
+				clear_tokens.c\
 				error.c\
 				create_hashmap.c\
 				delete_hashmap.c\
@@ -57,7 +58,8 @@ SRC				= main.c\
 				init_tokens.c\
 				token_split.c\
 				token_count.c\
-				token_print.c
+				token_print.c\
+				token_utils.c
 
 VPATH 			:= $(SRC_PATH)\
 				$(SRC_PATH)builtins\

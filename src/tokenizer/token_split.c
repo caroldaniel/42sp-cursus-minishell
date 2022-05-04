@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:02:23 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/03 20:53:33 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/04 13:32:10 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	create_split(char **result, const char *input)
 	next = i;
 	while (1)
 	{
-		if (is_new_token(input, i))
+		if (is_new_token(input, i, prev))
 			next = i;
 		size = next - prev;
 		if (size > 0)
@@ -70,27 +70,4 @@ static size_t	add_part(char **location, const char *input, size_t size)
 		error(NULL, 0, 12);
 	ft_strlcpy(*location, &input[i], size + 1);
 	return (1);
-}
-
-int	is_new_token(const char *input, size_t index)
-{
-	if (!index || !input[index])
-		return (1);
-	if (ft_strchr(METACHAR, input[index]) || input[index] == ' ')
-	{
-		if (input[index] == '|' && input[index - 1] == '>')
-			return (0);
-		if (input[index] == '|' && input[index - 1] == '|')
-			return (0);
-		if (input[index] == '>' && input[index - 1] == '>')
-			return (0);
-		if (input[index] == '<' && input[index - 1] == '<')
-			return (0);
-		if (input[index] == '&' && input[index - 1] == '&')
-			return (0);
-		if (input[index] == ' ' && input[index - 1] == ' ')
-			return (0);
-		return (1);
-	}
-	return (0);
 }

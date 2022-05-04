@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:48:20 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/02 15:14:49 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/04 15:41:51 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ char		*tilde_expansion(char *parameter);
 void		error(char *token, int flag, int code);
 void		clear(void);
 void		clear_parser(void);
+void		clear_tokens(void);
 
 /*
 ** Prompt

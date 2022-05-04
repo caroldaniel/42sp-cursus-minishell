@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 19:17:06 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/03 20:54:03 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/04 09:40:17 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ size_t	token_count(const char *input)
 	prev = i;
 	next = i;
 	counter = 0;
+	size = 0;
 	while (1)
 	{
-		if (is_new_token(input, i))
+		if (is_new_token(input, i, prev))
 			next = i;
 		size = next - prev;
 		if (size > 0)
