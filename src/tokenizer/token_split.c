@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:02:23 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/04 13:32:10 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/06 08:52:41 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	create_split(char **result, const char *input)
 	c = 0;
 	prev = i;
 	next = i;
+	size = 0;
 	while (1)
 	{
 		if (is_new_token(input, i, prev))
@@ -50,7 +51,6 @@ static void	create_split(char **result, const char *input)
 		prev = next;
 		i++;
 	}
-	result[c] = NULL;
 }
 
 static size_t	add_part(char **location, const char *input, size_t size)
