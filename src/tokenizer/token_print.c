@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 20:49:08 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/06 10:13:04 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/11 09:06:37 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,3 @@ static char	*lexemas_print(int type)
 		return ("ERROR");
 	return (NULL);
 }
-	

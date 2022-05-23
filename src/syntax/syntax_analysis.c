@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer.c                                        :+:      :+:    :+:   */
+/*   syntax_analysis.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 15:20:53 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/23 10:19:19 by cado-car         ###   ########.fr       */
+/*   Created: 2022/05/23 08:52:45 by cado-car          #+#    #+#             */
+/*   Updated: 2022/05/23 10:20:36 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	tokenizer(void)
+int	syntax_analysis(void)
 {
-	size_t	size;
+	char	**token;
+	int		i;
 
-	size = token_count(g_data.parser->input);
-	printf("%ld\n", size);
-	g_data.parser->tokens = init_tokens();
-	g_data.parser->tokens->count = size;
-	g_data.parser->tokens->list = token_split(g_data.parser->input, size);
-	g_data.parser->tokens->lexemas = \
-		lexical_analysis(g_data.parser->tokens->list, size);
-	syntax_analysis();
+	token = g_data.parser->tokens->list;
+	i = -1;
+	while (token[++i])
+	{
+		if (!syntax_pipe_and_or_if(i))
+			break ;
+		else if (!syntax_io_redirect(i))
+			break ;
+		else if (!syntax_and(i))
+			break ;
+		else if (!syntax_quote(i))
+			break ;
+	}
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/06 10:10:15 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/23 10:20:08 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,15 @@ char	**token_split(const char *input, size_t size);
 int		is_new_token(const char *input, size_t index, size_t prev);
 int		*lexical_analysis(char **token, int size);
 void	token_print(void);
+
+/*
+** Syntax Analysis
+*/
+
+int		syntax_analysis(void);
+int		syntax_pipe_and_or_if(int pos);
+int		syntax_io_redirect(int pos);
+int		syntax_quote(int pos);
+int		syntax_and(int pos);
 
 #endif

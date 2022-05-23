@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/05/05 09:02:49 by cado-car         ###   ########.fr        #
+#    Updated: 2022/05/23 09:58:35 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,11 +61,19 @@ SRC				= main.c\
 				token_print.c\
 				token_utils.c\
 				lexical_analysis.c\
+				syntax_analysis.c\
+				syntax_pipe_and_or_if.c\
+				syntax_io_redirect.c\
+				syntax_and.c\
+				syntax_quote.c\
+				syntax_word_assignment.c\
+				
 
 VPATH 			:= $(SRC_PATH)\
 				$(SRC_PATH)builtins\
 				$(SRC_PATH)exit\
 				$(SRC_PATH)hashmap\
+				$(SRC_PATH)syntax\
 				$(SRC_PATH)system\
 				$(SRC_PATH)tokenizer\
 

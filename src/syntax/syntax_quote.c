@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer.c                                        :+:      :+:    :+:   */
+/*   syntax_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 15:20:53 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/23 10:19:19 by cado-car         ###   ########.fr       */
+/*   Created: 2022/05/23 09:08:07 by cado-car          #+#    #+#             */
+/*   Updated: 2022/05/23 10:21:51 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	tokenizer(void)
+int	syntax_quote(int pos)
 {
-	size_t	size;
-
-	size = token_count(g_data.parser->input);
-	printf("%ld\n", size);
-	g_data.parser->tokens = init_tokens();
-	g_data.parser->tokens->count = size;
-	g_data.parser->tokens->list = token_split(g_data.parser->input, size);
-	g_data.parser->tokens->lexemas = \
-		lexical_analysis(g_data.parser->tokens->list, size);
-	syntax_analysis();
+    char    **token;
+	int		flag;
+	int		i;
+	
+    token = g_data.parser->tokens->list;
+	flag = -1;
+	i = 0;
+	if (!token[pos + 1])
+	{
+		while (token[pos][i])
+		{
+			if (flag == -1 && (token[pos][i] == '\"' || token[pos][i] == '\''))
+				flag = i;
+			if (flag != -1 && token[pos][i] == token[pos][flag])
+				flag = -1;
+			i++;
+		}
+		if (flag != -1)
+		{
+			error(NULL, -5, 2);
+			return (0);
+		}
+	}
+	return (1);
 }

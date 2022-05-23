@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer.c                                        :+:      :+:    :+:   */
+/*   syntax_pipe_and_or_if.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 15:20:53 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/23 10:19:19 by cado-car         ###   ########.fr       */
+/*   Created: 2022/05/23 09:05:19 by cado-car          #+#    #+#             */
+/*   Updated: 2022/05/23 09:58:45 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	tokenizer(void)
+int	syntax_pipe_and_or_if(int pos)
 {
-	size_t	size;
-
-	size = token_count(g_data.parser->input);
-	printf("%ld\n", size);
-	g_data.parser->tokens = init_tokens();
-	g_data.parser->tokens->count = size;
-	g_data.parser->tokens->list = token_split(g_data.parser->input, size);
-	g_data.parser->tokens->lexemas = \
-		lexical_analysis(g_data.parser->tokens->list, size);
-	syntax_analysis();
+	int     *lexema;
+    char    **token;
+	
+	lexema = g_data.parser->tokens->lexemas;
+    token = g_data.parser->tokens->list;
+	if (lexema[pos] == PIPE || lexema[pos] == AND_IF || lexema[pos] == OR_IF)
+	{
+		if (pos == 0 || !token[pos + 1])
+		{
+			error(token[pos], -3, 2);
+			return (0);
+		}
+	}
+	return (1);
 }
