@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 10:58:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/02 15:14:18 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/24 09:37:19 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ void	clear(void)
 		delete_hashmap(LOCAL);
 	if (g_data.parser)
 		clear_parser();
-	clear_history();
+	rl_clear_history();
 }

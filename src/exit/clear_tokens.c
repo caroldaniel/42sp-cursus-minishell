@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 13:25:54 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/06 10:12:50 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/24 09:45:41 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ void	clear_tokens(void)
 	if (lexemas)
 		free(lexemas);
 	free(g_data.parser->tokens);
+	g_data.parser->tokens = NULL;
 }
