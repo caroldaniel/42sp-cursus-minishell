@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 09:08:07 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/23 10:21:51 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/24 09:53:23 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	syntax_quote(int pos)
 {
-    char    **token;
+	char	**token;
 	int		flag;
 	int		i;
-	
-    token = g_data.parser->tokens->list;
+
+	token = g_data.parser->tokens->list;
 	flag = -1;
 	i = 0;
 	if (!token[pos + 1])

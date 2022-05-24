@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 09:06:36 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/23 10:02:51 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/24 09:54:02 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	syntax_and(int pos)
 {
-	int     *lexema;
-    char    **token;
-	
+	int		*lexema;
+	char	**token;
+
 	lexema = g_data.parser->tokens->lexemas;
-    token = g_data.parser->tokens->list;
+	token = g_data.parser->tokens->list;
 	if (lexema[pos] == AND)
 	{
 		error(token[pos], -3, 2);
