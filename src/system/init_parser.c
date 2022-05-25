@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 16:45:48 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/03 10:43:50 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/24 17:15:36 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ t_parser	*init_parser(void)
 		error(NULL, 0, 12);
 	parser->input = NULL;
 	parser->tokens = NULL;
+	parser->cmd = NULL;
 	return (parser);
 }

@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_analysis.c                                  :+:      :+:    :+:   */
+/*   cmd_create.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/23 08:52:45 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/24 17:04:17 by cado-car         ###   ########.fr       */
+/*   Created: 2022/05/24 17:12:52 by cado-car          #+#    #+#             */
+/*   Updated: 2022/05/24 21:40:54 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	syntax_analysis(void)
+t_cmd	*cmd_create(void)
 {
-	char	**token;
-	int		i;
+	t_cmd	*cmd;
 
-	token = g_data.parser->tokens->list;
-	i = -1;
-	while (token[++i])
-	{
-		if (!syntax_pipe_and_or_if(i))
-			return (0);
-		else if (!syntax_io_redirect(i))
-			return (0);
-		else if (!syntax_and(i))
-			return (0);
-		else if (!syntax_quote(i))
-			return (0);
-	}
-	return (1);
+	cmd = malloc(sizeof(t_cmd));
+	if (!cmd)
+		error(NULL, 0, 12);
+	cmd->words = NULL;
+	cmd->redirects = NULL;
+	cmd->here_docs = NULL;
+	cmd->next = NULL;
+	return (cmd);
 }

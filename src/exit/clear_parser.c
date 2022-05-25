@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 16:46:46 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/04 13:27:02 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/24 17:16:03 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,7 @@ void	clear_parser(void)
 		free(g_data.parser->input);
 	if (g_data.parser->tokens)
 		clear_tokens();
+	if (g_data.parser->cmd)
+		clear_cmd();
 	free(g_data.parser);
 }

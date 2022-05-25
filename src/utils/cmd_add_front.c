@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_analysis.c                                  :+:      :+:    :+:   */
+/*   cmd_add_front.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/23 08:52:45 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/24 17:04:17 by cado-car         ###   ########.fr       */
+/*   Created: 2022/05/24 21:41:27 by cado-car          #+#    #+#             */
+/*   Updated: 2022/05/24 21:51:39 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	syntax_analysis(void)
+void	cmd_add_front(t_cmd *node)
 {
-	char	**token;
-	int		i;
+	t_cmd	*cmd_list;
+	t_cmd	*tmp;
 
-	token = g_data.parser->tokens->list;
-	i = -1;
-	while (token[++i])
+	cmd_list = g_data.parser->cmd;
+	if (!cmd_list)
+		g_data.parser->cmd = node;
+	else
 	{
-		if (!syntax_pipe_and_or_if(i))
-			return (0);
-		else if (!syntax_io_redirect(i))
-			return (0);
-		else if (!syntax_and(i))
-			return (0);
-		else if (!syntax_quote(i))
-			return (0);
+		tmp = cmd_list;
+		g_data.parser->cmd = node;
+		g_data.parser->cmd->next = tmp;
 	}
-	return (1);
 }

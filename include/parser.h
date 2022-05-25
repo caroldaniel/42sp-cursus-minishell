@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/23 10:20:08 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/24 21:53:51 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ enum e_lexemas {
 };
 
 /*
-** Line Struct
+** Token Struct
 */
 
 typedef struct s_tokens
@@ -41,13 +41,30 @@ typedef struct s_tokens
 }	t_tokens;
 
 /*
-** Line Struct
+** Command Struct
+*/
+
+typedef struct s_cmd
+{
+	char			**words;
+	char			**redirects;
+	char			**here_docs;
+	int				pipes;
+	int				fd_out;
+	int				fd_in;
+	int				pid;
+	struct s_cmd	*next;
+}	t_cmd;
+
+/*
+** Parser Struct
 */
 
 typedef struct s_parser
 {
 	char		*input;
 	t_tokens	*tokens;
+	t_cmd		*cmd;
 }	t_parser;
 
 /*
@@ -77,5 +94,13 @@ int		syntax_pipe_and_or_if(int pos);
 int		syntax_io_redirect(int pos);
 int		syntax_quote(int pos);
 int		syntax_and(int pos);
+
+/*
+** Syntax Analysis
+*/
+
+t_cmd	*cmd_create(void);
+void	cmd_add_back(t_cmd *node);
+void	cmd_add_front(t_cmd *node);
 
 #endif

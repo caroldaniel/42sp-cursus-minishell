@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/05/23 09:58:35 by cado-car         ###   ########.fr        #
+#    Updated: 2022/05/24 21:54:13 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC				= main.c\
 				set.c\
 				unset.c\
 				clear.c\
+				clear_cmd.c\
 				clear_parser.c\
 				clear_tokens.c\
 				error.c\
@@ -67,6 +68,9 @@ SRC				= main.c\
 				syntax_and.c\
 				syntax_quote.c\
 				syntax_word_assignment.c\
+				cmd_create.c\
+				cmd_add_back.c\
+				cmd_add_front.c\
 				
 
 VPATH 			:= $(SRC_PATH)\
@@ -76,6 +80,7 @@ VPATH 			:= $(SRC_PATH)\
 				$(SRC_PATH)syntax\
 				$(SRC_PATH)system\
 				$(SRC_PATH)tokenizer\
+				$(SRC_PATH)utils\
 
 OBJ				= $(addprefix $(OBJ_PATH), $(notdir $(SRC:.c=.o)))
 
