@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/05/24 21:54:13 by cado-car         ###   ########.fr        #
+#    Updated: 2022/05/25 08:21:17 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,6 +118,9 @@ fclean:			clean
 install:		
 				sudo apt-get install libreadline-dev
 				@printf "$(GR)All dependencies ready!$(RC)\n\n"
+
+leak:			fclean all
+				valgrind --suppressions=./local.supp --leak-check=full --show-leak-kinds=all ./$(NAME)
 
 .PHONY:			all clean fclean re bonus rebonus
 
