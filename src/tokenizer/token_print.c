@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 20:49:08 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/26 11:29:56 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/26 11:43:02 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static char	*lexemas_print(int type);
 
 void	token_print(void)
 {
-	
 	t_tkn	*token;
 
 	token = g_data.parser->tokens;

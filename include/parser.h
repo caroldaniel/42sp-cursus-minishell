@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/26 11:36:16 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/26 11:42:45 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_tkn
 	char			*token;
 	int				lexema;
 	struct s_tkn	*next;
-}	t_tkn; 
+}	t_tkn;
 
 /*
 ** Command Struct
@@ -47,7 +47,7 @@ typedef struct s_tkn
 typedef struct s_cmd
 {
 	char			**commands;
-	char			**redirects; 
+	char			**redirects;
 	int				endpoint;
 	int				fd_out;
 	int				fd_in;
