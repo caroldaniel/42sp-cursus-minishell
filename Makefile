@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/05/25 08:21:17 by cado-car         ###   ########.fr        #
+#    Updated: 2022/05/26 11:10:35 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,9 +56,6 @@ SRC				= main.c\
 				open_terminal.c\
 				tilde_expansion.c\
 				tokenizer.c\
-				init_tokens.c\
-				token_split.c\
-				token_count.c\
 				token_print.c\
 				token_utils.c\
 				lexical_analysis.c\
@@ -71,10 +68,13 @@ SRC				= main.c\
 				cmd_create.c\
 				cmd_add_back.c\
 				cmd_add_front.c\
-				
+				tkn_add_back.c\
+				tkn_create.c\
+				command_table.c\
 
 VPATH 			:= $(SRC_PATH)\
 				$(SRC_PATH)builtins\
+				$(SRC_PATH)command\
 				$(SRC_PATH)exit\
 				$(SRC_PATH)hashmap\
 				$(SRC_PATH)syntax\
@@ -116,10 +116,10 @@ fclean:			clean
 				@printf "$(RE)Executables removed!$(RC)\n\n"
 
 install:		
-				sudo apt-get install libreadline-dev
+				sudo apt-get install -y libreadline-dev valgrind
 				@printf "$(GR)All dependencies ready!$(RC)\n\n"
 
-leak:			fclean all
+leak:							
 				valgrind --suppressions=./local.supp --leak-check=full --show-leak-kinds=all ./$(NAME)
 
 .PHONY:			all clean fclean re bonus rebonus

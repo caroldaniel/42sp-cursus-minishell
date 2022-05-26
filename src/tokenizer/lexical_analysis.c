@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 09:02:29 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/06 10:12:23 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/26 11:29:56 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,12 @@
 static int	check_token(char *token);
 static int	check_word(char *token);
 
-int	*lexical_analysis(char **token, int size)
+int	lexical_analysis(char *token)
 {
-	int	*lexemas;
-	int	i;
+	int	lexema;
 
-	lexemas = malloc(size * sizeof(int));
-	if (!lexemas)
-		error(NULL, 0, 12);
-	i = -1;
-	while (token[++i])
-		lexemas[i] = check_token(token[i]);
-	return (lexemas);
+	lexema = check_token(token);
+	return (lexema);
 }
 
 static int	check_token(char *token)
@@ -67,7 +61,7 @@ static int	check_word(char *token)
 		{
 			if (ft_isdigit(token[0]) || token[0] == '=')
 				return (ERROR);
-			return (ASSIGNMENT_WORD);
+			return (ASSIGN_WORD);
 		}
 		i++;
 	}

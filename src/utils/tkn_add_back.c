@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_quote.c                                     :+:      :+:    :+:   */
+/*   tkn_add_back.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/23 09:08:07 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/26 11:36:12 by cado-car         ###   ########.fr       */
+/*   Created: 2022/05/26 10:00:38 by cado-car          #+#    #+#             */
+/*   Updated: 2022/05/26 10:15:15 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	syntax_quote(t_tkn *tkn)
+void	tkn_add_back(t_tkn *token)
 {
-	int		flag;
-	int		i;
+	t_tkn *tmp;
 
-	flag = -1;
-	i = 0;
-	if (!tkn->next)
+	tmp = g_data.parser->tokens;
+	if (!tmp)
+		g_data.parser->tokens = token;
+	else
 	{
-		while (tkn->token[i])
-		{
-			if (flag == -1 && (tkn->token[i] == '\"' || tkn->token[i] == '\''))
-				flag = i;
-			if (flag != -1 && tkn->token[i] == tkn->token[flag])
-				flag = -1;
-			i++;
-		}
-		if (flag != -1)
-		{
-			error(NULL, -5, 2);
-			return (0);
-		}
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = token;
 	}
-	return (1);
 }

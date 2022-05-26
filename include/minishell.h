@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:48:20 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/24 21:53:05 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/26 09:59:03 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ extern t_minishell	g_data;
 
 void		init_minishell(char **variables);
 t_parser	*init_parser(void);
-t_tokens	*init_tokens(void);
+t_tkn	*init_tkn(void);
 
 /*
 ** System

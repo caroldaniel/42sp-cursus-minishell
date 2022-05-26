@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 20:49:08 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/11 09:06:37 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/26 11:29:56 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ static char	*lexemas_print(int type);
 
 void	token_print(void)
 {
-	size_t	i;
+	
+	t_tkn	*token;
 
-	i = 0;
-	while (i < g_data.parser->tokens->count)
+	token = g_data.parser->tokens;
+	while (token)
 	{
-		printf("%2ld - [TOKEN]  %s \t\t[LEXEMA]  %s\n", i + 1,
-			g_data.parser->tokens->list[i],
-			lexemas_print(g_data.parser->tokens->lexemas[i]));
-		i++;
+		printf("[TOKEN]  %s\t\t[LEXEMA]  %s\n", token->token, \
+			lexemas_print(token->lexema));
+		token = token->next;
 	}
 }
 
@@ -32,8 +32,8 @@ static char	*lexemas_print(int type)
 {
 	if (type == WORD)
 		return ("WORD");
-	if (type == ASSIGNMENT_WORD)
-		return ("ASSIGNMENT_WORD");
+	if (type == ASSIGN_WORD)
+		return ("ASSIGN_WORD");
 	if (type == AND_IF)
 		return ("AND_IF");
 	if (type == OR_IF)

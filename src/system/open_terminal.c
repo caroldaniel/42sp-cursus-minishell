@@ -6,22 +6,25 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:26:34 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/25 08:38:51 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/26 11:13:37 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static void	read_line(void);
+static int	parse_line(void);
 
 void	open_terminal(void)
 {
 	change_input_signals();
 	while (1)
 	{
-		read_line();
-		tokenizer();
 		clear_tokens();
+		read_line();
+		if (!parse_line())
+			continue ;
+		token_print();
 	}
 }
 
@@ -37,4 +40,14 @@ static void	read_line(void)
 	if (!g_data.parser->input)
 		error("exit", 2, 0);
 	add_history(g_data.parser->input);
+}
+
+static int parse_line(void)
+{
+	tokenizer();
+	if (!syntax_analysis())
+		return (0);
+	printf("OK\n");
+	command_table();
+	return (1);
 }
