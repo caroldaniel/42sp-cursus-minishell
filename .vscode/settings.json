@@ -3,6 +3,7 @@
 		"minishell.h": "c",
 		"types.h": "c",
 		"pwd.h": "c",
-		"executables.h": "c"
+		"executables.h": "c",
+		"history.h": "c"
 	}
 }

@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/05/26 11:10:35 by cado-car         ###   ########.fr        #
+#    Updated: 2022/05/26 14:48:38 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,7 @@ SRC				= main.c\
 				cmd_add_front.c\
 				tkn_add_back.c\
 				tkn_create.c\
+				tkn_dup.c\
 				command_table.c\
 
 VPATH 			:= $(SRC_PATH)\

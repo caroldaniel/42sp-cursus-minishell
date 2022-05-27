@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:26:34 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/26 11:43:39 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/27 10:20:22 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	open_terminal(void)
 	change_input_signals();
 	while (1)
 	{
-		clear_tokens();
+		clear_parser();
+		clear_cmd();
 		read_line();
 		if (!parse_line())
 			continue ;
@@ -33,8 +34,7 @@ static void	read_line(void)
 	char	*prompt;
 
 	prompt = create_prompt();
-	if (g_data.parser->input)
-		free(g_data.parser->input);
+	g_data.parser = init_parser();
 	g_data.parser->input = readline(prompt);
 	free(prompt);
 	if (!g_data.parser->input)
@@ -47,7 +47,7 @@ static int	parse_line(void)
 	tokenizer();
 	if (!syntax_analysis())
 		return (0);
-	printf("OK\n");
+	printf("[OK]\n");
 	command_table();
 	return (1);
 }

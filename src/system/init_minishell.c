@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 13:40:35 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/24 09:13:47 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/26 15:38:49 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@ void	init_minishell(char **variables)
 	g_data.vars[LOCAL] = create_hashmap(NULL);
 	if (variables)
 		populate_hashmap(ENV, variables);
-	g_data.parser = init_parser();
+	g_data.parser = NULL;
+	g_data.cmd = NULL;
 }

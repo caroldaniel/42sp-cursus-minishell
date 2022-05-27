@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.h                                          :+:      :+:    :+:   */
+/*   tkn_dup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 09:24:12 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/26 15:48:17 by cado-car         ###   ########.fr       */
+/*   Created: 2022/05/26 11:51:16 by cado-car          #+#    #+#             */
+/*   Updated: 2022/05/26 12:35:47 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNALS_H
-# define SIGNALS_H
+#include "minishell.h"
 
-# include "minishell.h"
+t_tkn	*tkn_dup(t_tkn *original)
+{
+	t_tkn	*tkn;
 
-#endif
+	tkn = malloc(sizeof(t_tkn));
+	if (!tkn)
+		error(NULL, 0, 12);
+	tkn->token = ft_strdup(original->token);
+	tkn->lexema = original->lexema;
+	tkn->next = NULL;
+	return (tkn);
+}

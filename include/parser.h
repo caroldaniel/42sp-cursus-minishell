@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/26 11:42:45 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/27 09:28:39 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@
 enum e_lexemas {
 	WORD,
 	ASSIGN_WORD,
-	AND_IF,
-	OR_IF,
 	LESS,
 	DLESS,
 	GREAT,
 	DGREAT,
-	PIPE,
+	ERROR,
 	AND,
-	ERROR
+	PIPE,
+	AND_IF,
+	OR_IF
 };
 
 /*
@@ -41,21 +41,6 @@ typedef struct s_tkn
 }	t_tkn;
 
 /*
-** Command Struct
-*/
-
-typedef struct s_cmd
-{
-	char			**commands;
-	char			**redirects;
-	int				endpoint;
-	int				fd_out;
-	int				fd_in;
-	int				pid;
-	struct s_cmd	*next;
-}	t_cmd;
-
-/*
 ** Parser Struct
 */
 
@@ -63,8 +48,33 @@ typedef struct s_parser
 {
 	char		*input;
 	t_tkn		*tokens;
-	t_cmd		*cmd;
 }	t_parser;
+
+/*
+** Executable Struct
+*/
+
+typedef struct s_exec
+{
+	char	*command;
+	char	**params;
+}	t_exec;
+
+/*
+** Command Struct
+*/
+
+typedef struct s_cmd
+{
+	t_tkn			*commands;
+	t_tkn			*redirects;
+	t_exec			*exec;
+	int				endpoint;
+	int				fd_out;
+	int				fd_in;
+	int				pid;
+	struct s_cmd	*next;
+}	t_cmd;
 
 /*
 ** Constants definitions
@@ -87,7 +97,8 @@ void	token_print(void);
 */
 
 t_tkn	*tkn_create(char *token);
-void	tkn_add_back(t_tkn *token);
+t_tkn	*tkn_dup(t_tkn *original);
+void	tkn_add_back(t_tkn **list, t_tkn *token);
 int		lexical_analysis(char *token);
 
 /*

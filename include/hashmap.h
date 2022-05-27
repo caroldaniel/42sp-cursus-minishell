@@ -6,12 +6,14 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 14:19:42 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/29 07:50:51 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/26 15:48:10 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HASHMAP_H
 # define HASHMAP_H
+
+# include "minishell.h"
 
 /*
 ** Structs definitions

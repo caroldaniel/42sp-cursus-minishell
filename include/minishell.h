@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:48:20 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/26 11:42:31 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/26 15:50:50 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 typedef struct s_minishell {
 	t_hashtable	*vars[2];
 	t_parser	*parser;
+	t_cmd		*cmd;
 	int			exit_code;
 }	t_minishell;
 
@@ -50,6 +51,7 @@ enum e_type {
 */
 
 extern t_minishell	g_data;
+
 
 /*
 ** Initialization
@@ -75,7 +77,7 @@ void		error(char *token, int flag, int code);
 void		clear(void);
 void		clear_cmd(void);
 void		clear_parser(void);
-void		clear_tokens(void);
+void		clear_tokens(t_tkn **list);
 
 /*
 ** Prompt

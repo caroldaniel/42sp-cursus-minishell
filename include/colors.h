@@ -6,12 +6,14 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 13:31:20 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/15 13:31:50 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/26 15:48:04 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	COLORS_H
 # define COLORS_H
+
+# include "minishell.h"
 
 # define ESC_BLACK "\001\033[0;30m"
 # define ESC_BOLD_BLACK "\001\033[1;30m\002"

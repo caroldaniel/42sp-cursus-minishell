@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 21:41:27 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/24 21:48:21 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/27 09:52:35 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	cmd_add_back(t_cmd *node)
 {
 	t_cmd	*cmd_list;
 
-	cmd_list = g_data.parser->cmd;
+	cmd_list = g_data.cmd;
 	if (!cmd_list)
-		g_data.parser->cmd = node;
+		g_data.cmd = node;
 	else
 	{
 		while (cmd_list->next)
