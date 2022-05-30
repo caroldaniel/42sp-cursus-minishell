@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_print.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 20:49:08 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/27 09:58:57 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/30 07:43:08 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ void	token_print(void)
 	node = g_data.cmd;
 	while (node)
 	{
-		printf("\nNEW COMMAND\n\n");
-		commands = g_data.cmd->commands;
+		printf("\nNEW COMMAND\n");
+		commands = node->commands;
+		printf("\n\nCOMMANDS FOR EXECVE\n");
 		while (commands)
 		{
-			printf("\n\nCOMMANDS FOR EXECVE\n\n");
 			printf("[TOKEN]  %s\t\t[LEXEMA]  %s\n", commands->token,
 				lexemas_print(commands->lexema));
 			commands = commands->next;
 		}
-		redirects = g_data.cmd->redirects;
+		redirects = node->redirects;
+		printf("\n\nREDIRECTS\n");
 		while (redirects)
 		{
-			printf("\n\nREDIRECTS\n\n");
 			printf("[TOKEN]  %s\t\t[LEXEMA]  %s\n", redirects->token,
 				lexemas_print(redirects->lexema));
 			redirects = redirects->next;

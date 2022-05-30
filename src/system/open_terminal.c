@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_terminal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:26:34 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/27 10:20:22 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/05/30 07:55:28 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ static int	parse_line(void)
 		return (0);
 	printf("[OK]\n");
 	command_table();
+//	token_print();
 	return (1);
 }
