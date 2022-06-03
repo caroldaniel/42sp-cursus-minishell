@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: fausto <fausto@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/06/03 08:59:45 by cado-car         ###   ########.fr        #
+#    Updated: 2022/06/03 14:41:47 by fausto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,8 @@ SRC				= main.c\
 				tkn_remove.c\
 				command_table.c\
 				command_expansion.c\
+				single_quote_expansion.c\
+				double_quote_expansion.c\
 
 VPATH 			:= $(SRC_PATH)\
 				$(SRC_PATH)builtins\

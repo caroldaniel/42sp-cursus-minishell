@@ -6,7 +6,7 @@
 /*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:23:12 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/03 11:04:42 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/03 14:38:56 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ static void	token_expansion(t_tkn *tkn)
 	if (new)
 		swap_command(tkn, new);
 	new = variable_expansion(tkn->token);
+	if (new)
+		swap_command(tkn, new);
+	new = single_quote_expansion(tkn->token);
+	if (new)
+		swap_command(tkn, new);
+	new = double_quote_expansion(tkn->token);
 	if (new)
 		swap_command(tkn, new);
 }

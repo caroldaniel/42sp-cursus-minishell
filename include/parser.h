@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/01 19:51:41 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/03 14:28:39 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,6 @@ void	cmd_add_front(t_cmd *node);
 
 void	command_table(void);
 void	command_expansion(void);
-
+char	*single_quote_expansion(char *token);
+char	*double_quote_expansion(char *token);
 #endif
