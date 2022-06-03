@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_expansion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:23:12 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/03 09:26:13 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/03 11:04:42 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@ void	command_expansion(void)
 			token_expansion(tkn);
 			tkn = tkn->next;
 		}
+		tkn = cmd->redirects;
+        while (tkn)
+        {
+            if (ft_strncmp(tkn->token, "<<", 3))
+            {
+                tkn = tkn->next;
+                token_expansion(tkn);
+            }
+            else
+                tkn = tkn->next;
+			tkn = tkn->next;
+        }
 		cmd = cmd->next;
 	}
 }
