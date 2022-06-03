@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 13:12:57 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/15 13:37:25 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/01 22:40:32 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ char	*ft_strnjoin(int argn, ...)
 		else
 		{
 			tmp = ft_strjoin(result, buf);
-			free(result);
+			if (result)
+				free(result);
 			result = tmp;
 		}
 	}

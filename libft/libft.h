@@ -73,5 +73,6 @@ char	*ft_uitoa_base(unsigned long nbr, char *base);
 int		ft_atoi_base(char *str, char *base);
 char	*ft_strnjoin(int argn, ...);
 char	*ft_strndup(const char *s1, size_t size);
+int	ft_strisalnum(char *s);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 09:02:29 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/26 11:29:56 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/02 16:13:33 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	check_token(char *token);
 static int	check_word(char *token);
+static int	is_key_alnum(char *s, int stop);
 
 int	lexical_analysis(char *token)
 {
@@ -61,9 +62,24 @@ static int	check_word(char *token)
 		{
 			if (ft_isdigit(token[0]) || token[0] == '=')
 				return (ERROR);
-			return (ASSIGN_WORD);
+			if (is_key_alnum(token, i))
+				return (ASSIGN_WORD);
 		}
 		i++;
 	}
 	return (WORD);
+}
+
+static int	is_key_alnum(char *s, int stop)
+{
+	int	i;
+
+	i = 0;
+	while (i < stop)
+	{
+		if (!ft_isalnum(s[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_print.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 20:49:08 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/30 07:43:08 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/01 14:34:58 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	token_print(void)
 	t_tkn	*commands;
 	t_tkn	*redirects;
 	t_cmd	*node;
+	int		i;
 
 	token = g_data.parser->tokens;
 	while (token)
@@ -29,11 +30,12 @@ void	token_print(void)
 		token = token->next;
 	}
 	node = g_data.cmd;
+	i = 1;
 	while (node)
 	{
-		printf("\nNEW COMMAND\n");
+		printf("\nCOMMAND %d\n", i);
 		commands = node->commands;
-		printf("\n\nCOMMANDS FOR EXECVE\n");
+		printf("\t\tCOMMANDS FOR EXECVE\n");
 		while (commands)
 		{
 			printf("[TOKEN]  %s\t\t[LEXEMA]  %s\n", commands->token,
@@ -41,14 +43,17 @@ void	token_print(void)
 			commands = commands->next;
 		}
 		redirects = node->redirects;
-		printf("\n\nREDIRECTS\n");
+		printf("\t\tREDIRECTS\n");
 		while (redirects)
 		{
 			printf("[TOKEN]  %s\t\t[LEXEMA]  %s\n", redirects->token,
 				lexemas_print(redirects->lexema));
 			redirects = redirects->next;
 		}
+		printf("\tENDPOINT\n");
+		printf("[LEXEMA]  %s\n", lexemas_print(node->endpoint));
 		node = node->next;
+		i++;
 	}
 }
 

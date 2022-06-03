@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_table.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 09:12:29 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/30 07:54:19 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/03 09:26:58 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	command_table(void)
 		cmd_populate(&cmd_node, &list, &prev);
 		cmd_add_back(cmd_node);
 	}
+	command_expansion();
 	return ;
 }
 
@@ -38,7 +39,7 @@ static void	cmd_populate(t_cmd **cmd, t_tkn **list, int *prev)
 
 	while (*list && (*list)->lexema < PIPE)
 	{
-		destiny = &(*cmd)->commands;	
+		destiny = &(*cmd)->commands;
 		if (is_redirect(*prev, (*list)->lexema))
 			destiny = &(*cmd)->redirects;
 		tkn_add_back(destiny, tkn_dup(*list));

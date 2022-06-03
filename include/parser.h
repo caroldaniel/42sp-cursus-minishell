@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/27 09:28:39 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/01 19:51:41 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,6 @@ typedef struct s_parser
 }	t_parser;
 
 /*
-** Executable Struct
-*/
-
-typedef struct s_exec
-{
-	char	*command;
-	char	**params;
-}	t_exec;
-
-/*
 ** Command Struct
 */
 
@@ -68,7 +58,7 @@ typedef struct s_cmd
 {
 	t_tkn			*commands;
 	t_tkn			*redirects;
-	t_exec			*exec;
+	char			**exec;
 	int				endpoint;
 	int				fd_out;
 	int				fd_in;
@@ -98,6 +88,7 @@ void	token_print(void);
 
 t_tkn	*tkn_create(char *token);
 t_tkn	*tkn_dup(t_tkn *original);
+void	tkn_remove(t_tkn **list, char *token);
 void	tkn_add_back(t_tkn **list, t_tkn *token);
 int		lexical_analysis(char *token);
 
@@ -124,5 +115,6 @@ void	cmd_add_front(t_cmd *node);
 */
 
 void	command_table(void);
+void	command_expansion(void);
 
 #endif
