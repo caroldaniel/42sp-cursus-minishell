@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:26:34 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/01 17:00:11 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/04 19:40:16 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static int	parse_line(void)
 	tokenizer();
 	if (!syntax_analysis())
 		return (0);
-	printf("[OK]\n");
 	command_table();
 	token_print();
 	return (1);

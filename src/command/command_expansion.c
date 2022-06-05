@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   command_expansion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:23:12 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/03 14:38:56 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/05 20:41:58 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	token_expansion(t_tkn *tkn);
-static void	swap_command(t_tkn *tkn, char *new);
+static void	token_expansion(t_tkn **tkn);
+static void	expand_redirects(t_cmd *cmd);
 
 void	command_expansion(void)
 {
@@ -26,45 +26,51 @@ void	command_expansion(void)
 		tkn = cmd->commands;
 		while (tkn)
 		{
-			token_expansion(tkn);
+			token_expansion(&tkn);
 			tkn = tkn->next;
 		}
-		tkn = cmd->redirects;
-        while (tkn)
-        {
-            if (ft_strncmp(tkn->token, "<<", 3))
-            {
-                tkn = tkn->next;
-                token_expansion(tkn);
-            }
-            else
-                tkn = tkn->next;
-			tkn = tkn->next;
-        }
+		expand_redirects(cmd);
 		cmd = cmd->next;
 	}
 }
 
-static void	token_expansion(t_tkn *tkn)
+static void	expand_redirects(t_cmd *cmd)
 {
-	char	*new;
+	t_tkn	*tkn;
 
-	new = tilde_expansion(tkn->token);
-	if (new)
-		swap_command(tkn, new);
-	new = variable_expansion(tkn->token);
-	if (new)
-		swap_command(tkn, new);
-	new = single_quote_expansion(tkn->token);
-	if (new)
-		swap_command(tkn, new);
-	new = double_quote_expansion(tkn->token);
-	if (new)
-		swap_command(tkn, new);
+	tkn = cmd->redirects;
+	while (tkn)
+	{
+		if (ft_strncmp(tkn->token, "<<", 3))
+		{
+			tkn = tkn->next;
+			token_expansion(&tkn);
+		}
+		else
+			tkn = tkn->next;
+		tkn = tkn->next;
+	}
 }
 
-static void	swap_command(t_tkn *tkn, char *new)
+static void	token_expansion(t_tkn **tkn)
+{
+	char	*token;
+	int		pos;
+
+	token = (*tkn)->token;
+	pos = -1;
+	if (token[++pos] == '~')
+		tilde_expansion(tkn, &pos);
+	while (token[pos])
+	{	
+		if (token[pos] == '$')
+			variable_expansion(tkn, &pos);
+		pos++;
+	}
+}
+
+void	swap_token(t_tkn *tkn, char	*new_token)
 {
 	free(tkn->token);
-	tkn->token = new;
+	tkn->token = new_token;
 }

@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:20:53 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/26 16:16:41 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/04 20:55:36 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ static void	add_part(const char *input, size_t size)
 	if (!size || !(*input))
 		return ;
 	token = ft_strndup(input, size);
-	tkn = tkn_create(token);
+	tkn = tkn_create(token, 0);
 	tkn_add_back(&g_data.parser->tokens, tkn);
 }

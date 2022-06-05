@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quote_expansion.c                                  :+:      :+:    :+:   */
+/*   flag_switch.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 17:04:44 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/03 08:34:49 by cado-car         ###   ########.fr       */
+/*   Created: 2022/06/03 18:11:27 by cado-car          #+#    #+#             */
+/*   Updated: 2022/06/03 18:12:44 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*	QUOTE_EXPANSION
-**	---------------
-**	DESCRIPTION
-**	It expands the token in which there are quotation marks (either "" or ''), 
-**	as well as any possible variables ($VAR) within "".
-**	PARAMETERS
-**	#1. The token to expand.
-**	RETURN VALUES
-**	The expanded string, if appliable. NULL if no quotation was found.
-*/
-
-char	*quote_expansion(char *token)
+void	flag_switch(int *flag)
 {
+	if (!(*flag))
+		*flag = 1;
+	else
+		*flag = 0;
 }

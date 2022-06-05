@@ -6,14 +6,14 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 10:09:27 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/03 09:25:26 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/05 20:35:37 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	is_tilde_expandable(char *login, char *param);
-static char	*expand_tilde(char *home, char *login, char *param);
+static int	is_tilde_expandable(char *home, char *parameter);
+static char	*expand_tilde(char	*home, char *parameter, int *pos);
 
 /*	TILDE_EXPANSION
 **	---------------
@@ -37,57 +37,52 @@ static char	*expand_tilde(char *home, char *login, char *param);
 **	the original function behaviour. 
 */
 
-char	*tilde_expansion(char *token)
+void	tilde_expansion(t_tkn **tkn, int *pos)
 {
 	char	*home;
-	char	*login;
-	char	*param;
-	char	*result;
+	char	*parameter;
 
-	if (token[0] != '~')
-		return (NULL);
 	home = key_search(BOTH, "HOME");
 	if (!home)
-		return (NULL);
-	login = ft_strdup(&ft_strrchr(home, '/')[1]);
-	param = NULL;
-	if (token[1])
-		param = ft_strdup(&token[1]);
-	printf("param = %s\n", param);
-	result = NULL;
-	if (is_tilde_expandable(login, param))
-		result = expand_tilde(home, login, param);
-	if (param)
-		free(param);
-	if (login)
-		free(login);
-	return (result);
+		return ;
+	parameter = NULL;
+	if ((*tkn)->token[(*pos) + 1])
+		parameter = ft_strdup(&(*tkn)->token[(*pos) + 1]);
+	if (is_tilde_expandable(home, parameter))
+		swap_token(*tkn, expand_tilde(home, parameter, pos));
+	if (parameter)
+		free(parameter);
 }
 
-static int	is_tilde_expandable(char *login, char *param)
+static int	is_tilde_expandable(char *home, char *parameter)
 {
-	size_t	login_size;
-	size_t	param_size;
+	char	*logname;
+	int		login_len;
+	int		param_len;
 
-	login_size = ft_strlen(login);
-	param_size = ft_strlen(param);
-	if (!param || *param == '/')
+	logname = &ft_strrchr(home, '/')[1];
+	login_len = ft_strlen(logname);
+	param_len = ft_strlen(parameter);
+	if (!parameter || *parameter == '/')
 		return (1);
-	if (param_size >= login_size)
-		if (param[login_size] == 0 || param[login_size] == '/')
+	if (param_len >= login_len)
+		if (parameter[login_len] == 0 || parameter[login_len] == '/')
 			return (1);
 	return (0);
 }
 
-static char	*expand_tilde(char *home, char *login, char *param)
+static char	*expand_tilde(char	*home, char *parameter, int *pos)
 {
+	char	*logname;
 	char	*result;
 
-	if (!param)
+	logname = &ft_strrchr(home, '/')[1];
+	if (!parameter)
 		result = ft_strdup(home);
-	else if (!ft_strncmp(param, login, ft_strlen(login)))
-		result = ft_strnjoin(2, home, &param[ft_strlen(login)]);
+	else if (!ft_strncmp(parameter, logname, ft_strlen(logname)))
+		result = ft_strjoin(home, &parameter[ft_strlen(logname)]);
 	else
-		result = ft_strnjoin(2, home, param);
+		result = ft_strjoin(home, parameter);
+	*pos = ft_strlen(home);
 	return (result);
 }

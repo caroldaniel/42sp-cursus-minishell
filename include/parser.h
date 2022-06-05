@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/03 14:28:39 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/05 20:34:12 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	token_print(void);
 ** Token List Utils
 */
 
-t_tkn	*tkn_create(char *token);
+t_tkn	*tkn_create(char *token, int flag);
 t_tkn	*tkn_dup(t_tkn *original);
 void	tkn_remove(t_tkn **list, char *token);
 void	tkn_add_back(t_tkn **list, t_tkn *token);
@@ -114,8 +114,10 @@ void	cmd_add_front(t_cmd *node);
 ** Command table
 */
 
+void	swap_token(t_tkn *tkn, char	*new_token);
 void	command_table(void);
 void	command_expansion(void);
-char	*single_quote_expansion(char *token);
-char	*double_quote_expansion(char *token);
+void	tilde_expansion(t_tkn **tkn, int *pos);
+void	variable_expansion(t_tkn **tkn, int *pos);
+
 #endif
