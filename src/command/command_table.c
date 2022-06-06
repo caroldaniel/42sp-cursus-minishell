@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_table.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 09:12:29 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/03 10:34:26 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/06 15:01:19 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	command_table(void)
 		cmd_add_back(cmd_node);
 	}
 	command_expansion();
+	command_list();
 	return ;
 }
 

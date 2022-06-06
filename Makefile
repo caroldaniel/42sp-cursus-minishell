@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/06/06 11:39:47 by cado-car         ###   ########.fr        #
+#    Updated: 2022/06/06 15:01:59 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,8 +71,10 @@ SRC				= main.c\
 				tkn_create.c\
 				tkn_dup.c\
 				tkn_remove.c\
+				tkn_len.c\
 				command_table.c\
 				command_expansion.c\
+				command_list.c\
 				tilde_expansion.c\
 				variable_expansion.c\
 				quote_expansion.c\
