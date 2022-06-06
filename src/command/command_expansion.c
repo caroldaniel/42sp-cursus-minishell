@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:23:12 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/06 14:42:09 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/06 19:19:03 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,11 @@ static void	token_expansion(t_tkn **tkn)
 void	swap_token(t_tkn *tkn, char	*new_token)
 {
 	free(tkn->token);
-	tkn->token = new_token;
+	if (new_token)
+		tkn->token = new_token;
+	else
+	{
+		tkn->token = malloc(sizeof(char) * 1);
+		tkn->token[0] = '\0';
+	}
 }
