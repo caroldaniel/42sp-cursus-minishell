@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:23:12 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/06 09:50:41 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/06 14:42:09 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,17 @@ static void	expand_redirects(t_cmd *cmd)
 
 static void	token_expansion(t_tkn **tkn)
 {
-	char	*token;
 	int		pos;
 
-	token = (*tkn)->token;
-	pos = -1;
-	if (token[++pos] == '~')
+	pos = 0;
+	if ((*tkn)->token[pos] == '~')
 		tilde_expansion(tkn, &pos);
-	while (token[pos])
+	while ((*tkn)->token[pos])
 	{	
-		if (token[pos] == '$')
+		if ((*tkn)->token[pos] == '$')
 			variable_expansion(tkn, &pos);
-		else if (token[pos] == '\'' || token[pos] == '\"')
-			quote_expansion(tkn, &pos, token[pos]);
+		else if ((*tkn)->token[pos] == '\'' || (*tkn)->token[pos] == '\"')
+			quote_expansion(tkn, &pos, (*tkn)->token[pos]);
 		pos++;
 	}
 }

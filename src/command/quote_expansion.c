@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:44 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/06 11:58:40 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/06 14:45:58 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,27 @@ void	quote_expansion(t_tkn **tkn, int *pos, char quote)
 	char	*prev;
 	char	*next;
 	char	*expansion;
+	char	*result;
 	int		size;
 
 	prev = ft_strndup((*tkn)->token, *pos);
 	(*pos)++;
 	size = 0;
-	while ((*tkn)->token[(*pos) + size] != quote)
+	while ((*tkn)->token[*pos + size] && (*tkn)->token[*pos + size] != quote)
 	{
 		if ((*tkn)->token[(*pos) + size] == '$' && quote == '\"')
 			variable_quote_expansion(*tkn, *pos, &size);
 		size++;
 	}
 	expansion = ft_strndup(&(*tkn)->token[*pos], size++);
-	next = ft_strdup(&(*tkn)->token[*pos + size]);
-	swap_token(*tkn, ft_strnjoin(3, prev, expansion, next));
+	result = ft_strjoin(prev, expansion);
+	free(prev);
 	if (expansion)
 		free(expansion);
-	free(prev);
+	next = ft_strdup(&(*tkn)->token[*pos + size]);
+	*pos = ft_strlen(result) - 1;
+	swap_token(*tkn, ft_strjoin(result, next));
+	free(result);
 	free(next);
 }
 
@@ -63,13 +67,10 @@ static void	variable_quote_expansion(t_tkn *tkn, int start, int *size)
 	if (!is_variable_expandable(tkn->token[pos + 1]))
 		return ;
 	prev = ft_strndup(tkn->token, pos - 1);
-	printf("prev = %s\n", prev);
 	expansion = expand_variable(tkn, &pos);
-	printf("expansion = %s\n", expansion);
 	next = ft_strdup(&tkn->token[pos]);
-	printf("next = %s\n", next);
 	swap_token(tkn, ft_strnjoin(3, prev, expansion, next));
-	*size = (*size) + ft_strlen(expansion);
+	*size = (*size) + ft_strlen(expansion) - 1;
 	if (expansion)
 		free(expansion);
 	free(prev);
