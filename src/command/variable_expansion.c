@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 19:26:12 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/05 20:32:31 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/06 18:54:39 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ void	variable_expansion(t_tkn **tkn, int *pos)
 		(*tkn) = (*tkn)->next;
 	free(prev);
 	prev = (*tkn)->token;
-	swap_token(*tkn, ft_strjoin(prev, next));
-	(*pos) = ft_strlen(expansion_split[i]);
+	char	*join2 = ft_strjoin(prev, next);
+	swap_token(*tkn, join2);
+	(*pos) = ft_strlen(expansion_split[--i]) - 1;
 	(*tkn)->next = last;
 	clean_expansion(expansion_split, next);
 }
