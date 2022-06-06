@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/06 11:39:57 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/06 15:02:50 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ t_tkn	*tkn_create(char *token, int flag);
 t_tkn	*tkn_dup(t_tkn *original);
 void	tkn_remove(t_tkn **list, char *token);
 void	tkn_add_back(t_tkn **list, t_tkn *token);
+int		tkn_len(t_tkn *tkn);
 int		lexical_analysis(char *token);
 
 /*
@@ -117,6 +118,7 @@ void	cmd_add_front(t_cmd *node);
 void	swap_token(t_tkn *tkn, char	*new_token);
 void	command_table(void);
 void	command_expansion(void);
+void	command_list(void);
 void	tilde_expansion(t_tkn **tkn, int *pos);
 void	variable_expansion(t_tkn **tkn, int *pos);
 void	quote_expansion(t_tkn **tkn, int *pos, char quote);

@@ -1,45 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_cmd.c                                        :+:      :+:    :+:   */
+/*   command_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 17:16:17 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/06 15:07:44 by cado-car         ###   ########.fr       */
+/*   Created: 2022/06/06 15:01:05 by cado-car          #+#    #+#             */
+/*   Updated: 2022/06/06 15:03:19 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	clear_exec_list(char **exec);
+static char	**put_in_list(t_tkn *tkn);
 
-void	clear_cmd(void)
+void	command_list(void)
 {
-	t_cmd	*curr;
-	t_cmd	*tmp;
+	t_cmd	*cmd;
 
-	curr = g_data.cmd;
-	while (curr)
+	cmd = g_data.cmd;
+	while (cmd)
 	{
-		tmp = curr;
-		curr = curr->next;
-		clear_tokens(&tmp->commands);
-		clear_tokens(&tmp->redirects);
-		clear_exec_list(tmp->exec);
-		free(tmp);
+		cmd->exec = put_in_list(cmd->commands);
+		cmd = cmd->next;
 	}
-	g_data.cmd = NULL;
 }
 
-static void	clear_exec_list(char **exec)
+static char	**put_in_list(t_tkn *tkn)
 {
-	int	i;
+	int		size;
+	char	**list;
+	int		i;
 
-	if (!exec)
-		return ;
-	i = -1;
-	while (exec[++i])
-		free(exec[i]);
-	free(exec);
+	size = tkn_len(tkn) + 1;
+	list = ft_calloc(sizeof(char *), size);
+	i = 0;
+	while (tkn)
+	{
+		list[i] = ft_strdup(tkn->token);
+		tkn = tkn->next;
+		i++;
+	}
+	return (list);
 }

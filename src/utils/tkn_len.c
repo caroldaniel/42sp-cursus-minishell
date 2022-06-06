@@ -1,45 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_cmd.c                                        :+:      :+:    :+:   */
+/*   tkn_len.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 17:16:17 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/06 15:07:44 by cado-car         ###   ########.fr       */
+/*   Created: 2022/06/06 14:52:13 by cado-car          #+#    #+#             */
+/*   Updated: 2022/06/06 15:03:05 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	clear_exec_list(char **exec);
-
-void	clear_cmd(void)
+int	tkn_len(t_tkn *tkn)
 {
-	t_cmd	*curr;
-	t_cmd	*tmp;
+	int	len;
 
-	curr = g_data.cmd;
-	while (curr)
+	len = 0;
+	while (tkn)
 	{
-		tmp = curr;
-		curr = curr->next;
-		clear_tokens(&tmp->commands);
-		clear_tokens(&tmp->redirects);
-		clear_exec_list(tmp->exec);
-		free(tmp);
+		len++;
+		tkn = tkn->next;
 	}
-	g_data.cmd = NULL;
-}
-
-static void	clear_exec_list(char **exec)
-{
-	int	i;
-
-	if (!exec)
-		return ;
-	i = -1;
-	while (exec[++i])
-		free(exec[i]);
-	free(exec);
+	return (len);
 }
