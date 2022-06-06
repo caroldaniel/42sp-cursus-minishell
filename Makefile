@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/06/05 18:41:51 by cado-car         ###   ########.fr        #
+#    Updated: 2022/06/06 11:39:47 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,7 @@ SRC				= main.c\
 				command_expansion.c\
 				tilde_expansion.c\
 				variable_expansion.c\
+				quote_expansion.c\
 
 VPATH 			:= $(SRC_PATH)\
 				$(SRC_PATH)builtins\

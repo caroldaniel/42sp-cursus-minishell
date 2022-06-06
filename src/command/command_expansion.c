@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:23:12 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/05 20:41:58 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/06 09:50:41 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static void	token_expansion(t_tkn **tkn)
 	{	
 		if (token[pos] == '$')
 			variable_expansion(tkn, &pos);
+		else if (token[pos] == '\'' || token[pos] == '\"')
+			quote_expansion(tkn, &pos, token[pos]);
 		pos++;
 	}
 }
