@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 19:26:12 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/06 18:54:39 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/06 18:59:56 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	is_variable_expandable(char first_letter);
 static char	**expand_variable(t_tkn *tkn, int *pos);
 static char	**split_variable_expansion(char	*expansion);
-static void	clean_expansion(char **split, char *next);
+static void	clean_expansion(char **split, char *prev, char *next);
 
 /*	VARIABLE_EXPANSION
 **	------------------
@@ -48,13 +48,10 @@ void	variable_expansion(t_tkn **tkn, int *pos)
 		tkn_add_back(tkn, tkn_create(ft_strdup(expansion_split[i]), 1));
 	while ((*tkn)->next)
 		(*tkn) = (*tkn)->next;
-	free(prev);
-	prev = (*tkn)->token;
-	char	*join2 = ft_strjoin(prev, next);
-	swap_token(*tkn, join2);
+	swap_token(*tkn, ft_strjoin((*tkn)->token, next));
 	(*pos) = ft_strlen(expansion_split[--i]) - 1;
 	(*tkn)->next = last;
-	clean_expansion(expansion_split, next);
+	clean_expansion(expansion_split, prev, next);
 }
 
 static int	is_variable_expandable(char first_letter)
@@ -105,7 +102,7 @@ static char	**split_variable_expansion(char	*expansion)
 	return (result);
 }
 
-static void	clean_expansion(char **split, char *next)
+static void	clean_expansion(char **split, char *prev, char *next)
 {
 	int	i;
 
@@ -113,6 +110,8 @@ static void	clean_expansion(char **split, char *next)
 	while (split[++i])
 		free(split[i]);
 	free(split);
+	if (prev)
+		free(prev);
 	if (next)
 		free(next);
 }

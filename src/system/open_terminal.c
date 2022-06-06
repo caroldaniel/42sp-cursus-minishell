@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:26:34 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/06 18:33:39 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/06 18:57:29 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,3 @@ static void	execute_command(void)
 {
 	printf("Executed!\n");
 }
-
-
