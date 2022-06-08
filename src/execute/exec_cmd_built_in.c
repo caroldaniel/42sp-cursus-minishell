@@ -66,11 +66,7 @@ static int	built_in_utils(t_cmd *cmd)
 	}
 	else if (ft_strncmp(cmd->exec[0], "unset\0", 6) == 0)
 	{
-		temp = ft_split(cmd->exec[1], '=');
-		unset(temp[1]);
-		free(temp[0]);
-		free(temp[1]);
-		free(temp);
+		unset(ft_strdup(cmd->exec[1]));
 		return (0);
 	}
 	else if (ft_strncmp(cmd->exec[0], "env\0", 4) == 0)
