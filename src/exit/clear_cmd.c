@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   clear_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 17:16:17 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/06 15:07:44 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/08 12:45:27 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static void	clear_exec_list(char **exec);
+//static void	clear_exec_path(char *exec_path);
 
 void	clear_cmd(void)
 {
@@ -27,6 +28,9 @@ void	clear_cmd(void)
 		clear_tokens(&tmp->commands);
 		clear_tokens(&tmp->redirects);
 		clear_exec_list(tmp->exec);
+		//clear_exec_path(tmp->exec_path);
+		if (tmp->exec_path != NULL)
+			free(tmp->exec_path);
 		free(tmp);
 	}
 	g_data.cmd = NULL;

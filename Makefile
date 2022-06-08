@@ -6,7 +6,7 @@
 #    By: fausto <fausto@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/06/08 11:27:04 by fausto           ###   ########.fr        #
+#    Updated: 2022/06/08 12:51:41 by fausto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,7 +110,7 @@ $(NAME):		$(OBJ)
 				@printf "\n$(CY)Generating libft...$(RC)\n"
 				make -C $(LIBFT_PATH) $(LIBFT)
 				@printf "\n$(CY)Generating minishell executable...$(RC)\n"
-				$(CC) $(CF) -I $(INCLUDE) -o $(NAME) $(OBJ) -L $(LIBFT_PATH) -lft $(CREADLINE)
+				$(CC) -g $(CF) -I $(INCLUDE) -o $(NAME) $(OBJ) -L $(LIBFT_PATH) -lft $(CREADLINE)
 				@printf "$(GR)Done!$(RC)\n\n"
 
 all:			$(NAME)

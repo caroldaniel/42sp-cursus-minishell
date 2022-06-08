@@ -2,6 +2,7 @@
 
 static int	path_setup(t_cmd *cmd);
 static char	**create_path(void);
+static void	free_path(char **path);
 
 int	cmd_setup(t_cmd *cmd)
 {
@@ -37,12 +38,16 @@ static int	path_setup(t_cmd *cmd)
 			if (cmd->exec_path == NULL)
 				exit(1);
 			if (access(cmd->exec_path, F_OK) == 0)
+			{
+				free_path(path);
 				return (0);
+			}
 			free(cmd->exec_path);
 			cmd->exec_path = NULL;
 			x++;
 		}
 	}
+	free(path);
 	error(cmd->commands->token, -7, 127);
 	return (1);
 }
@@ -55,4 +60,14 @@ static char	**create_path(void)
 	temp = key_search(BOTH, "PATH");
 	path = ft_split(temp, ':');
 	return (path);
+}
+
+static void	free_path(char **path)
+{
+	int	i;
+
+	i = -1;
+	while (path[++i])
+		free(path[i]);
+	free(path);
 }
