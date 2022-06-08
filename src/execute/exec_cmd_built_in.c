@@ -58,7 +58,7 @@ static int	built_in_utils(t_cmd *cmd)
 	if (ft_strncmp(cmd->exec[0], "export\0", 7) == 0)
 	{
 		temp = ft_split(cmd->exec[1], '=');
-		export(temp[0], temp[1]);
+		export(ft_strdup(temp[0]), ft_strdup(temp[1]));
 		free(temp[0]);
 		free(temp[1]);
 		free(temp);
