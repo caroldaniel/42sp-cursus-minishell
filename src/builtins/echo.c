@@ -6,7 +6,7 @@
 /*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 12:02:00 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/08 12:16:38 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/08 15:12:16 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	echo(char *flags, char **parameter)
 	end = "\n";
 	i = 0;
 	if (flags && ft_strchr(flags, 'n'))
+	{
 		end = "\0";
+		i = 1;
+	}
 	while (parameter[i])
 	{
 		if (i)
