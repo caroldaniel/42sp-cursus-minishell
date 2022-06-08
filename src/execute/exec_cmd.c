@@ -1,6 +1,5 @@
 #include "minishell.h"
 
-static int	check_built_in(t_cmd *cmd);
 static void	exec_cmd(t_cmd *cmd);
 static int	exec_child(t_cmd *cmd);
 static void	create_pipes(t_cmd *cmd);
@@ -79,36 +78,6 @@ static void	exec_cmd(t_cmd *cmd)
 	}
 }
 
-static int	check_built_in(t_cmd *cmd)
-{
-	if (ft_strncmp(cmd->commands->token, "cd\0", 3) == 0)
-	{
-//		built_in_cmd(cmd);
-		return (0);
-	}
-	if (ft_strncmp(cmd->commands->token, "export\0", 7) == 0)
-	{
-//		built_in_cmd(cmd);
-		return (0);
-	}
-	if (ft_strncmp(cmd->commands->token, "unset\0", 7) == 0)
-	{
-//		built_in_cmd(cmd);
-		return (0);
-	}
-	if (ft_strncmp(cmd->commands->token, "exit\0", 5) == 0)
-	{
-//		built_in_cmd(cmd);
-		return (0);
-	}
-/*	else if (ft_strncmp((*s_cmd)->words[0][0], "ASSIGNMENT_WORD", 15) == 0)
-	{
-		built_in_cmd(tkn, tkn->i_cmd);
-		return (0);
-	}
-*/	return (1);
-}
-
 static int	exec_child(t_cmd *cmd)
 {
 //	handle_signal_child();
@@ -124,18 +93,17 @@ static int	exec_child(t_cmd *cmd)
 		dup2(cmd->fd_out, STDOUT_FILENO);
 		close(cmd->fd_out);
 	}
-//	if (built_in_cmd(cmd) == 1)
+	if (built_in_cmd(cmd) == 1)
 	{
 		if (execve(cmd->exec_path, cmd->exec, NULL) == -1)
 		{
 			write(2, "error execve\n", 13);
 			exit(1);
 		}
-//		exit_shell(tkn, s_cmd);
+		clear();
 	}
-//	exit_shell(tkn, s_cmd);
-//	free_tab(&tkn->envp, tkn->envp_count);
-//	rl_clear_history();
-//	exit(0);
+	clear();
+	rl_clear_history();
+	exit(0);
 	return (0);
 }

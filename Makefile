@@ -6,7 +6,7 @@
 #    By: fausto <fausto@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/06/07 09:43:58 by fausto           ###   ########.fr        #
+#    Updated: 2022/06/08 11:27:04 by fausto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,7 @@ SRC				= main.c\
 				exec_cmd.c\
 				exec_cmd_setup.c\
 				exec_cmd_redirect.c\
+				exec_cmd_built_in.c\
 
 VPATH 			:= $(SRC_PATH)\
 				$(SRC_PATH)builtins\
