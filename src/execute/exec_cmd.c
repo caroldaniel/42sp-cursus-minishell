@@ -19,48 +19,53 @@ void	exec_cmd_tab(void)
 
 static void	create_pipes(t_cmd *cmd)
 {
-	while (cmd)
+	t_cmd	*tmp;
+
+	tmp = cmd;
+	while (tmp)
 	{
-		if (cmd->endpoint == PIPE)
+		if (tmp->endpoint == PIPE)
 		{
-			if (pipe(cmd->fd_pipe) == -1)
+			if (pipe(tmp->fd_pipe) == -1)
 				error(NULL, 0, 11);
-			cmd->fd_out = cmd->fd_pipe[1];
-			cmd->next->fd_in = cmd->fd_pipe[0];
+			tmp->fd_out = tmp->fd_pipe[1];
+			tmp->next->fd_in = tmp->fd_pipe[0];
 		}
-		cmd = cmd->next;
+		tmp = tmp->next;
 	}
 }
 
 static void	exec_cmd(t_cmd *cmd)
 {
-	int	pid;
-	int	wstatus;
-	int	i;
+	t_cmd	*tmp;
+	int		pid;
+	int		wstatus;
+	int		i;
 
+	tmp = cmd;
 	i = 0;
-	while (cmd != NULL)
+	while (tmp != NULL)
 	{
-		if (*cmd->exec != NULL && cmd->fd_in != -1)
+		if (*tmp->exec != NULL && tmp->fd_in != -1)
 		{
-			if (check_built_in(cmd) == 1)
+			if (check_built_in(tmp) == 1)
 			{
-				if (cmd_setup(cmd) == 0)
+				if (cmd_setup(tmp) == 0)
 				{
 					pid = fork();
 					if (pid < 0)
 						error(0, 0, 11); //verificar
 					i++;
 					if (pid == 0)
-						exec_child(cmd);
+						exec_child(tmp);
 				}
 			}
 		}
-		if (cmd->fd_in > 2)
-			close(cmd->fd_in);
-		if (cmd->fd_out > 2)
-			close(cmd->fd_out);
-		cmd = cmd->next;
+		if (tmp->fd_in > 2)
+			close(tmp->fd_in);
+		if (tmp->fd_out > 2)
+			close(tmp->fd_out);
+		tmp = tmp->next;
 	}
 	while (i > 0)
 	{
@@ -92,6 +97,7 @@ static int	exec_child(t_cmd *cmd)
 		}
 		clear();
 	}
+	printf("exec_child.....");
 	clear();
 	exit(0);
 }

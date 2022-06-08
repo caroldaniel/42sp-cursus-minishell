@@ -1,7 +1,7 @@
 #include "minishell.h"
 
 static int	path_setup(t_cmd *cmd);
-static char	**create_path(void);
+static char	**create_path(char ***path);
 static void	free_path(char **path);
 static void built_cmd_path(t_cmd *cmd, char *path);
 
@@ -25,7 +25,7 @@ static int	path_setup(t_cmd *cmd)
 	int		x;
 	char	**path;
 
-	path = create_path();
+	create_path(&path);
 	x = 0;
 	if (path != NULL)
 	{
@@ -61,14 +61,13 @@ static void built_cmd_path(t_cmd *cmd, char *path)
 	free(temp);
 
 }
-static char	**create_path(void)
+static char	**create_path(char	***path)
 {
 	char	*temp;
-	char	**path;
 
 	temp = key_search(BOTH, "PATH");
-	path = ft_split(temp, ':');
-	return (path);
+	*path = ft_split(temp, ':');
+	return (*path);
 }
 
 static void	free_path(char **path)
