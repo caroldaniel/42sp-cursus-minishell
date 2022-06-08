@@ -51,7 +51,7 @@ static void	exec_cmd(t_cmd *cmd)
 	i = 0;
 	while (cmd != NULL)
 	{
-		if (*cmd->exec != NULL)
+		if (*cmd->exec != NULL && cmd->fd_in != -1)
 		{
 			if (check_built_in(cmd) == 1)
 			{
@@ -60,6 +60,7 @@ static void	exec_cmd(t_cmd *cmd)
 					pid = fork();
 					if (pid < 0)
 						error(0, 0, 11); //verificar
+					i++;
 					if (pid == 0)
 						exec_child(cmd);
 				}
@@ -70,7 +71,6 @@ static void	exec_cmd(t_cmd *cmd)
 		if (cmd->fd_out > 2)
 			close(cmd->fd_out);
 		cmd = cmd->next;
-		i++;
 	}
 	while (i > 0)
 	{
