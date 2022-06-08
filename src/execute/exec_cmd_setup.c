@@ -3,6 +3,7 @@
 static int	path_setup(t_cmd *cmd);
 static char	**create_path(void);
 static void	free_path(char **path);
+static void built_cmd_path(t_cmd *cmd, char *path);
 
 int	cmd_setup(t_cmd *cmd)
 {
@@ -20,7 +21,6 @@ int	cmd_setup(t_cmd *cmd)
 static int	path_setup(t_cmd *cmd)
 {
 	int		x;
-	char	*temp;
 	char	**path;
 
 	path = create_path();
@@ -29,12 +29,7 @@ static int	path_setup(t_cmd *cmd)
 	{
 		while (path[x] != NULL)
 		{
-			cmd->exec_path = ft_strjoin(path[x], "/");
-			if (cmd->exec_path == NULL)
-				exit(1);
-			temp = cmd->exec_path;
-			cmd->exec_path = ft_strjoin(temp, cmd->commands->token);
-			free(temp);
+			built_cmd_path(cmd, path[x]);
 			if (cmd->exec_path == NULL)
 				exit(1);
 			if (access(cmd->exec_path, F_OK) == 0)
@@ -52,6 +47,18 @@ static int	path_setup(t_cmd *cmd)
 	return (1);
 }
 
+static void built_cmd_path(t_cmd *cmd, char *path)
+{
+	char	*temp;
+
+	cmd->exec_path = ft_strjoin(path, "/");
+	if (cmd->exec_path == NULL)
+		exit(1); //verificar qual o comportamento
+	temp = cmd->exec_path;
+	cmd->exec_path = ft_strjoin(temp, cmd->commands->token);
+	free(temp);
+
+}
 static char	**create_path(void)
 {
 	char	*temp;

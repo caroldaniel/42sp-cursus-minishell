@@ -21,13 +21,6 @@ static void	create_pipes(t_cmd *cmd)
 {
 	t_cmd	*temp;
 
-	temp = cmd;
-	while (temp)
-	{
-		temp->fd_in = -2;
-		temp->fd_out = -2;
-		temp = temp->next;
-	}
 	while (cmd)
 	{
 		if (cmd->endpoint == PIPE)
@@ -81,14 +74,12 @@ static void	exec_cmd(t_cmd *cmd)
 static int	exec_child(t_cmd *cmd)
 {
 //	handle_signal_child();
-	printf("cmd_fd_in %d\n", cmd->fd_in);
-	printf("cmd_fd_out %d\n", cmd->fd_out);
-	if (cmd->fd_in != STDIN_FILENO)
+	if (cmd->fd_in > 2)
 	{
 		dup2(cmd->fd_in, STDIN_FILENO);
 		close(cmd->fd_in);
 	}
-	if (cmd->fd_out != STDOUT_FILENO)
+	if (cmd->fd_out > 2)
 	{
 		dup2(cmd->fd_out, STDOUT_FILENO);
 		close(cmd->fd_out);
@@ -103,7 +94,5 @@ static int	exec_child(t_cmd *cmd)
 		clear();
 	}
 	clear();
-	rl_clear_history();
 	exit(0);
-	return (0);
 }

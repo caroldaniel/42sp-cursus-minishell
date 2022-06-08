@@ -6,7 +6,7 @@
 /*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 17:12:52 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/08 12:43:07 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/08 13:26:02 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ t_cmd	*cmd_create(void)
 	cmd->exec_path = NULL;
 	cmd->next = NULL;
 	cmd->endpoint = -1;
+	cmd->fd_in = -2;
+	cmd->fd_out = -2;
 	return (cmd);
 }
