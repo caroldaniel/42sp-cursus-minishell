@@ -6,7 +6,7 @@
 /*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:26:34 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/07 09:19:01 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/08 14:40:22 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	parse_line(void)
 	if (!syntax_analysis())
 		return (0);
 	command_table();
-//	token_print();
+	token_print();
 	exec_cmd_tab();
 	return (1);
 }

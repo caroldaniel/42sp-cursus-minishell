@@ -19,8 +19,6 @@ void	exec_cmd_tab(void)
 
 static void	create_pipes(t_cmd *cmd)
 {
-	t_cmd	*temp;
-
 	while (cmd)
 	{
 		if (cmd->endpoint == PIPE)
@@ -88,7 +86,8 @@ static int	exec_child(t_cmd *cmd)
 	{
 		if (execve(cmd->exec_path, cmd->exec, NULL) == -1)
 		{
-			write(2, "error execve\n", 13);
+			error(cmd->exec[0], -6, 13);
+			clear();
 			exit(1);
 		}
 		clear();

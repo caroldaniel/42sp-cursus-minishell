@@ -10,11 +10,13 @@ int	cmd_setup(t_cmd *cmd)
 	int	ret;
 
 	ret = 0;
-	if (ft_strchr(cmd->commands->token, '/') == NULL)
+	if (ft_strchr(cmd->exec[0], '/') == NULL)
 	{
 		//if (built in)
 		ret = path_setup(cmd);
 	}
+	else
+		cmd->exec_path = ft_strdup(cmd->exec[0]);
 	return (ret);
 }
 
@@ -31,7 +33,7 @@ static int	path_setup(t_cmd *cmd)
 		{
 			built_cmd_path(cmd, path[x]);
 			if (cmd->exec_path == NULL)
-				exit(1);
+				exit(1); //verificar erro
 			if (access(cmd->exec_path, F_OK) == 0)
 			{
 				free_path(path);

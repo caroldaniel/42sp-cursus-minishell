@@ -6,7 +6,7 @@
 #    By: fausto <fausto@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/06/08 12:51:41 by fausto           ###   ########.fr        #
+#    Updated: 2022/06/08 14:42:49 by fausto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ LIBFT			= libft.a
 
 #compilation
 CC 				= gcc
-CF 				= -Wall -Wextra -Werror
+CF 				= -g -Wall -Wextra -Werror
 CFI 			= -I $(INCLUDE)
 CREADLINE		= -lreadline
 
