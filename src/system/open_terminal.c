@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_terminal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:26:34 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/06 18:57:29 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/07 09:19:01 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	read_line(void);
 static int	parse_line(void);
-static void	execute_command(void);
 
 void	open_terminal(void)
 {
@@ -26,7 +25,6 @@ void	open_terminal(void)
 		read_line();
 		if (!parse_line())
 			continue ;
-		execute_command();
 	}
 }
 
@@ -49,11 +47,7 @@ static int	parse_line(void)
 	if (!syntax_analysis())
 		return (0);
 	command_table();
-	token_print();
+//	token_print();
+	exec_cmd_tab();
 	return (1);
-}
-
-static void	execute_command(void)
-{
-	printf("Executed!\n");
 }

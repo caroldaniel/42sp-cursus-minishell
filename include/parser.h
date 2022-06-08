@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/06 15:02:50 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/07 12:17:49 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,11 @@ typedef struct s_cmd
 	t_tkn			*commands;
 	t_tkn			*redirects;
 	char			**exec;
+	char			*exec_path;
 	int				endpoint;
 	int				fd_out;
 	int				fd_in;
+	int				fd_pipe[2];
 	int				pid;
 	struct s_cmd	*next;
 }	t_cmd;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: fausto <fausto@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/06/06 19:07:37 by cado-car         ###   ########.fr        #
+#    Updated: 2022/06/07 09:43:58 by fausto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,9 @@ SRC				= main.c\
 				tilde_expansion.c\
 				variable_expansion.c\
 				quote_expansion.c\
+				exec_cmd.c\
+				exec_cmd_setup.c\
+				exec_cmd_redirect.c\
 
 VPATH 			:= $(SRC_PATH)\
 				$(SRC_PATH)builtins\
@@ -88,6 +91,7 @@ VPATH 			:= $(SRC_PATH)\
 				$(SRC_PATH)system\
 				$(SRC_PATH)tokenizer\
 				$(SRC_PATH)utils\
+				$(SRC_PATH)execute\
 
 OBJ				= $(addprefix $(OBJ_PATH), $(notdir $(SRC:.c=.o)))
 
@@ -106,9 +110,7 @@ $(NAME):		$(OBJ)
 				make -C $(LIBFT_PATH) $(LIBFT)
 				@printf "\n$(CY)Generating minishell executable...$(RC)\n"
 				$(CC) $(CF) -I $(INCLUDE) -o $(NAME) $(OBJ) -L $(LIBFT_PATH) -lft $(CREADLINE)
-				@printf "\n$(CY)Cleaning...$(RC)\n"
-				$(RM) $(OBJ_PATH)
-				@printf "\n$(GR)Done!$(RC)\n\n"
+				@printf "$(GR)Done!$(RC)\n\n"
 
 all:			$(NAME)
 
