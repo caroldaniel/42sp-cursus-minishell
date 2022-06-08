@@ -6,7 +6,7 @@
 /*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:19:37 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/08 10:56:50 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/08 11:17:57 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ void	error(char *token, int flag, int code)
 		printf("minishell: %s: No such file or directory\n", token);
 	if (flag == -7)
 		printf("minishell: %s: Command not found\n", token);
+	if (flag == -8)
+		printf("minishell: aviso: here-document na linha 146 delimitado pelo\
+ fim do arquivo (desejava `%s')\n", token);
 	if (flag >= 0)
 		exit_minishell();
 }

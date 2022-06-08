@@ -96,7 +96,7 @@ static void	wr_line(char *limiter, int len, int fd[])
 		line = get_next_line(STDIN_FILENO);
 		if (line == NULL)
 		{
-			write(2, "aviso de erro here_doc", 22);
+			error(limiter, -8, 0);
 			break ;
 		}
 		if (ft_strncmp(limiter, line, len) == 0)
