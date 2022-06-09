@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 19:26:12 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 11:39:04 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:41:50 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ static void	clean_expansion(char **split, char *next);
 /*	VARIABLE_EXPANSION
 **	------------------
 **	DESCRIPTION
-**	It expands the variable key preceded by $ into its value.
+**	It expands the variable key preceded by $ into its value, and breaks the 
+**	token into multiple ones, splitted by any space char that can exist in the
+**	expanded variable value.
 **	PARAMETERS
 **	#1. The token to expand.
 **	RETURN VALUES
