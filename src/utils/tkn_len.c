@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 14:52:13 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 12:29:57 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 12:31:15 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 **	PARAMETERS
 **	#1. The list to count from. 
 **	RETURN VALUES
-**	The int size.  
+**	The size_t length of the list.  
 */
 
 size_t	tkn_len(t_tkn *tkn)
