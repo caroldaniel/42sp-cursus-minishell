@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:11:50 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/02 14:30:27 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 09:18:31 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ static void	list_delete(t_hashlist *node);
 
 /*	DELETE_HASHMAP
 **	--------------
-**	Deletes the hashtable and all its nodes.
+**	Deletes the hashtable and all its nodes, guaranteeing that the linked lists
+**	available are properly freed.
 **	PARAMETERS
-**	#1. The type of the hashtable to delete. 
+**	#1. The type of the hashtable to delete (Environment, Local or Both). 
 **	RETURN VALUES
 **	-
 */

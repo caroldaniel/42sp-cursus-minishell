@@ -6,13 +6,13 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 17:05:13 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/29 09:30:53 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 09:25:44 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*	populate_hashmap
+/*	POPULATE_HASHMAP
 **	----------------
 **	DESCRIPTION
 **	Takes the list of environment variables and, for each one of them, inserts 

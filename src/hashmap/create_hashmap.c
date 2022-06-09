@@ -13,7 +13,7 @@
 #include "minishell.h"
 
 /*	CREATE_HASHMAP
-**	----------------
+**	--------------
 **	DESCRIPTION
 **	Takes a list of variables and put them into a hashtable. If list is NULL, 
 **	returns a hashtable of 50 NULL positions. 

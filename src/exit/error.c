@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:19:37 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/08 11:17:57 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/09 09:15:24 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	error(char *token, int flag, int code)
 	if (flag == -7)
 		printf("minishell: %s: Command not found\n", token);
 	if (flag == -8)
-		printf("minishell: aviso: here-document na linha 146 delimitado pelo\
- fim do arquivo (desejava `%s')\n", token);
+		printf("minishell: here-document delimited by end-of-file (wanted \
+			`%s')\n", token);
 	if (flag >= 0)
 		exit_minishell();
 }

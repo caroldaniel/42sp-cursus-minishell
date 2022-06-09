@@ -6,13 +6,25 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 21:21:14 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/02 13:46:25 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 09:39:06 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static void	reprompt(int signal);
+
+/*	CHANGE_INPUT_SIGNALS
+**	--------------------
+**	DESCRIPTION
+**	It changes the default signals received by specific shortcuts when executing
+**	the main minishell function, to avoid that these signals will respond to the
+**	parent shell, instead of the current. 
+**	PARAMETERS
+**	-
+**	RETURN VALUES
+**	-
+*/
 
 void	change_input_signals(void)
 {

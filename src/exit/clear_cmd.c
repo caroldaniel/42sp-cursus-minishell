@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 17:16:17 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/08 14:51:24 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/09 09:21:39 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,18 @@
 
 static void	clear_exec_list(char **exec);
 //static void	clear_exec_path(char *exec_path);
+
+/*	CLEAR_CMD
+**	---------
+**	DESCRIPTION
+**	The clear_cmd function will free the entire t_cmd struct inside the 
+**	main global structure, clearing the command and redirect token's list, the 
+**	exec array and the exec_path string. 
+**	PARAMETERS
+**	-
+**	RETURN VALUES
+**	-
+*/
 
 void	clear_cmd(void)
 {

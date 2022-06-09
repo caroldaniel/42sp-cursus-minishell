@@ -6,22 +6,19 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 10:58:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/26 15:40:06 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 09:17:07 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*	ERROR
+/*	CLEAR
 **	-----
 **	DESCRIPTION
-**	The error function directs the program to close all memory previously 
-**	allocated to the global struct, prints the appropriate error message and
-**	exits with the correct code. 
+**	The clear function will free all structures allocated inside the main global 
+**	structure of the program. 
 **	PARAMETERS
-**	#1. A token used to indicate the step of execution in which it stopped;
-**	#2. A flag to indicate the correct message to print;
-**	#3. The exit code in which it will close upon.
+**	-
 **	RETURN VALUES
 **	-
 */

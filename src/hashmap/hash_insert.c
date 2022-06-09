@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash_insert.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 17:12:35 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/08 16:56:18 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/09 09:26:22 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	hash_add_back(t_hashlist **list, char *key, char *value);
 
 /*	HASH_INSERT
 **	-----------
-**	Inserts a new variable at the end of the hashtable's correct hashlist. 
+**	Inserts a new variable at the end of the hashtable's correct hashlist.
 **	PARAMETERS
 **	#1. The hashtable in which to insert the new variable;
 **	#2. The new variable. 
