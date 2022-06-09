@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 10:28:13 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 12:30:28 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ t_tkn	*tkn_create(char *token, int flag);
 t_tkn	*tkn_dup(t_tkn *original);
 void	tkn_remove(t_tkn **list, char *token);
 void	tkn_add_back(t_tkn **list, t_tkn *token);
-int		tkn_len(t_tkn *tkn);
+size_t	tkn_len(t_tkn *tkn);
 int		lexical_analysis(char *token);
 
 /*
