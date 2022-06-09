@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:04:44 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/06 14:45:58 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 12:03:45 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,14 @@ static void	variable_quote_expansion(t_tkn *tkn, int start, int *size)
 	char	*next;
 	int		pos;
 
-	pos = start + 1 + *size;
+	pos = start + (*size);
 	if (!is_variable_expandable(tkn->token[pos + 1]))
 		return ;
-	prev = ft_strndup(tkn->token, pos - 1);
+	prev = ft_strndup(tkn->token, pos++);
 	expansion = expand_variable(tkn, &pos);
 	next = ft_strdup(&tkn->token[pos]);
 	swap_token(tkn, ft_strnjoin(3, prev, expansion, next));
-	*size = (*size) + ft_strlen(expansion) - 1;
+	*size = (*size) + ft_strlen(expansion) - 2;
 	if (expansion)
 		free(expansion);
 	free(prev);
@@ -101,10 +101,10 @@ static char	*expand_variable(t_tkn *tkn, int *pos)
 	{
 		while (ft_isalnum(tkn->token[(*pos) + i]))
 			i++;
-		key = ft_strndup(&tkn->token[*pos], i);
+		key = ft_strndup(&tkn->token[*pos], i--);
 		expansion = ft_strdup(key_search(BOTH, key));
 		free(key);
-		*pos = (*pos) + (i);
 	}
+	*pos = (*pos) + 1 + (i);
 	return (expansion);
 }

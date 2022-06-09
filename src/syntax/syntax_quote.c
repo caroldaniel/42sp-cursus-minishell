@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 09:08:07 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 10:16:09 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 12:13:16 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	syntax_quote(t_tkn *tkn)
 		{
 			if (flag == -1 && (tkn->token[i] == '\"' || tkn->token[i] == '\''))
 				flag = i;
-			if (flag != -1 && tkn->token[i] == tkn->token[flag])
+			else if (flag != -1 && tkn->token[i] == tkn->token[flag])
 				flag = -1;
 			i++;
 		}
