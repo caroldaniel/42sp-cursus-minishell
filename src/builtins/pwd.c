@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:46:39 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/08 12:04:48 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/09 09:46:55 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./minishell.h"
 
 /*	PWD
-**	-------
+**	---
 **	DESCRIPTION
 **	Prints the current working directory.
 **	PARAMETERS

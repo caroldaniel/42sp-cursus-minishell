@@ -6,11 +6,21 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 09:05:44 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/26 11:38:30 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 10:13:24 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*	SYNTAX_IO_REDIRECT
+**	------------------
+**	DESCRIPTION
+**	Checks the correct grammar of redirect symbols ('>', '>>', '<' and '<<').  
+**	PARAMETERS
+**	#1. A t_tkn node.
+**	RETURN VALUES
+**	It returns 1 in case the syntax is correct, and 0 in case an error is found. 
+*/
 
 int	syntax_io_redirect(t_tkn *tkn)
 {

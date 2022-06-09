@@ -6,13 +6,25 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:20:53 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/04 20:55:36 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 09:56:59 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static void	add_part(const char *input, size_t size);
+
+/*	TOKENIZER
+**	---------
+**	DESCRIPTION
+**	The tokenizer function will split the original input line into "tokens"
+**	(meaninfull words), the first step to properly "understand" what the user
+**	is trying to accomplish with the command. 
+**	PARAMETERS
+**	-
+**	RETURN VALUES
+**	-
+*/
 
 void	tokenizer(void)
 {
