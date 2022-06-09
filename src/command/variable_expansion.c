@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 19:26:12 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 11:41:50 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 12:35:14 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,8 @@ void	variable_expansion(t_tkn **tkn, int *pos)
 	if (!is_variable_expandable((*tkn)->token[(*pos) + 1]))
 		return ;
 	prev = ft_strndup((*tkn)->token, (*pos)++);
-	printf("prev = %s\n", prev);
 	expansion_split = expand_variable(*tkn, pos);
-	int j = -1;
-	while (expansion_split[++j])
-		printf("split%d = %s\n", j + 1, expansion_split[j]);
 	next = ft_strdup(&(*tkn)->token[*pos]);
-	printf("next = %s\n", next);
 	last = (*tkn)->next;
 	(*tkn)->next = NULL;
 	i = 0;

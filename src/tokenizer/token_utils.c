@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 08:29:23 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 10:01:12 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 12:36:28 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static int	is_part_of_last(char curr, char last);
 **	RETURN VALUES
 **	It returns 1 in case of new token found, and 0 in case of not.
 */
-
 
 int	is_new_token(const char *input, size_t index, size_t prev)
 {

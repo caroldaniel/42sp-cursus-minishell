@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:01:05 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 12:25:24 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 12:34:01 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	command_list(void)
 
 static char	**put_in_list(t_tkn *tkn)
 {
-	int		size;
+	size_t	size;
 	char	**list;
 	int		i;
 

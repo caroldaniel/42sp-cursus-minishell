@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 09:12:29 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 10:21:12 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 12:31:41 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	command_table(void)
 	}
 	command_expansion();
 	command_list();
-	return ;
 }
 
 static void	cmd_populate(t_cmd **cmd, t_tkn **list, int *prev)
