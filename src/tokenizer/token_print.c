@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 20:49:08 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/06 18:35:46 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:34:58 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	token_print(void)
 		printf("\t\tCOMMANDS FOR EXECVE\n");
 		while (commands)
 		{
-			printf("[TOKEN]  %s|\t\t[LEXEMA]  %s\n", commands->token,
+			printf("[TOKEN]  %s\t\t[LEXEMA]  %s\n", commands->token,
 				lexemas_print(commands->lexema));
 			commands = commands->next;
 		}
@@ -46,7 +46,7 @@ void	token_print(void)
 		printf("\t\tREDIRECTS\n");
 		while (redirects)
 		{
-			printf("[TOKEN]  %s|\t\t[LEXEMA]  %s\n", redirects->token,
+			printf("[TOKEN]  %s\t\t[LEXEMA]  %s\n", redirects->token,
 				lexemas_print(redirects->lexema));
 			redirects = redirects->next;
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_create.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 17:12:52 by cado-car          #+#    #+#             */
-/*   Updated: 2022/05/26 13:12:46 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/08 13:26:02 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ t_cmd	*cmd_create(void)
 	cmd->commands = NULL;
 	cmd->redirects = NULL;
 	cmd->exec = NULL;
+	cmd->exec_path = NULL;
 	cmd->next = NULL;
 	cmd->endpoint = -1;
+	cmd->fd_in = -2;
+	cmd->fd_out = -2;
 	return (cmd);
 }

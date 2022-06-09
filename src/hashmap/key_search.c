@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_search.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 16:49:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/29 11:37:21 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/08 16:37:15 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	*key_search(int type, char *key)
 {
 	char	*value;
 
+	value = NULL;
 	if (type == ENV || type == BOTH)
 		value = key_search_list(ENV, key);
 	if (!value && (type == LOCAL || type == BOTH))

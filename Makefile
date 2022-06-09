@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: fausto <fausto@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/06/06 19:07:37 by cado-car         ###   ########.fr        #
+#    Updated: 2022/06/08 14:42:49 by fausto           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ LIBFT			= libft.a
 
 #compilation
 CC 				= gcc
-CF 				= -Wall -Wextra -Werror
+CF 				= -g -Wall -Wextra -Werror
 CFI 			= -I $(INCLUDE)
 CREADLINE		= -lreadline
 
@@ -78,6 +78,10 @@ SRC				= main.c\
 				tilde_expansion.c\
 				variable_expansion.c\
 				quote_expansion.c\
+				exec_cmd.c\
+				exec_cmd_setup.c\
+				exec_cmd_redirect.c\
+				exec_cmd_built_in.c\
 
 VPATH 			:= $(SRC_PATH)\
 				$(SRC_PATH)builtins\
@@ -88,6 +92,7 @@ VPATH 			:= $(SRC_PATH)\
 				$(SRC_PATH)system\
 				$(SRC_PATH)tokenizer\
 				$(SRC_PATH)utils\
+				$(SRC_PATH)execute\
 
 OBJ				= $(addprefix $(OBJ_PATH), $(notdir $(SRC:.c=.o)))
 
@@ -105,10 +110,8 @@ $(NAME):		$(OBJ)
 				@printf "\n$(CY)Generating libft...$(RC)\n"
 				make -C $(LIBFT_PATH) $(LIBFT)
 				@printf "\n$(CY)Generating minishell executable...$(RC)\n"
-				$(CC) $(CF) -I $(INCLUDE) -o $(NAME) $(OBJ) -L $(LIBFT_PATH) -lft $(CREADLINE)
-				@printf "\n$(CY)Cleaning...$(RC)\n"
-				$(RM) $(OBJ_PATH)
-				@printf "\n$(GR)Done!$(RC)\n\n"
+				$(CC) -g $(CF) -I $(INCLUDE) -o $(NAME) $(OBJ) -L $(LIBFT_PATH) -lft $(CREADLINE)
+				@printf "$(GR)Done!$(RC)\n\n"
 
 all:			$(NAME)
 

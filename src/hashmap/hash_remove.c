@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash_remove.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:44:47 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/28 16:45:30 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/08 17:30:57 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	hash_remove(int type, char *key)
 			free(tmp->key);
 			free(tmp->value);
 			free(tmp);
+			break ;
 		}
 		last = tmp;
 		tmp = tmp->next;
