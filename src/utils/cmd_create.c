@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_create.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 17:12:52 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/08 13:26:02 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/09 10:30:56 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*	CMD_CREATE
+**	----------
+**	DESCRIPTION
+**	It will malloc(3) and create a new t_cmd node, which is is a structure that
+**	will be further populated by a simple command data (here pointing to NULL).
+**	PARAMETERS
+**	-
+**	RETURN VALUES
+**	A t_cmd node.
+*/
 
 t_cmd	*cmd_create(void)
 {

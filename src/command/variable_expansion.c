@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 19:26:12 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/05 20:32:31 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:39:04 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,17 @@ void	variable_expansion(t_tkn **tkn, int *pos)
 	if (!is_variable_expandable((*tkn)->token[(*pos) + 1]))
 		return ;
 	prev = ft_strndup((*tkn)->token, (*pos)++);
+	printf("prev = %s\n", prev);
 	expansion_split = expand_variable(*tkn, pos);
+	int j = -1;
+	while (expansion_split[++j])
+		printf("split%d = %s\n", j + 1, expansion_split[j]);
 	next = ft_strdup(&(*tkn)->token[*pos]);
+	printf("next = %s\n", next);
 	last = (*tkn)->next;
 	(*tkn)->next = NULL;
 	i = 0;
-	swap_token(*tkn, ft_strjoin(prev, expansion_split[0]));
+	swap_token(*tkn, ft_strjoin(prev, expansion_split[i]));
 	while (expansion_split[++i])
 		tkn_add_back(tkn, tkn_create(ft_strdup(expansion_split[i]), 1));
 	while ((*tkn)->next)
@@ -51,7 +56,7 @@ void	variable_expansion(t_tkn **tkn, int *pos)
 	free(prev);
 	prev = (*tkn)->token;
 	swap_token(*tkn, ft_strjoin(prev, next));
-	(*pos) = ft_strlen(expansion_split[i]);
+	(*pos) = ft_strlen(expansion_split[i]) - 1;
 	(*tkn)->next = last;
 	clean_expansion(expansion_split, next);
 }
@@ -80,11 +85,11 @@ static char	**expand_variable(t_tkn *tkn, int *pos)
 	{
 		while (ft_isalnum(tkn->token[(*pos) + i]))
 			i++;
-		key = ft_strndup(&tkn->token[*pos], i);
+		key = ft_strndup(&tkn->token[*pos], i--);
 		expansion = ft_strdup(key_search(BOTH, key));
 		free(key);
-		*pos = (*pos) + (i);
 	}
+	(*pos) = (*pos) + 1 + (i);
 	return (split_variable_expansion(expansion));
 }
 
@@ -93,10 +98,7 @@ static char	**split_variable_expansion(char	*expansion)
 	char	**result;
 
 	if (!expansion)
-	{
-		result = malloc(sizeof(char) * 1);
-		result[0] = NULL;
-	}
+		result = (char **)ft_calloc(1, sizeof(char *));
 	else
 		result = ft_split(expansion, ' ');
 	if (expansion)

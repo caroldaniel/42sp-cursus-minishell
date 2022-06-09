@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 10:09:27 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/05 20:35:37 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:00:17 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,12 @@ static int	is_tilde_expandable(char *home, char *parameter)
 {
 	char	*logname;
 	int		login_len;
-	int		param_len;
 
 	logname = &ft_strrchr(home, '/')[1];
 	login_len = ft_strlen(logname);
-	param_len = ft_strlen(parameter);
 	if (!parameter || *parameter == '/')
 		return (1);
-	if (param_len >= login_len)
+	if (!ft_strncmp(parameter, logname, login_len))
 		if (parameter[login_len] == 0 || parameter[login_len] == '/')
 			return (1);
 	return (0);

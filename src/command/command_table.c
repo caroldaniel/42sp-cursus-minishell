@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 09:12:29 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/06 15:01:19 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 10:21:12 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,18 @@
 
 static void	cmd_populate(t_cmd **cmd, t_tkn **list, int *prev);
 static int	is_redirect(int prev, int cur);
+
+/*	COMMAND_TABLE
+**	-------------
+**	DESCRIPTION
+**	The command_table function will assemble the t_tkn list into two different 
+**	commands and redirect list, using the operators as endpoints to simple
+**	commands (ordered into a t_cmd list).
+**	PARAMETERS
+**	-
+**	RETURN VALUES
+**	- 
+*/
 
 void	command_table(void)
 {

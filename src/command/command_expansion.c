@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:23:12 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/06 14:42:09 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/09 10:43:59 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,20 @@
 
 static void	token_expansion(t_tkn **tkn);
 static void	expand_redirects(t_cmd *cmd);
+
+/*	COMMAND_EXPANSION
+**	-----------------
+**	DESCRIPTION
+**	This function will alterate the t_tkn list nodes in place according to
+**	specific expansion rules of shell's grammar. The expansion rules include:
+**	tilde expansion according to the HOME environment variable, variable
+**	expansion according to the environment and local variables (prompted by '$')
+**	and quotation expansion, both happening upon start and closing marks.
+**	PARAMETERS
+**	-
+**	RETURN VALUES
+**	-
+*/
 
 void	command_expansion(void)
 {
