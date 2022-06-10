@@ -10,13 +10,13 @@ int	cmd_setup(t_cmd *cmd)
 	int	ret;
 
 	ret = 0;
-	if (ft_strchr(cmd->exec[0], '/') == NULL)
+	if (is_built_in(cmd) == 1)
 	{
-		//if (built in)
-		ret = path_setup(cmd);
+		if (ft_strchr(cmd->exec[0], '/') == NULL)
+			ret = path_setup(cmd);
+		else
+			cmd->exec_path = ft_strdup(cmd->exec[0]);
 	}
-	else
-		cmd->exec_path = ft_strdup(cmd->exec[0]);
 	return (ret);
 }
 

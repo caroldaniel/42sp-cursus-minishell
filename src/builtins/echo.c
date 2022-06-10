@@ -6,13 +6,13 @@
 /*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 12:02:00 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/08 15:12:16 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/10 08:22:58 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*echo_element(char *element);
+//static char	*echo_element(char *element);
 
 /*	ECHO
 **	----
@@ -26,29 +26,29 @@ static char	*echo_element(char *element);
 
 void	echo(char *flags, char **parameter)
 {
-	char	*content;
+//	char	*content;
 	char	*end;
 	int		i;
 
 	end = "\n";
-	i = 0;
+	i = 1;
 	if (flags && ft_strchr(flags, 'n'))
 	{
 		end = "\0";
-		i = 1;
+		i = 2;
 	}
 	while (parameter[i])
 	{
 		if (i)
 			printf(" ");
-		content = echo_element(parameter[i]);
-		printf("%s", content);
-		free(content);
+//		content = echo_element(parameter[i]);
+		printf("%s", parameter[i]);
+//		free(content);
 		i++;
 	}
 	printf("%s", end);
 }
-
+/*
 static char	*echo_element(char *element)
 {
 	char	*echo;
@@ -59,3 +59,4 @@ static char	*echo_element(char *element)
 		echo = key_search(BOTH, &element[1]);
 	return (echo);
 }
+*/

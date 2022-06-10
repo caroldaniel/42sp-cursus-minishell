@@ -3,6 +3,7 @@
 static void	exec_cmd(t_cmd *cmd);
 static int	exec_child(t_cmd *cmd);
 static void	create_pipes(t_cmd *cmd);
+static void	close_fd(t_cmd *cmd, int flag);
 
 void	exec_cmd_tab(void)
 {
@@ -48,7 +49,7 @@ static void	exec_cmd(t_cmd *cmd)
 	{
 		if (*tmp->exec != NULL && tmp->fd_in != -1)
 		{
-			if (check_built_in(tmp) == 1)
+			if (is_not_forked(tmp) == 1)
 			{
 				if (cmd_setup(tmp) == 0)
 				{
@@ -61,10 +62,7 @@ static void	exec_cmd(t_cmd *cmd)
 				}
 			}
 		}
-		if (tmp->fd_in > 2)
-			close(tmp->fd_in);
-		if (tmp->fd_out > 2)
-			close(tmp->fd_out);
+		close_fd(cmd, 1);
 		tmp = tmp->next;
 	}
 	while (i > 0)
@@ -77,16 +75,7 @@ static void	exec_cmd(t_cmd *cmd)
 static int	exec_child(t_cmd *cmd)
 {
 //	handle_signal_child();
-	if (cmd->fd_in > 2)
-	{
-		dup2(cmd->fd_in, STDIN_FILENO);
-		close(cmd->fd_in);
-	}
-	if (cmd->fd_out > 2)
-	{
-		dup2(cmd->fd_out, STDOUT_FILENO);
-		close(cmd->fd_out);
-	}
+	close_fd(cmd, 0);
 	if (built_in_cmd(cmd) == 1)
 	{
 		if (execve(cmd->exec_path, cmd->exec, NULL) == -1)
@@ -100,4 +89,20 @@ static int	exec_child(t_cmd *cmd)
 	printf("exec_child.....");
 	clear();
 	exit(0);
+}
+
+static void	close_fd(t_cmd *cmd, int flag)
+{
+	if (cmd->fd_in > 2)
+	{
+		if (flag ==0)
+			dup2(cmd->fd_in, STDIN_FILENO);
+		close(cmd->fd_in);
+	}
+	if (cmd->fd_out > 2)
+	{
+		if (flag == 0)
+			dup2(cmd->fd_out, STDOUT_FILENO);
+		close(cmd->fd_out);
+	}
 }
