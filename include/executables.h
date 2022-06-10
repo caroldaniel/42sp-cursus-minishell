@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:37 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/10 11:10:13 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/10 13:25:16 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define EXECUTABLES_H
 
 # include "minishell.h"
+# include "parser.h"
 # include <errno.h>
 
 void	exec_line(void);
@@ -24,7 +25,10 @@ void	exec_line(void);
 
 void	open_pipes(void);
 void	define_redirects(void);
-void	exec_cmd(void);
+void	exec_commands(void);
+
+int		get_heredoc(char * limiter);
+
 
 int		cmd_setup(t_cmd *cmd);
 int		is_built_in(t_cmd *cmd);

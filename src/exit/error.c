@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:19:37 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/10 11:12:13 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/10 14:20:34 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,27 @@ void	error(char *s, int flag, int code)
 {
 	g_data.exit_code = code;
 	if (flag == 1)
-		ft_dprintf(2, "%s: Invalid number of arguments\n", s);
+		printf("%s: Invalid number of arguments\n", s);
 	if (flag == 2)
-		ft_dprintf(2, "%s\n", s);
+		printf("%s\n", s);
 	if (flag == -1)
-		ft_dprintf(2, "minishell: cd: %s not set\n", s);
+		printf("minishell: cd: %s not set\n", s);
 	if (flag == -2)
-		ft_dprintf(2, "minishell: cd: %s: No such file or directory\n", s);
+		printf("minishell: cd: %s: No such file or directory\n", s);
 	if (flag == -3)
-		ft_dprintf(2, "minishell: syntax error near unexpected token `%s'\n", s);
+		printf("minishell: syntax error near unexpected token `%s'\n", s);
 	if (flag == -4)
-		ft_dprintf(2, "minishell: syntax error near unexpected token `newline'\n");
+		printf("minishell: syntax error near unexpected token `newline'\n");
 	if (flag == -5)
-		ft_dprintf(2, "minishell: quote missing\n");
+		printf("minishell: quote missing\n");
 	if (flag == -6)
-		ft_dprintf(2, "minishell: %s: Permission denied\n", s);
+		printf("minishell: %s: Permission denied\n", s);
 	if (flag == -7)
-		ft_dprintf(2, "minishell: %s: No such file or directory\n", s);
+		printf("minishell: %s: No such file or directory\n", s);
 	if (flag == -8)
-		ft_dprintf(2, "minishell: %s: Command not found\n", s);
+		printf("minishell: %s: Command not found\n", s);
 	if (flag == -9)
-		ft_dprintf(2, "minishell: here-document delimited by end-of-file (wanted `%s')\n", s);
+		printf("minishell: here-document delimited by end-of-file (wanted `%s')\n", s);
 	if (flag >= 0)
 		exit_minishell();
 }

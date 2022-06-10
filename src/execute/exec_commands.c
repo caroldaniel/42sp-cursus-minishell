@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_cmd.c                                         :+:      :+:    :+:   */
+/*   exec_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/10 10:40:29 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/10 12:47:38 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,17 @@
 static int	exec_child(t_cmd *cmd);
 static void	close_fd(t_cmd *cmd, int flag);
 
+/*	EXEC_COMMANDS
+**	-------------
+**	DESCRIPTION
+**	It executes the t_cmd list of commands, one by one, by priority status. 
+**	PARAMETERS
+**	-
+**	RETURN VALUES
+**	-
+*/
 
-void	exec_cmd(void)
+void	exec_commands(void)
 {
 	t_cmd	*cmd;
 	int		pid;
