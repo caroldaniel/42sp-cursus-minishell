@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <stdarg.h>
+# include "libftprintf.h"
 
 // Part 1 functions
 int		ft_isalpha(int c);
@@ -28,6 +29,7 @@ int		ft_strlen(const char *s);
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
+void	*ft_memset(void *s, int c, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
@@ -73,6 +75,7 @@ char	*ft_uitoa_base(unsigned long nbr, char *base);
 int		ft_atoi_base(char *str, char *base);
 char	*ft_strnjoin(int argn, ...);
 char	*ft_strndup(const char *s1, size_t size);
-int	ft_strisalnum(char *s);
+int		ft_strisalnum(char *s);
+char	*ft_appendchr(char const *s, char const c);
 
 #endif

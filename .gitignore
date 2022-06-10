@@ -3,4 +3,5 @@
 *.a
 */*.a
 minishell
-.vscode/c_cpp_properties.json
+tests/
+.vscode/*
