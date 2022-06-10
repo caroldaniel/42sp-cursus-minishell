@@ -1,69 +1,67 @@
 #include "minishell.h"
 
-static void	exec_cmd(t_cmd *cmd);
+static void	create_pipes(void);
+static void	exec_cmd(void);
 static int	exec_child(t_cmd *cmd);
-static void	create_pipes(t_cmd *cmd);
 static void	close_fd(t_cmd *cmd, int flag);
 
 void	exec_cmd_tab(void)
 {
-	t_cmd	*cmd;
 //	int		temp_in;
 	
 //	temp_in = dup(STDIN_FILENO);
-	cmd = g_data.cmd;
-	create_pipes(cmd);
-	define_std_fileno(cmd);
-	exec_cmd(cmd);
+	create_pipes();
+	define_std_fileno();
+	exec_cmd();
 //	dup2(temp_in, STDIN_FILENO);
 }
 
-static void	create_pipes(t_cmd *cmd)
+static void	create_pipes(void)
 {
-	t_cmd	*tmp;
+	t_cmd	*cmd;
 
-	tmp = cmd;
-	while (tmp)
+	cmd = g_data.cmd;
+	while (cmd)
 	{
-		if (tmp->endpoint == PIPE)
+		if (cmd->endpoint == PIPE)
 		{
-			if (pipe(tmp->fd_pipe) == -1)
+			if (pipe(cmd->fd_pipe) == -1)
 				error(NULL, 0, 11);
-			tmp->fd_out = tmp->fd_pipe[1];
-			tmp->next->fd_in = tmp->fd_pipe[0];
+			cmd->fd_out = cmd->fd_pipe[1];
+			cmd->next->fd_in = cmd->fd_pipe[0];
 		}
-		tmp = tmp->next;
+		cmd = cmd->next;
 	}
 }
 
-static void	exec_cmd(t_cmd *cmd)
+static void	exec_cmd(void)
 {
-	t_cmd	*tmp;
+	t_cmd	*cmd;
 	int		pid;
 	int		wstatus;
 	int		i;
 
-	tmp = cmd;
+	cmd = g_data.cmd;
 	i = 0;
-	while (tmp != NULL)
+	while (cmd != NULL)
 	{
-		if (*tmp->exec != NULL && tmp->fd_in != -1)
+		if (*cmd->exec != NULL && cmd->fd_in != -1)
 		{
-			if (is_not_forked(tmp) == 1)
+			if (is_not_forked(cmd) == 1)
 			{
-				if (cmd_setup(tmp) == 0)
+				if (cmd_setup(cmd) == 0)
 				{
 					pid = fork();
 					if (pid < 0)
 						error(0, 0, 11); //verificar
 					i++;
 					if (pid == 0)
-						exec_child(tmp);
+						exec_child(cmd);
 				}
 			}
 		}
 		close_fd(cmd, 1);
-		tmp = tmp->next;
+		cmd = cmd->next;
 	}
 	while (i > 0)
 	{
