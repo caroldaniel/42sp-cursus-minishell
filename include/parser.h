@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 12:30:28 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/10 11:34:31 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_cmd
 	int				fd_out;
 	int				fd_in;
 	int				fd_pipe[2];
-	int				pid;
+	int				errnb;
 	struct s_cmd	*next;
 }	t_cmd;
 

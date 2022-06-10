@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_create.c                                       :+:      :+:    :+:   */
+/*   exec_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 17:12:52 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/10 10:05:44 by cado-car         ###   ########.fr       */
+/*   Created: 2022/06/10 10:08:52 by cado-car          #+#    #+#             */
+/*   Updated: 2022/06/10 10:35:34 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*	CMD_CREATE
-**	----------
+/*	EXEC_LINE
+**	---------
 **	DESCRIPTION
-**	It will malloc(3) and create a new t_cmd node, which is is a structure that
-**	will be further populated by a simple command data (here pointing to NULL).
+**	It's a workflow for the execution of all commands passed by the user through
+**	the prompt line. It first opens all the pipes, and then it reads and applies
+**	the redirects and heredocs (since they have precedence over pipes). Lastly, 
+**	it executes the commands by priority indentation.
 **	PARAMETERS
 **	-
 **	RETURN VALUES
-**	A t_cmd node.
+**	-
 */
 
-t_cmd	*cmd_create(void)
+void	exec_line(void)
 {
-	t_cmd	*cmd;
-
-	cmd = malloc(sizeof(t_cmd));
-	if (!cmd)
-		error(NULL, 0, 12);
-	cmd->commands = NULL;
-	cmd->redirects = NULL;
-	cmd->endpoint = -1;
-	cmd->exec = NULL;
-	cmd->exec_path = NULL;
-	cmd->fd_in = -2;
-	cmd->fd_out = -2;
-	cmd->next = NULL;
-	return (cmd);
+	open_pipes();
+	define_std_fileno();
+	exec_cmd();
 }

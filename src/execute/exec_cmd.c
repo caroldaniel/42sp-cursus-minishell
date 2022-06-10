@@ -1,40 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_cmd.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
+/*   Updated: 2022/06/10 10:40:29 by cado-car         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-static void	create_pipes(void);
-static void	exec_cmd(void);
 static int	exec_child(t_cmd *cmd);
 static void	close_fd(t_cmd *cmd, int flag);
 
-void	exec_cmd_tab(void)
-{
-//	int		temp_in;
-	
-//	temp_in = dup(STDIN_FILENO);
-	create_pipes();
-	define_std_fileno();
-	exec_cmd();
-//	dup2(temp_in, STDIN_FILENO);
-}
 
-static void	create_pipes(void)
-{
-	t_cmd	*cmd;
-
-	cmd = g_data.cmd;
-	while (cmd)
-	{
-		if (cmd->endpoint == PIPE)
-		{
-			if (pipe(cmd->fd_pipe) == -1)
-				error(NULL, 0, 11);
-			cmd->fd_out = cmd->fd_pipe[1];
-			cmd->next->fd_in = cmd->fd_pipe[0];
-		}
-		cmd = cmd->next;
-	}
-}
-
-static void	exec_cmd(void)
+void	exec_cmd(void)
 {
 	t_cmd	*cmd;
 	int		pid;

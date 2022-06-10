@@ -1,42 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_create.c                                       :+:      :+:    :+:   */
+/*   open_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 17:12:52 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/10 10:05:44 by cado-car         ###   ########.fr       */
+/*   Created: 2022/06/10 10:39:39 by cado-car          #+#    #+#             */
+/*   Updated: 2022/06/10 10:39:49 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*	CMD_CREATE
+/*	OPEN_PIPES
 **	----------
 **	DESCRIPTION
-**	It will malloc(3) and create a new t_cmd node, which is is a structure that
-**	will be further populated by a simple command data (here pointing to NULL).
+**	This function opens all necessary pipes by the previously defined
+**	PIPE endpoints, and determines the correct file descriptors for 
+**	input and output of the executables. 
 **	PARAMETERS
 **	-
 **	RETURN VALUES
-**	A t_cmd node.
+**	-
 */
 
-t_cmd	*cmd_create(void)
+void	open_pipes(void)
 {
 	t_cmd	*cmd;
 
-	cmd = malloc(sizeof(t_cmd));
-	if (!cmd)
-		error(NULL, 0, 12);
-	cmd->commands = NULL;
-	cmd->redirects = NULL;
-	cmd->endpoint = -1;
-	cmd->exec = NULL;
-	cmd->exec_path = NULL;
-	cmd->fd_in = -2;
-	cmd->fd_out = -2;
-	cmd->next = NULL;
-	return (cmd);
+	cmd = g_data.cmd;
+	while (cmd)
+	{
+		if (cmd->endpoint == PIPE)
+		{
+			if (pipe(cmd->fd_pipe) == -1)
+				error(NULL, 0, 11);
+			cmd->fd_out = cmd->fd_pipe[1];
+			cmd->next->fd_in = cmd->fd_pipe[0];
+		}
+		cmd = cmd->next;
+	}
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fausto <fausto@student.42.fr>              +#+  +:+       +#+         #
+#    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/06/08 14:42:49 by fausto           ###   ########.fr        #
+#    Updated: 2022/06/10 10:42:04 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,9 +78,11 @@ SRC				= main.c\
 				tilde_expansion.c\
 				variable_expansion.c\
 				quote_expansion.c\
+				exec_line.c\
+				open_pipes.c\
+				define_redirects.c\
 				exec_cmd.c\
 				exec_cmd_setup.c\
-				exec_cmd_redirect.c\
 				exec_cmd_built_in.c\
 
 VPATH 			:= $(SRC_PATH)\

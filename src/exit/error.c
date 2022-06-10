@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:19:37 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/10 09:24:04 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/10 11:12:13 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,12 @@ void	error(char *s, int flag, int code)
 	if (flag == -5)
 		ft_dprintf(2, "minishell: quote missing\n");
 	if (flag == -6)
-		ft_dprintf(2, "minishell: %s: No such file or directory\n", s);
+		ft_dprintf(2, "minishell: %s: Permission denied\n", s);
 	if (flag == -7)
-		ft_dprintf(2, "minishell: %s: Command not found\n", s);
+		ft_dprintf(2, "minishell: %s: No such file or directory\n", s);
 	if (flag == -8)
+		ft_dprintf(2, "minishell: %s: Command not found\n", s);
+	if (flag == -9)
 		ft_dprintf(2, "minishell: here-document delimited by end-of-file (wanted `%s')\n", s);
 	if (flag >= 0)
 		exit_minishell();
