@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:37 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/10 13:25:16 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/10 20:56:17 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ void	open_pipes(void);
 void	define_redirects(void);
 void	exec_commands(void);
 
-int		get_heredoc(char * limiter);
-
+int		get_heredoc(char *limiter);
+void	get_heredoc_child_signal(void);
+void	get_heredoc_parent_signal(void);
 
 int		cmd_setup(t_cmd *cmd);
 int		is_built_in(t_cmd *cmd);

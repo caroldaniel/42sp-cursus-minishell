@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 19:26:12 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 12:35:14 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/11 10:47:34 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	variable_expansion(t_tkn **tkn, int *pos)
 	(*tkn)->next = NULL;
 	i = 0;
 	swap_token(*tkn, ft_strjoin(prev, expansion_split[i]));
-	while (expansion_split[++i])
+	while (expansion_split[0] && expansion_split[++i])
 		tkn_add_back(tkn, tkn_create(ft_strdup(expansion_split[i]), 1));
 	while ((*tkn)->next)
 		(*tkn) = (*tkn)->next;
@@ -95,7 +95,10 @@ static char	**split_variable_expansion(char	*expansion)
 	char	**result;
 
 	if (!expansion)
-		result = (char **)ft_calloc(1, sizeof(char *));
+	{
+		result = malloc(1 * sizeof(char *));
+		result[0] = NULL;
+	}
 	else
 		result = ft_split(expansion, ' ');
 	if (expansion)

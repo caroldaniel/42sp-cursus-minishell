@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/10 12:47:38 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/11 10:27:32 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static int	exec_child(t_cmd *cmd);
 static void	close_fd(t_cmd *cmd, int flag);
+static void	quit_process(int signal);
+static void	interrupt_process(int signal);
 
 /*	EXEC_COMMANDS
 **	-------------
@@ -34,45 +36,41 @@ void	exec_commands(void)
 
 	cmd = g_data.cmd;
 	i = 0;
-	while (cmd != NULL)
+	signal(SIGINT, interrupt_process);
+	signal(SIGQUIT, quit_process);
+	while (!cmd)
 	{
-		if (*cmd->exec != NULL && cmd->fd_in != -1)
+		if (!*cmd->exec && cmd->fd_in != -1 && is_not_forked(cmd) && !cmd_setup(cmd))
 		{
-			if (is_not_forked(cmd) == 1)
-			{
-				if (cmd_setup(cmd) == 0)
-				{
-					pid = fork();
-					if (pid < 0)
-						error(0, 0, 11); //verificar
-					i++;
-					if (pid == 0)
-						exec_child(cmd);
-				}
-			}
+			pid = fork();
+			if (pid == -1)
+				error(NULL, 0, 11);
+			i++;
+			if (pid == 0)
+				exec_child(cmd);
 		}
 		close_fd(cmd, 1);
 		cmd = cmd->next;
 	}
-	while (i > 0)
-	{
+	while (--i + 1 > 0)
 		waitpid(pid, &wstatus, 0);
-		i--;
-	}
 }
 
 static int	exec_child(t_cmd *cmd)
 {
 //	handle_signal_child();
 	close_fd(cmd, 0);
+	printf("EXEC\nfd_in = %d\tfd_out = %d\n", cmd->fd_in, cmd->fd_out);
 	if (built_in_cmd(cmd) == 1)
 	{
 		if (execve(cmd->exec_path, cmd->exec, NULL) == -1)
 		{
-			error(cmd->exec[0], -6, 13);
+			error(cmd->exec[0], -8, 13);
 			clear();
 			exit(1);
 		}
+		else
+			printf("Executed!\n");
 		clear();
 	}
 	printf("exec_child.....");
@@ -94,4 +92,16 @@ static void	close_fd(t_cmd *cmd, int flag)
 			dup2(cmd->fd_out, STDOUT_FILENO);
 		close(cmd->fd_out);
 	}
+}
+
+static void	quit_process(int signal)
+{
+	(void)signal;
+	error(NULL, -9, 131);
+}
+
+static void	interrupt_process(int signal)
+{
+	(void)signal;
+	error(NULL, -11, 130);
 }

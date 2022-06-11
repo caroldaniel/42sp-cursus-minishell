@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:19:37 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/10 14:20:34 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/10 22:39:33 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ void	error(char *s, int flag, int code)
 		printf("minishell: %s: Command not found\n", s);
 	if (flag == -9)
 		printf("minishell: here-document delimited by end-of-file (wanted `%s')\n", s);
+	if (flag == -10)
+		printf("Quit (core dumped)\n");
+	if (flag == -11)
+		printf("\n");
 	if (flag >= 0)
 		exit_minishell();
 }
