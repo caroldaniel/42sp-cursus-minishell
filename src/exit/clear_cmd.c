@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 17:16:17 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 09:21:39 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/11 12:01:38 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	clear_cmd(void)
 		clear_tokens(&tmp->redirects);
 		clear_exec_list(tmp->exec);
 		//clear_exec_path(tmp->exec_path);
-		if (tmp->exec_path != NULL)
+		if (tmp->exec_path)
 			free(tmp->exec_path);
 		free(tmp);
 	}

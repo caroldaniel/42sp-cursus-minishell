@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/11 10:27:32 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/11 20:00:49 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	exec_commands(void)
 	i = 0;
 	signal(SIGINT, interrupt_process);
 	signal(SIGQUIT, quit_process);
-	while (!cmd)
+	while (cmd != NULL)
 	{
-		if (!*cmd->exec && cmd->fd_in != -1 && is_not_forked(cmd) && !cmd_setup(cmd))
+		if (*cmd->exec != NULL && cmd->fd_in != -1 && is_not_forked(cmd) ==1 && cmd_setup(cmd) == 0)
 		{
 			pid = fork();
 			if (pid == -1)
@@ -60,7 +60,7 @@ static int	exec_child(t_cmd *cmd)
 {
 //	handle_signal_child();
 	close_fd(cmd, 0);
-	printf("EXEC\nfd_in = %d\tfd_out = %d\n", cmd->fd_in, cmd->fd_out);
+//	printf("EXEC\nfd_in = %d\tfd_out = %d\n", cmd->fd_in, cmd->fd_out);
 	if (built_in_cmd(cmd) == 1)
 	{
 		if (execve(cmd->exec_path, cmd->exec, NULL) == -1)
@@ -73,7 +73,6 @@ static int	exec_child(t_cmd *cmd)
 			printf("Executed!\n");
 		clear();
 	}
-	printf("exec_child.....");
 	clear();
 	exit(0);
 }

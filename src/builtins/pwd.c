@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:46:39 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 12:36:22 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/11 19:59:11 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	pwd(void)
 
 	pwd = get_pwd();
 	printf("%s\n", pwd);
+	free(pwd);
 }
 
 /*	GET_PWD
