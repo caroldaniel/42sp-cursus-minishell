@@ -6,7 +6,7 @@
 /*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/13 12:34:08 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/13 12:36:25 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	exec_commands(void)
 static int	exec_child(t_cmd *cmd)
 {
 //	handle_signal_child();
-	printf("EXEC\nfd_in = %d\tfd_out = %d\n", cmd->fd_in, cmd->fd_out);
+//	printf("EXEC\nfd_in = %d\tfd_out = %d\n", cmd->fd_in, cmd->fd_out);
 	close_fd(cmd, 0);
 	if (built_in_cmd(cmd) == 1)
 	{
