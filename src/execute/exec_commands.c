@@ -6,7 +6,7 @@
 /*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/13 11:18:34 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/13 12:34:08 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	interrupt_process(int signal);
 void	exec_commands(void)
 {
 	t_cmd	*cmd;
-	int		pid;
+	int		pid[1024];
 	int		wstatus;
 	int		i;
 
@@ -42,18 +42,18 @@ void	exec_commands(void)
 	{
 		if (*cmd->exec != NULL && cmd->fd_in != -1 && is_not_forked(cmd) ==1 && cmd_setup(cmd) == 0)
 		{
-			pid = fork();
-			if (pid == -1)
+			pid[i] = fork();
+			if (pid[i] == -1)
 				error(NULL, 0, 11);
-			i++;
-			if (pid == 0)
+			if (pid[i] == 0)
 				exec_child(cmd);
+			i++;
 		}
 		close_fd(cmd, 1);
 		cmd = cmd->next;
 	}
-	while (--i + 1 > 0)
-		waitpid(pid, &wstatus, 0);
+	while (--i >= 0)
+		waitpid(pid[i], &wstatus, 0);
 }
 
 static int	exec_child(t_cmd *cmd)
