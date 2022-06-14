@@ -6,7 +6,7 @@
 /*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/13 12:36:25 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/13 16:51:41 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ static void	interrupt_process(int signal);
 void	exec_commands(void)
 {
 	t_cmd	*cmd;
+	t_cmd	*tmp;
 	int		pid[1024];
 	int		wstatus;
 	int		i;
 
 	cmd = g_data.cmd;
+	tmp = g_data.cmd;
 	i = 0;
 	signal(SIGINT, interrupt_process);
 	signal(SIGQUIT, quit_process);
@@ -49,8 +51,12 @@ void	exec_commands(void)
 				exec_child(cmd);
 			i++;
 		}
-		close_fd(cmd, 1);
 		cmd = cmd->next;
+	}
+	while (tmp)
+	{
+		close_fd(tmp, 1);
+		tmp = tmp->next;
 	}
 	while (--i >= 0)
 		waitpid(pid[i], &wstatus, 0);
