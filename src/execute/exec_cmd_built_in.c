@@ -33,7 +33,6 @@ int	is_forked(t_cmd *cmd)
 		built_in_cmd(cmd);
 		return (1);
 	}
-	
 /*	else if (ft_strncmp((*s_cmd)->words[0][0], "ASSIGNMENT_WORD", 15) == 0)
 	{
 		built_in_cmd(tkn, tkn->i_cmd);

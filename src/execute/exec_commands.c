@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/14 22:03:01 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/15 08:51:52 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,12 @@ static void	close_fd(t_cmd *cmd, int flag);
 void	exec_commands(void)
 {
 	t_cmd	*cmd;
-	int		pid[1024];
+	int		pid[MAX_PID];
 	int		wstatus;
 	int		i;
 
 	cmd = g_data.cmd;
 	i = -1;
-	exec_commands_signals();
 	while (cmd)
 	{
 		if (*cmd->exec && cmd->fd_in != -1 && !is_forked(cmd) && !get_path(cmd))
@@ -55,8 +54,6 @@ void	exec_commands(void)
 
 static int	exec_child(t_cmd *cmd)
 {
-//	handle_signal_child();
-//	printf("EXEC\nfd_in = %d\tfd_out = %d\n", cmd->fd_in, cmd->fd_out);
 	close_fd(cmd, 0);
 	if (built_in_cmd(cmd) == 1)
 	{

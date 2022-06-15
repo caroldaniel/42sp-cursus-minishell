@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:37 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/14 21:59:20 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/15 08:51:47 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "minishell.h"
 # include "parser.h"
 # include <errno.h>
+
+# define MAX_PID	1024
 
 void	exec_line(void);
 
