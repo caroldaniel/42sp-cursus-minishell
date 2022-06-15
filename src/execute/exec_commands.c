@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/15 08:51:52 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/15 10:53:34 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	close_fd(t_cmd *cmd, int flag);
 void	exec_commands(void)
 {
 	t_cmd	*cmd;
-	int		pid[MAX_PID];
+	int		pid[1024];
 	int		wstatus;
 	int		i;
 
@@ -48,13 +48,14 @@ void	exec_commands(void)
 		cmd = cmd->next;
 	}
 	close_all_fds();
-	while (--i >= 0)
+	while (i-- >= 0)
 		waitpid(pid[i], &wstatus, 0);
 }
 
 static int	exec_child(t_cmd *cmd)
 {
 	close_fd(cmd, 0);
+	close_all_fds();
 	if (built_in_cmd(cmd) == 1)
 	{
 		if (execve(cmd->exec_path, cmd->exec, NULL) == -1)
