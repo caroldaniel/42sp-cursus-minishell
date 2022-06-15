@@ -5,17 +5,17 @@ int			built_in_cmd(t_cmd *cmd);
 
 int	is_built_in(t_cmd *cmd)
 {
-	if (ft_strncmp(cmd->exec[0], "echo\0", 5) == 0)
+	if (ft_strncmp(cmd->exec[0], "echo", 5) == 0)
 		return (0);
-	else if (ft_strncmp(cmd->exec[0], "PWD\0", 4) == 0)
+	else if (ft_strncmp(cmd->exec[0], "pwd", 4) == 0)
 		return (0);
 	if (ft_strncmp(cmd->exec[0], "cd\0", 3) == 0)
 		return (0);
-	if (ft_strncmp(cmd->exec[0], "export\0", 7) == 0)
+	if (ft_strncmp(cmd->exec[0], "export", 7) == 0)
 		return (0);
-	else if (ft_strncmp(cmd->exec[0], "unset\0", 6) == 0)
+	else if (ft_strncmp(cmd->exec[0], "unset", 6) == 0)
 		return (0);
-	else if (ft_strncmp(cmd->exec[0], "env\0", 4) == 0)
+	else if (ft_strncmp(cmd->exec[0], "env", 4) == 0)
 		return (0);
 /*	else if (ft_strncmp(cmd->exec[0], "exit\0", 5) == 0)
 		return (0);
@@ -52,7 +52,7 @@ int	built_in_cmd(t_cmd *cmd)
 		echo(cmd->exec[1], cmd->exec);
 		return (ret);
 	}
-	else if (ft_strncmp(cmd->exec[0], "PWD\0", 4) == 0)
+	else if (ft_strncmp(cmd->exec[0], "pwd\0", 4) == 0)
 	{
 		pwd();
 		return (ret);
@@ -77,7 +77,10 @@ static int	built_in_utils(t_cmd *cmd)
 	if (ft_strncmp(cmd->exec[0], "export\0", 7) == 0)
 	{
 		temp = ft_split(cmd->exec[1], '=');
-		export(ft_strdup(temp[0]), ft_strdup(temp[1]));
+		if (temp[1])
+			export(ft_strdup(temp[0]), ft_strdup(temp[1]));
+		else
+			export(ft_strdup(temp[0]), ft_strdup(" "));
 		free(temp[0]);
 		free(temp[1]);
 		free(temp);
@@ -85,7 +88,7 @@ static int	built_in_utils(t_cmd *cmd)
 	}
 	else if (ft_strncmp(cmd->exec[0], "unset\0", 6) == 0)
 	{
-		unset(ft_strdup(cmd->exec[1]));
+		unset(cmd->exec[1]);
 		return (0);
 	}
 	else if (ft_strncmp(cmd->exec[0], "env\0", 4) == 0)

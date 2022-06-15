@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/11 10:27:32 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/13 16:51:41 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,37 +30,43 @@ static void	interrupt_process(int signal);
 void	exec_commands(void)
 {
 	t_cmd	*cmd;
-	int		pid;
+	t_cmd	*tmp;
+	int		pid[1024];
 	int		wstatus;
 	int		i;
 
 	cmd = g_data.cmd;
+	tmp = g_data.cmd;
 	i = 0;
 	signal(SIGINT, interrupt_process);
 	signal(SIGQUIT, quit_process);
-	while (!cmd)
+	while (cmd != NULL)
 	{
-		if (!*cmd->exec && cmd->fd_in != -1 && is_not_forked(cmd) && !cmd_setup(cmd))
+		if (*cmd->exec != NULL && cmd->fd_in != -1 && is_not_forked(cmd) ==1 && cmd_setup(cmd) == 0)
 		{
-			pid = fork();
-			if (pid == -1)
+			pid[i] = fork();
+			if (pid[i] == -1)
 				error(NULL, 0, 11);
-			i++;
-			if (pid == 0)
+			if (pid[i] == 0)
 				exec_child(cmd);
+			i++;
 		}
-		close_fd(cmd, 1);
 		cmd = cmd->next;
 	}
-	while (--i + 1 > 0)
-		waitpid(pid, &wstatus, 0);
+	while (tmp)
+	{
+		close_fd(tmp, 1);
+		tmp = tmp->next;
+	}
+	while (--i >= 0)
+		waitpid(pid[i], &wstatus, 0);
 }
 
 static int	exec_child(t_cmd *cmd)
 {
 //	handle_signal_child();
+//	printf("EXEC\nfd_in = %d\tfd_out = %d\n", cmd->fd_in, cmd->fd_out);
 	close_fd(cmd, 0);
-	printf("EXEC\nfd_in = %d\tfd_out = %d\n", cmd->fd_in, cmd->fd_out);
 	if (built_in_cmd(cmd) == 1)
 	{
 		if (execve(cmd->exec_path, cmd->exec, NULL) == -1)
@@ -73,7 +79,6 @@ static int	exec_child(t_cmd *cmd)
 			printf("Executed!\n");
 		clear();
 	}
-	printf("exec_child.....");
 	clear();
 	exit(0);
 }

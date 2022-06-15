@@ -44,7 +44,7 @@ static int	path_setup(t_cmd *cmd)
 			x++;
 		}
 	}
-	free(path);
+	free_path(path);
 	error(cmd->commands->token, -7, 127);
 	return (1);
 }

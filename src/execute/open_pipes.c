@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:39:39 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/11 10:24:09 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/11 19:29:18 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	open_pipes(void)
 			cmd->fd_out = cmd->fd_pipe[1];
 			cmd->next->fd_in = cmd->fd_pipe[0];
 		}
-		printf("PIPE\nfd_in = %d\tfd_out = %d\n", cmd->fd_in, cmd->fd_out);
+//		printf("PIPE\nfd_in = %d\tfd_out = %d\n", cmd->fd_in, cmd->fd_out);
 		cmd = cmd->next;
 	}
 }

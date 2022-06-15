@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define_redirects.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:43:10 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/11 10:14:24 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/13 11:16:56 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	define_redirects(void)
 			cmd->fd_in = STDIN_FILENO;
 		if (cmd->fd_out == -2)
 			cmd->fd_out = STDOUT_FILENO;
-		printf("REDIRECTS\nfd_in = %d\tfd_out = %d\n", cmd->fd_in, cmd->fd_out);
+//		printf("REDIRECTS\nfd_in = %d\tfd_out = %d\n", cmd->fd_in, cmd->fd_out);
 		cmd = cmd->next;
 	}
 }
@@ -60,7 +60,7 @@ static void	get_fileno(int operator, char *filename, t_cmd *cmd)
 	else if (operator == DLESS || operator == LESS)
 	{
 		if (cmd->fd_in != -2)
-			close(cmd->fd_out);
+			close(cmd->fd_in);
 	}
 	if (operator == DGREAT)
 		cmd->fd_out = open(filename, O_RDWR | O_APPEND | O_CREAT, 0777);

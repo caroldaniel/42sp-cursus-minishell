@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash_substitute.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:23:02 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/29 07:50:23 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/13 14:35:36 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void	hash_substitute(int type, char *key, char *value)
 		list = list->next;
 	swap = list->value;
 	list->value = value;
-	free(key);
+//	free(key);
 	free(swap);
 }
