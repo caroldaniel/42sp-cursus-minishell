@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_heredoc_signals.c                              :+:      :+:    :+:   */
+/*   exec_commands_signals.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 20:51:29 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/14 21:50:49 by cado-car         ###   ########.fr       */
+/*   Created: 2022/06/14 21:48:12 by cado-car          #+#    #+#             */
+/*   Updated: 2022/06/14 21:50:54 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	child_sig(int signal);
-static void	parent_sig(int signal);
+static void	quit_process(int signal);
+static void	interrupt_process(int signal);
 
-/*	FET_HEREDOC_SIGNAL
-**	------------------
+/*	EXEC_COMMANDS_SIGNALS
+**	---------------------
 **	DESCRIPTION
 **	It changes the default signals received by specific shortcuts when executing
-**	the get_heredoc function, to avoid that these signals will respond to the
+**	the exec_commands function, to avoid that these signals will respond to the
 **	parent shell, instead of the current. 
 **	PARAMETERS
 **	-
@@ -27,27 +27,20 @@ static void	parent_sig(int signal);
 **	-
 */
 
-
-void	get_heredoc_child_signal(void)
+void	exec_commands_signals(void)
 {
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, child_sig);
+	signal(SIGINT, interrupt_process);
+	signal(SIGQUIT, quit_process);
 }
 
-static void	child_sig(int signal)
+static void	quit_process(int signal)
 {
-	if (signal == SIGINT)
-		error(NULL, 0, 0);
+	(void)signal;
+	error(NULL, -9, 131);
 }
 
-void	get_heredoc_parent_signal(void)
+static void	interrupt_process(int signal)
 {
-	signal(SIGQUIT, parent_sig);
-	signal(SIGINT, parent_sig);
-}
-
-static void	parent_sig(int signal)
-{
-	if (signal == SIGINT)
-		printf("\n");
+	(void)signal;
+	error(NULL, -11, 130);
 }

@@ -23,7 +23,7 @@ int	is_built_in(t_cmd *cmd)
 	return (1);
 }
 //Essas built_ins não passam os retornos para o pipe, então são executadas no proceso parent.
-int	is_not_forked(t_cmd *cmd)
+int	is_forked(t_cmd *cmd)
 {
 	if (ft_strncmp(cmd->exec[0], "cd\0", 3) == 0
 		|| ft_strncmp(cmd->exec[0], "export\0", 7) == 0
@@ -31,7 +31,7 @@ int	is_not_forked(t_cmd *cmd)
 		|| ft_strncmp(cmd->exec[0], "exit\0", 5) == 0)
 	{
 		built_in_cmd(cmd);
-		return (0);
+		return (1);
 	}
 	
 /*	else if (ft_strncmp((*s_cmd)->words[0][0], "ASSIGNMENT_WORD", 15) == 0)
@@ -39,7 +39,7 @@ int	is_not_forked(t_cmd *cmd)
 		built_in_cmd(tkn, tkn->i_cmd);
 		return (0);
 	}
-*/	return (1);
+*/	return (0);
 }
 
 int	built_in_cmd(t_cmd *cmd)

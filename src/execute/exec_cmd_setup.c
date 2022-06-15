@@ -5,7 +5,7 @@ static char	**create_path(char ***path);
 static void	free_path(char **path);
 static void built_cmd_path(t_cmd *cmd, char *path);
 
-int	cmd_setup(t_cmd *cmd)
+int	get_path(t_cmd *cmd)
 {
 	int	ret;
 

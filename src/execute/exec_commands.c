@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exec_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/13 16:51:41 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/14 22:03:01 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static int	exec_child(t_cmd *cmd);
+static void	close_all_fds(void);
 static void	close_fd(t_cmd *cmd, int flag);
-static void	quit_process(int signal);
-static void	interrupt_process(int signal);
 
 /*	EXEC_COMMANDS
 **	-------------
@@ -30,34 +29,26 @@ static void	interrupt_process(int signal);
 void	exec_commands(void)
 {
 	t_cmd	*cmd;
-	t_cmd	*tmp;
 	int		pid[1024];
 	int		wstatus;
 	int		i;
 
 	cmd = g_data.cmd;
-	tmp = g_data.cmd;
-	i = 0;
-	signal(SIGINT, interrupt_process);
-	signal(SIGQUIT, quit_process);
-	while (cmd != NULL)
+	i = -1;
+	exec_commands_signals();
+	while (cmd)
 	{
-		if (*cmd->exec != NULL && cmd->fd_in != -1 && is_not_forked(cmd) ==1 && cmd_setup(cmd) == 0)
+		if (*cmd->exec && cmd->fd_in != -1 && !is_forked(cmd) && !get_path(cmd))
 		{
-			pid[i] = fork();
+			pid[++i] = fork();
 			if (pid[i] == -1)
 				error(NULL, 0, 11);
 			if (pid[i] == 0)
 				exec_child(cmd);
-			i++;
 		}
 		cmd = cmd->next;
 	}
-	while (tmp)
-	{
-		close_fd(tmp, 1);
-		tmp = tmp->next;
-	}
+	close_all_fds();
 	while (--i >= 0)
 		waitpid(pid[i], &wstatus, 0);
 }
@@ -83,6 +74,18 @@ static int	exec_child(t_cmd *cmd)
 	exit(0);
 }
 
+static void	close_all_fds(void)
+{
+	t_cmd	*cmd;
+	
+	cmd = g_data.cmd;
+	while (cmd)
+	{
+		close_fd(cmd, 1);
+		cmd = cmd->next;
+	}	
+}
+
 static void	close_fd(t_cmd *cmd, int flag)
 {
 	if (cmd->fd_in > 2)
@@ -99,14 +102,3 @@ static void	close_fd(t_cmd *cmd, int flag)
 	}
 }
 
-static void	quit_process(int signal)
-{
-	(void)signal;
-	error(NULL, -9, 131);
-}
-
-static void	interrupt_process(int signal)
-{
-	(void)signal;
-	error(NULL, -11, 130);
-}
