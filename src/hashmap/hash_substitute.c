@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash_substitute.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:23:02 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/13 14:35:36 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/16 20:23:22 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,21 @@
 **	-
 */
 
-void	hash_substitute(int type, char *key, char *value)
+void	hash_substitute(char *key, char *value)
 {
 	t_hashtable	*table;
 	t_hashlist	*list;
 	char		*swap;
 	int			index;
 
-	table = g_data.vars[type];
+	table = g_data.environ;
 	index = hash(key, table->size);
 	list = table->list[index];
 	while (ft_strncmp(list->key, key, ft_strlen(key)))
 		list = list->next;
 	swap = list->value;
-	list->value = value;
-//	free(key);
+	list->value = ft_strdup(value);
 	free(swap);
+	free(key);
+	free(value);
 }

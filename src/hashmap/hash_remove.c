@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash_remove.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:44:47 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/11 19:45:59 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/16 15:01:42 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@
 **	-
 */
 
-void	hash_remove(int type, char *key)
+void	hash_remove(char *key)
 {
 	t_hashtable	*table;
 	t_hashlist	*last;
 	t_hashlist	*prev;
 	t_hashlist	*tmp;
 
-	table = g_data.vars[type];
+	table = g_data.environ;
 	tmp = table->list[hash(key, table->size)];
 	last = NULL;
 	prev = NULL;

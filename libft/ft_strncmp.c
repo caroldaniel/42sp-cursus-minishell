@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 20:25:16 by cado-car          #+#    #+#             */
-/*   Updated: 2021/07/31 11:32:17 by cado-car         ###   ########lyon.fr   */
+/*   Updated: 2022/06/16 19:50:20 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
+	if (!s1 || !s2)
+		return (-1);
 	while ((*s1 && *s2) != '\0' && n > 0)
 	{
 		if (*s1 != *s2)

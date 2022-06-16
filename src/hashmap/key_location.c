@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:57:30 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/28 15:24:23 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 15:10:46 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,18 @@
 
 int	key_location(char *key)
 {	
-	if (key_search(ENV, key))
-		return (ENV);
-	if (key_search(LOCAL, key))
-		return (LOCAL);
+	t_hashtable	*table;
+	t_hashlist	*tmp;
+	int			index;
+
+	table = g_data.environ;
+	index = hash(key, table->size);
+	tmp = table->list[index];
+	while (tmp)
+	{
+		if (!ft_strncmp(tmp->key, key, ft_strlen(key)))
+			return (tmp->att);
+		tmp = tmp->next;
+	}
 	return (-1);
 }

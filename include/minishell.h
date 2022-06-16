@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:48:20 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/10 09:23:05 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 18:18:40 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 */
 
 typedef struct s_minishell {
-	t_hashtable	*vars[2];
+	t_hashtable	*environ;
 	t_parser	*parser;
 	t_cmd		*cmd;
 	int			exit_code;
@@ -59,7 +59,7 @@ extern t_minishell	g_data;
 ** Initialization
 */
 
-void		init_minishell(char **variables);
+void		init_minishell(char **envp);
 t_parser	*init_parser(void);
 t_tkn		*init_tkn(void);
 
@@ -96,13 +96,14 @@ void		print_envp_hash(void);
 ** Built-ins
 */
 
+void		ft_exit(void);
+int			ft_echo(char **exec);
+int			ft_export(char **exec);
+int			ft_set(char **exec);
+int			ft_unset(char **exec);
+int			ft_env(char **exec);
+int			ft_cd(char **exec);
+int			ft_pwd(void);
 char		*get_pwd(void);
-void		pwd(void);
-void		cd(char *parameter);
-void		export(char *key, char *value);
-void		set(char *key, char *value);
-void		unset(char *key);
-void		echo(char *flags, char **parameter);
-void		env(void);
 
 #endif

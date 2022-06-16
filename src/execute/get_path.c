@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_path.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/16 18:11:00 by cado-car          #+#    #+#             */
+/*   Updated: 2022/06/16 19:08:28 by cado-car         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static int	path_setup(t_cmd *cmd);
@@ -10,7 +22,7 @@ int	get_path(t_cmd *cmd)
 	int	ret;
 
 	ret = 0;
-	if (is_built_in(cmd) == 1)
+	if (!is_builtin(cmd))
 	{
 		if (ft_strchr(cmd->exec[0], '/') == NULL)
 			ret = path_setup(cmd);
@@ -65,7 +77,7 @@ static char	**create_path(char	***path)
 {
 	char	*temp;
 
-	temp = key_search(BOTH, "PATH");
+	temp = key_search("PATH");
 	*path = ft_split(temp, ':');
 	return (*path);
 }

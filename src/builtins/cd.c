@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 08:26:30 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/13 15:09:05 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/16 20:35:12 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	cd_variable(char *parameter);
-static void	cd_cmd(char *path);
+static int	cd_variable(char *variable);
+static int	cd_cmd(char *path);
+static char	**create_export_exec(char *pwd, char *oldpwd);
+static void	free_export_exec(char **exec);
 
-/*	CD
-**	--
+/*	FT_CD
+**	-----
 **	DESCRIPTION
 **	Changes the current working directory to a specified one.
 **	PARAMETERS
@@ -25,53 +27,82 @@ static void	cd_cmd(char *path);
 **	-
 */
 
-void	cd(char *parameter)
+int	ft_cd(char **exec)
 {
-	if (parameter == NULL)
-		cd_variable("HOME");
+	char	*parameter;
+	int		ret;	
+	
+	parameter = exec[1];
+	ret = 1;
+	if (parameter && exec[2])
+		error(NULL, -3, 1);
+	else if (!parameter)
+		ret = cd_variable("HOME");
 	else if (!ft_strncmp(parameter, "-", 2))
-		cd_variable("OLDPWD");
+		ret = cd_variable("OLDPWD");
 	else
-		cd_cmd(parameter);
+		ret = cd_cmd(parameter);
+	return (ret);
 }
 
-static void	cd_variable(char *parameter)
+static int	cd_variable(char *variable)
 {
-//	char	**oldpwd;
 	char	*path;
+	int		ret;
 
-	//oldpwd = ft_split("OLDPWD", ' ');
-	path = key_search(BOTH, parameter);
+	path = key_search(variable);
+	ret = 1; 
 	if (!path)
-	{
-		error(parameter, -1, 1);
-		return ;
-	}
-	//if (!ft_strncmp("-", parameter, 2))
-//		echo(NULL, oldpwd);
-	cd_cmd(parameter);
-	g_data.exit_code = 0;
+		error(variable, -4, 1);
+	if (!ft_strncmp("OLDPWD", variable, 6))
+		printf("%s\n", path);
+	ret = cd_cmd(path);
+	return (ret);
 }
 
-static void	cd_cmd(char *path)
+static int	cd_cmd(char *path)
 {
-	char	*key_oldpwd;
-	char	*key_pwd;
-	char	*value_oldpwd;
-	char	*value_pwd;
+	char	*oldpwd;
+	char	*pwd;
+	char	*curr_pwd;
+	char	**exec;
 
-	value_oldpwd = key_search(ENV, "PWD");
-	printf("old_PWD %s \n", value_oldpwd);
 	if (chdir(path) == -1)
 	{
 		error(path, -2, 1);
-		free(value_oldpwd);
-		return ;
+		return (1);
 	}
-	key_pwd = ft_strdup("PWD");
-	key_oldpwd = ft_strdup("OLDPWD");
-	value_pwd = get_pwd();
-	set(key_oldpwd, value_oldpwd);
-	set(key_pwd, value_pwd);
-	g_data.exit_code = 0;
+	oldpwd = ft_strjoin("OLDPWD=", key_search("PWD"));
+	curr_pwd = get_pwd();
+	pwd = ft_strjoin("PWD=", curr_pwd);
+	free(curr_pwd);
+	exec = create_export_exec(pwd, oldpwd);
+	ft_export(exec);
+	free_export_exec(exec);
+	return (0);
+}
+
+static char	**create_export_exec(char *pwd, char *oldpwd)
+{
+	char	**exec;
+	char	*name;
+
+	exec = ft_calloc(4, sizeof(char *));
+	if (!exec)
+		error(NULL, 0, 12);
+	name = ft_strdup("export");
+	exec[0] = name;
+	exec[1] = pwd;
+	exec[2] = oldpwd;
+	return (exec);
+}
+
+static void	free_export_exec(char **exec)
+{
+	int	i;
+
+	i = -1;
+	while (exec[++i])
+		free(exec[i]);
+	free(exec);
 }

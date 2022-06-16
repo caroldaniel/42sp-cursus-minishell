@@ -6,13 +6,13 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 09:10:03 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 20:48:43 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	exec_child(t_cmd *cmd);
+static void	exec_child(t_cmd *cmd);
 static void	close_all_fds(void);
 static void	close_fd(t_cmd *cmd, int flag);
 static void	exit_errno(t_cmd *cmd);
@@ -55,22 +55,22 @@ void	exec_commands(void)
 		waitpid(pid[i], &wstatus, 0);
 }
 
-static int	exec_child(t_cmd *cmd)
+static void	exec_child(t_cmd *cmd)
 {
+	int	ret;
+
+	ret = 0;
 	close_fd(cmd, 0);
 	close_all_fds();
-	if (built_in_cmd(cmd) == 1)
+	if (is_builtin(cmd))
+		ret = exec_builtin(cmd);
+	else
 	{
-		if (execve(cmd->exec_path, cmd->exec, NULL) == -1)
-		{
-			error(cmd->exec[0], -8, 13);
-			clear();
-			exit(1);
-		}
-		clear();
+		ret = execve(cmd->exec_path, cmd->exec, g_data.environ->envp);
+		if (ret == -1)
+			error(cmd->exec[0], 3, 13);
 	}
-	clear();
-	exit(0);
+	error(NULL, 0, ret);
 }
 
 static void	close_all_fds(void)

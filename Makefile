@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/06/14 21:48:55 by cado-car         ###   ########.fr        #
+#    Updated: 2022/06/16 20:03:25 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ OBJ_PATH		= ./obj/
 INCLUDE 		= ./include/
 
 SRC				= main.c\
+				exit.c\
 				pwd.c\
 				export.c\
 				cd.c\
@@ -37,14 +38,15 @@ SRC				= main.c\
 				clear_parser.c\
 				clear_tokens.c\
 				error.c\
-				create_hashmap.c\
+				init_hashtable.c\
 				delete_hashmap.c\
 				populate_hashmap.c\
-				print_hashmap.c\
 				envp_key_value.c\
 				envp_length.c\
+				envp_create.c\
 				hash_insert.c\
 				hash_remove.c\
+				hash_export.c\
 				hash_substitute.c\
 				hash.c\
 				key_location.c\
@@ -83,10 +85,10 @@ SRC				= main.c\
 				define_redirects.c\
 				exec_commands.c\
 				exec_commands_signals.c\
+				exec_builtin.c\
+				get_path.c\
 				get_heredoc.c\
 				get_heredoc_signals.c\
-				exec_cmd_setup.c\
-				exec_cmd_built_in.c\
 
 VPATH 			:= $(SRC_PATH)\
 				$(SRC_PATH)builtins\
@@ -137,7 +139,7 @@ install:
 				@printf "$(GR)All dependencies ready!$(RC)\n\n"
 
 leak:							
-				valgrind --suppressions=./local.supp --leak-check=full --show-leak-kinds=all ./$(NAME)
+				valgrind --suppressions=./local.supp --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME)
 
 .PHONY:			all clean fclean re bonus rebonus
 

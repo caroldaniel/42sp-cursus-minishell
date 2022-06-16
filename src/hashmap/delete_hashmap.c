@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:11:50 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 09:18:31 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 18:52:03 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,17 @@ static void	list_delete(t_hashlist *node);
 **	-
 */
 
-void	delete_hashmap(int type)
+void	delete_hashmap(void)
 {
 	t_hashtable	*table;
 	size_t		i;
 
 	i = 0;
-	table = g_data.vars[type];
+	table = g_data.environ;
 	while (i < table->size)
 		list_delete(table->list[i++]);
 	free(table->list);
+	envp_clear();
 	free(table);
 }
 

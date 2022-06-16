@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 14:22:30 by cado-car          #+#    #+#             */
-/*   Updated: 2022/04/28 11:21:45 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 13:26:58 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char	*get_key(char *variable)
 	char	*key;
 	int		i;
 
+	if (!ft_strchr(variable, '='))
+		return (NULL);
 	i = 0;
 	while (variable[i] != '=')
 		i++;
@@ -43,6 +45,8 @@ char	*get_value(char *variable)
 	char	*value;
 	int		i;
 
+	if (!ft_strchr(variable, '='))
+		return (NULL);
 	i = 0;
 	while (variable[i] != '=')
 		i++;

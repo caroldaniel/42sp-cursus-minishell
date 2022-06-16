@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 10:09:27 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 11:00:17 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 19:07:20 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	tilde_expansion(t_tkn **tkn, int *pos)
 	char	*home;
 	char	*parameter;
 
-	home = key_search(BOTH, "HOME");
+	home = key_search("HOME");
 	if (!home)
 		return ;
 	parameter = NULL;

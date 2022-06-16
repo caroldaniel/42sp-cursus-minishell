@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-/*	CREATE_HASHMAP
+/*	CREATE_HASHTABLE
 **	--------------
 **	DESCRIPTION
 **	Takes a list of variables and put them into a hashtable. If list is NULL, 
@@ -23,18 +23,17 @@
 **	The hashtable with the variables sorted into it.
 */
 
-t_hashtable	*create_hashmap(char **variables)
+t_hashtable	*init_hashtable(void)
 {
 	t_hashtable	*table;
 
 	table = malloc(sizeof(t_hashtable));
 	if (!table)
 		error(NULL, 0, 12);
-	table->size = envp_length(variables);
-	if (!table->size)
-		table->size = 50;
+	table->envp = NULL;
+	table->size = 50;
 	table->count = 0;
-	table->list = ft_calloc(sizeof(t_hashlist *), table->size);
+	table->list = ft_calloc(sizeof(t_hashlist *), 50);
 	if (!table->list)
 		error(NULL, 0, 12);
 	return (table);

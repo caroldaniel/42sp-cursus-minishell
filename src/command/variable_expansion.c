@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 19:26:12 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/11 10:47:34 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 15:14:17 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static char	**expand_variable(t_tkn *tkn, int *pos)
 		while (ft_isalnum(tkn->token[(*pos) + i]))
 			i++;
 		key = ft_strndup(&tkn->token[*pos], i--);
-		expansion = ft_strdup(key_search(BOTH, key));
+		expansion = ft_strdup(key_search(key));
 		free(key);
 	}
 	(*pos) = (*pos) + 1 + (i);

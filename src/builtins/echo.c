@@ -6,57 +6,38 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 12:02:00 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 09:26:34 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 16:34:28 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//static char	*echo_element(char *element);
-
-/*	ECHO
-**	----
+/*	FT_ECHO
+**	-------
 **	DESCRIPTION
 **	Prints the parameter into the directory.
 **	PARAMETERS
-**	-
+**	#1. The complete exec list of parameters.
 **	RETURN VALUES
-**	-
+**	0 for sucess, 1 for error.
 */
 
-void	echo(char *flags, char **parameter)
+int	ft_echo(char **exec)
 {
-//	char	*content;
-	char	*end;
-	int		i;
-
-	end = "\n";
+	char	*flag;
+	int	i;
+	
+	flag = NULL;
 	i = 1;
-	if (flags && ft_strchr(flags, 'n'))
+	if (exec[i] && *exec[i] == '-')
+		flag = &exec[i++][1];
+	while (exec[i])
 	{
-		end = "\0";
-		i = 2;
+		printf("%s", exec[i++]);
+		if (exec[i])
+			printf(" ");
 	}
-	while (parameter[i])
-	{
-		// if (i)
-		// 	printf(" ");
-//		content = echo_element(parameter[i]);
-		printf("%s", parameter[i]);
-//		free(content);
-		i++;
-	}
-	printf("%s", end);
+	if (ft_strncmp(flag, "n\0", 2))
+		printf("\n");
+	return (0);
 }
-/*
-static char	*echo_element(char *element)
-{
-	char	*echo;
-
-	if (ft_strncmp("$", element, 1))
-		echo = ft_strdup(element);
-	else
-		echo = key_search(BOTH, &element[1]);
-	return (echo);
-}
-*/

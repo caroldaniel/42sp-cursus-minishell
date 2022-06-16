@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 17:05:13 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 09:25:44 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 20:21:48 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 **	-
 */
 
-void	populate_hashmap(int type, char **variables)
+void	populate_hashmap(char **variables)
 {
 	char		*key;
 	char		*value;
@@ -35,7 +35,13 @@ void	populate_hashmap(int type, char **variables)
 	{
 		key = get_key(variables[i]);
 		value = get_value(variables[i]);
-		hash_insert(type, key, value);
+		hash_insert(key, value, ENV);
 		i++;
+	}
+	if (!key_search("OLDPWD"))
+	{
+		key = ft_strdup("OLDPWD");
+		value = NULL;
+		hash_insert(key, value, ENV);				
 	}
 }

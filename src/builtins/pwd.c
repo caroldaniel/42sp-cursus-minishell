@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:46:39 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/11 19:59:11 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/16 20:32:30 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./minishell.h"
 
-/*	PWD
-**	---
+/*	FT_PWD
+**	------
 **	DESCRIPTION
 **	Prints the current working directory.
 **	PARAMETERS
@@ -22,13 +22,14 @@
 **	-
 */
 
-void	pwd(void)
+int	ft_pwd(void)
 {
 	char	*pwd;
 
 	pwd = get_pwd();
 	printf("%s\n", pwd);
 	free(pwd);
+	return (0);
 }
 
 /*	GET_PWD

@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:19:37 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 08:49:06 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 18:51:48 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,16 @@ void	error(char *s, int flag, int code)
 		printf("%s: Invalid number of arguments\n", s);
 	if (flag == 2)
 		printf("%s\n", s);
+	if (flag == 3)
+		printf("minishell: %s: Command not found\n", s);
 	if (flag == -1)
 		printf("minishell: cd: %s not set\n", s);
 	if (flag == -2)
 		printf("minishell: cd: %s: No such file or directory\n", s);
+	if (flag == -3)
+		printf("minishell: cd: too many arguments\n");
+	if (flag == -4)
+		printf("minishell: cd: %s not set\n", s);
 	if (flag == -3)
 		printf("minishell: syntax error near unexpected token `%s'\n", s);
 	if (flag == -4)
@@ -50,8 +56,6 @@ void	error(char *s, int flag, int code)
 		printf("minishell: %s: Permission denied\n", s);
 	if (flag == -7)
 		printf("minishell: %s: No such file or directory\n", s);
-	if (flag == -8)
-		printf("minishell: %s: Command not found\n", s);
 	if (flag == -9)
 		printf("minishell: here-document delimited by end-of-file (wanted `%s')\n", s);
 	if (flag == -10)
