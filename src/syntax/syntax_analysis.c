@@ -6,11 +6,13 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 08:52:45 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 12:35:52 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 10:30:46 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void syntax_assignment(void);
 
 /*	SYNTAX_ANALYSIS
 **	---------------
@@ -30,6 +32,7 @@ int	syntax_analysis(void)
 
 	token = g_data.parser->tokens;
 	pos = 0;
+	syntax_assignment();
 	while (token)
 	{
 		if (!syntax_pipe_and_or_if(token, pos))
@@ -44,4 +47,21 @@ int	syntax_analysis(void)
 		pos++;
 	}
 	return (1);
+}
+
+static void syntax_assignment(void)
+{
+	t_tkn	*token;
+	int		prev;
+	
+	token = g_data.parser->tokens;
+	prev = -1;
+	while (token)
+	{
+		if (token->lexema == ASSIGN_WORD)
+			if (prev == WORD || (prev >= LESS && prev <= DGREAT))
+				token->lexema = WORD;
+		prev = token->lexema;
+		token = token->next;
+	}
 }

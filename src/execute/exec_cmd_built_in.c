@@ -28,17 +28,15 @@ int	is_forked(t_cmd *cmd)
 	if (ft_strncmp(cmd->exec[0], "cd\0", 3) == 0
 		|| ft_strncmp(cmd->exec[0], "export\0", 7) == 0
 		|| ft_strncmp(cmd->exec[0], "unset\0", 6) == 0
-		|| ft_strncmp(cmd->exec[0], "exit\0", 5) == 0)
+		|| ft_strncmp(cmd->exec[0], "exit\0", 5) == 0
+		|| ft_strncmp(cmd->exec[0], "env\0", 4) == 0
+		|| cmd->commands->lexema == ASSIGN_WORD)
 	{
-		built_in_cmd(cmd);
+		if (!cmd->is_piped)
+			built_in_cmd(cmd);
 		return (1);
 	}
-/*	else if (ft_strncmp((*s_cmd)->words[0][0], "ASSIGNMENT_WORD", 15) == 0)
-	{
-		built_in_cmd(tkn, tkn->i_cmd);
-		return (0);
-	}
-*/	return (0);
+	return (0);
 }
 
 int	built_in_cmd(t_cmd *cmd)

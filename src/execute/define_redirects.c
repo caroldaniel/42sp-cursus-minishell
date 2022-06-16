@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define_redirects.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:43:10 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/13 11:16:56 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/16 09:00:16 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,6 @@ static void	get_fileno(int operator, char *filename, t_cmd *cmd)
 	else if (operator == DLESS)
 		cmd->fd_in = get_heredoc(filename);
 	cmd->errnb = errno;
+	if (errno != 0)
+		cmd->errfile = filename;
 }

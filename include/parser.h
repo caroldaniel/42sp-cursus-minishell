@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/10 11:34:31 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 10:26:34 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ enum e_lexemas {
 	DLESS,
 	GREAT,
 	DGREAT,
-	ERROR,
 	AND,
 	PIPE,
 	AND_IF,
@@ -59,12 +58,14 @@ typedef struct s_cmd
 	t_tkn			*commands;
 	t_tkn			*redirects;
 	int				endpoint;
+	int				is_piped;
 	char			**exec;
 	char			*exec_path;
 	int				fd_out;
 	int				fd_in;
 	int				fd_pipe[2];
 	int				errnb;
+	char			*errfile;
 	struct s_cmd	*next;
 }	t_cmd;
 

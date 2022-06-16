@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/15 10:53:34 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/16 09:10:03 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int	exec_child(t_cmd *cmd);
 static void	close_all_fds(void);
 static void	close_fd(t_cmd *cmd, int flag);
+static void	exit_errno(t_cmd *cmd);
 
 /*	EXEC_COMMANDS
 **	-------------
@@ -29,7 +30,7 @@ static void	close_fd(t_cmd *cmd, int flag);
 void	exec_commands(void)
 {
 	t_cmd	*cmd;
-	int		pid[1024];
+	int		pid[MAX_PID];
 	int		wstatus;
 	int		i;
 
@@ -37,7 +38,9 @@ void	exec_commands(void)
 	i = -1;
 	while (cmd)
 	{
-		if (*cmd->exec && cmd->fd_in != -1 && !is_forked(cmd) && !get_path(cmd))
+		if (cmd->fd_in == -1 || cmd->fd_out == -1)
+			exit_errno(cmd);
+		else if (*cmd->exec && !is_forked(cmd) && !get_path(cmd))
 		{
 			pid[++i] = fork();
 			if (pid[i] == -1)
@@ -64,8 +67,6 @@ static int	exec_child(t_cmd *cmd)
 			clear();
 			exit(1);
 		}
-		else
-			printf("Executed!\n");
 		clear();
 	}
 	clear();
@@ -88,7 +89,7 @@ static void	close_fd(t_cmd *cmd, int flag)
 {
 	if (cmd->fd_in > 2)
 	{
-		if (flag ==0)
+		if (flag == 0)
 			dup2(cmd->fd_in, STDIN_FILENO);
 		close(cmd->fd_in);
 	}
@@ -100,3 +101,10 @@ static void	close_fd(t_cmd *cmd, int flag)
 	}
 }
 
+static void	exit_errno(t_cmd *cmd)
+{
+	if (cmd->errnb == 2)
+		error(cmd->errfile, -7, 1);
+	if (cmd->errnb == 13)
+		error(cmd->errfile, -6, 1);
+}

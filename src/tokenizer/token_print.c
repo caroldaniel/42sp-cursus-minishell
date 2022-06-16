@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 20:49:08 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/01 14:34:58 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 10:28:07 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,5 @@ static char	*lexemas_print(int type)
 		return ("PIPE");
 	if (type == AND)
 		return ("AND");
-	if (type == ERROR)
-		return ("ERROR");
 	return (NULL);
 }

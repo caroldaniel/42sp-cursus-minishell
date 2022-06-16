@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 17:12:52 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/10 10:05:44 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 09:50:14 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,14 @@ t_cmd	*cmd_create(void)
 		error(NULL, 0, 12);
 	cmd->commands = NULL;
 	cmd->redirects = NULL;
+	cmd->is_piped = 0;
 	cmd->endpoint = -1;
 	cmd->exec = NULL;
 	cmd->exec_path = NULL;
 	cmd->fd_in = -2;
 	cmd->fd_out = -2;
+	cmd->errnb = 0;
+	cmd->errfile = NULL;
 	cmd->next = NULL;
 	return (cmd);
 }

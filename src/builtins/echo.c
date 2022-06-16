@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 12:02:00 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/10 08:22:58 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/16 09:26:34 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	echo(char *flags, char **parameter)
 	}
 	while (parameter[i])
 	{
-		if (i)
-			printf(" ");
+		// if (i)
+		// 	printf(" ");
 //		content = echo_element(parameter[i]);
 		printf("%s", parameter[i]);
 //		free(content);
