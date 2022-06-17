@@ -6,15 +6,15 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:19:37 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 22:54:23 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/17 00:19:55 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void parent_error(char *s, int flag);
+static void	parent_error(char *s, int flag);
 static void	syntax_error(char *s, int flag);
-static void redirect_error(char *s, int flag);
+static void	redirect_error(char *s, int flag);
 static void	exit_minishell(void);
 
 /*	ERROR
@@ -51,7 +51,7 @@ void	error(char *s, int flag, int code)
 		exit_minishell();
 }
 
-static void parent_error(char *s, int flag)
+static void	parent_error(char *s, int flag)
 {
 	if (flag == -1)
 		printf("minishell: cd: %s not set\n", s);
@@ -73,7 +73,7 @@ static void	syntax_error(char *s, int flag)
 		printf("minishell: quote missing\n");
 }
 
-static void redirect_error(char *s, int flag)
+static void	redirect_error(char *s, int flag)
 {
 	if (flag == -50)
 		printf("minishell: %s: Permission denied\n", s);

@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 08:41:13 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 16:19:58 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/17 00:17:49 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	print_list(t_hashlist *list);
 **	RETURN VALUES
 **	-
 */
-
 
 int	ft_env(char **exec)
 {

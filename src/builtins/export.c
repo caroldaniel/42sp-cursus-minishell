@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:18:21 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 20:24:19 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/17 00:17:40 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_export(char **exec)
 static void	export_single(char *key, char *value)
 {
 	int	location;
-	
+
 	location = key_location(key);
 	if (location == -1)
 		hash_insert(key, value, ENV);

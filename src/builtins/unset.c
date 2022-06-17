@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:44:46 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 16:21:55 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/17 00:17:16 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 **	RETURN VALUES
 **	0 for sucess, 1 for error.
 */
-
 
 int	ft_unset(char **exec)
 {

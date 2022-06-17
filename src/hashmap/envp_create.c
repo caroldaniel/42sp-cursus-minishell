@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:30:54 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 22:30:44 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/17 00:18:56 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	envp_create(void)
 	char		**envp;
 	size_t		i;
 	int			j;
-	
+
 	table = g_data.environ;
 	envp = malloc((table->count + 1) * sizeof(char *));
 	if (!envp)
@@ -67,7 +67,7 @@ void	envp_clear(void)
 {
 	char	**list;
 	int		i;	
-	
+
 	list = g_data.environ->envp;
 	i = -1;
 	while (list[++i])
@@ -88,7 +88,7 @@ void	envp_clear(void)
 **	-
 */
 
-void envp_swap(void)
+void	envp_swap(void)
 {
 	envp_clear();
 	envp_create();

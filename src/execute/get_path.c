@@ -6,14 +6,14 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:11:00 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/17 00:04:59 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/17 00:15:59 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static int	path_setup(t_cmd *cmd);
-static char *get_full_path(t_cmd *cmd, char *path);
+static char	*get_full_path(t_cmd *cmd, char *path);
 static char	**create_path_list(void);
 static void	free_path_list(char **path);
 
@@ -59,12 +59,12 @@ static int	path_setup(t_cmd *cmd)
 	return (1);
 }
 
-static char *get_full_path(t_cmd *cmd, char *path)
+static char	*get_full_path(t_cmd *cmd, char *path)
 {
 	char	*curr_path;
-	
+
 	curr_path = ft_strnjoin(3, path, "/", cmd->exec[0]);
-	return(curr_path);
+	return (curr_path);
 }
 
 static char	**create_path_list(void)

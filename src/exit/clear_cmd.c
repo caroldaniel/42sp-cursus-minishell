@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   clear_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 17:16:17 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/11 12:01:38 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/17 00:21:02 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static void	clear_exec_list(char **exec);
-//static void	clear_exec_path(char *exec_path);
 
 /*	CLEAR_CMD
 **	---------
@@ -40,7 +39,6 @@ void	clear_cmd(void)
 		clear_tokens(&tmp->commands);
 		clear_tokens(&tmp->redirects);
 		clear_exec_list(tmp->exec);
-		//clear_exec_path(tmp->exec_path);
 		if (tmp->exec_path)
 			free(tmp->exec_path);
 		free(tmp);

@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 12:02:00 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 16:34:28 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/17 00:17:32 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 int	ft_echo(char **exec)
 {
 	char	*flag;
-	int	i;
-	
+	int		i;
+
 	flag = NULL;
 	i = 1;
 	if (exec[i] && *exec[i] == '-')

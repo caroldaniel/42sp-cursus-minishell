@@ -6,13 +6,13 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 08:52:45 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 10:30:46 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/17 00:16:32 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void syntax_assignment(void);
+static void	syntax_assignment(void);
 
 /*	SYNTAX_ANALYSIS
 **	---------------
@@ -49,11 +49,11 @@ int	syntax_analysis(void)
 	return (1);
 }
 
-static void syntax_assignment(void)
+static void	syntax_assignment(void)
 {
 	t_tkn	*token;
 	int		prev;
-	
+
 	token = g_data.parser->tokens;
 	prev = -1;
 	while (token)

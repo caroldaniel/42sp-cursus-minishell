@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:16:03 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 22:46:22 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/17 00:15:33 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int	get_heredoc(char *limiter)
 	int	pid;
 
 	if (pipe(fd) == -1)
-		return(exit_heredoc());
+		return (exit_heredoc());
 	pid = fork();
 	if (pid == -1)
-		return(exit_heredoc());
+		return (exit_heredoc());
 	if (!pid)
 	{
 		close(fd[0]);

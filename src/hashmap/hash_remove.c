@@ -6,13 +6,13 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:44:47 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 23:40:13 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/17 00:18:19 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void free_node(t_hashlist *curr);
+static void	free_node(t_hashlist *curr);
 
 /*	HASH_REMOVE
 **	-----------
@@ -49,7 +49,7 @@ void	hash_remove(char *key)
 	}
 }
 
-static void free_node(t_hashlist *curr)
+static void	free_node(t_hashlist *curr)
 {
 	free(curr->key);
 	free(curr->value);

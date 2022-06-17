@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 22:48:00 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/17 00:16:13 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	exec_child(t_cmd *cmd)
 static void	close_all_fds(void)
 {
 	t_cmd	*cmd;
-	
+
 	cmd = g_data.cmd;
 	while (cmd)
 	{
