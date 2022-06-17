@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:13:34 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 20:44:51 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/17 00:13:38 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,12 @@ int	is_forked(t_cmd *cmd)
 	{
 		if (!cmd->is_piped)
 			exec_builtin(cmd);
+		return (1);
+	}
+	if (cmd->commands->lexema == ASSIGN_WORD)
+	{
+		if (!cmd->is_piped)
+			ft_set(cmd->exec);
 		return (1);
 	}
 	return (0);
