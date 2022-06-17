@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 20:48:43 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 22:48:00 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ static void	close_fd(t_cmd *cmd, int flag)
 
 static void	exit_errno(t_cmd *cmd)
 {
-	if (cmd->errnb == 2)
-		error(cmd->errfile, -7, 1);
 	if (cmd->errnb == 13)
-		error(cmd->errfile, -6, 1);
+		error(cmd->errfile, -50, 1);
+	if (cmd->errnb == 2)
+		error(cmd->errfile, -51, 1);
 }

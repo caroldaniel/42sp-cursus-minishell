@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 09:08:07 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 12:13:16 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 22:36:42 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	syntax_quote(t_tkn *tkn)
 		}
 		if (flag != -1)
 		{
-			error(NULL, -5, 2);
+			error(NULL, -22, 2);
 			return (0);
 		}
 	}

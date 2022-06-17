@@ -6,16 +6,16 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:11:00 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 19:08:28 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/17 00:04:59 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static int	path_setup(t_cmd *cmd);
-static char	**create_path(char ***path);
-static void	free_path(char **path);
-static void built_cmd_path(t_cmd *cmd, char *path);
+static char *get_full_path(t_cmd *cmd, char *path);
+static char	**create_path_list(void);
+static void	free_path_list(char **path);
 
 int	get_path(t_cmd *cmd)
 {
@@ -24,7 +24,7 @@ int	get_path(t_cmd *cmd)
 	ret = 0;
 	if (!is_builtin(cmd))
 	{
-		if (ft_strchr(cmd->exec[0], '/') == NULL)
+		if (!ft_strchr(cmd->exec[0], '/'))
 			ret = path_setup(cmd);
 		else
 			cmd->exec_path = ft_strdup(cmd->exec[0]);
@@ -34,55 +34,52 @@ int	get_path(t_cmd *cmd)
 
 static int	path_setup(t_cmd *cmd)
 {
-	int		x;
-	char	**path;
+	char	**path_list;
+	char	*curr_path;
+	int		i;
 
-	create_path(&path);
-	x = 0;
-	if (path != NULL)
+	path_list = create_path_list();
+	if (path_list)
 	{
-		while (path[x] != NULL)
+		i = -1;
+		while (path_list[++i])
 		{
-			built_cmd_path(cmd, path[x]);
-			if (cmd->exec_path == NULL)
-				exit(1); //verificar erro
-			if (access(cmd->exec_path, F_OK) == 0)
+			curr_path = get_full_path(cmd, path_list[i]);
+			if (access(curr_path, F_OK) == 0)
 			{
-				free_path(path);
+				cmd->exec_path = curr_path;
+				free_path_list(path_list);
 				return (0);
 			}
-			free(cmd->exec_path);
-			cmd->exec_path = NULL;
-			x++;
+			free(curr_path);
 		}
+		free_path_list(path_list);
 	}
-	free_path(path);
-	error(cmd->commands->token, -7, 127);
+	error(cmd->commands->token, -51, 127);
 	return (1);
 }
 
-static void built_cmd_path(t_cmd *cmd, char *path)
+static char *get_full_path(t_cmd *cmd, char *path)
 {
-	char	*temp;
-
-	cmd->exec_path = ft_strjoin(path, "/");
-	if (cmd->exec_path == NULL)
-		exit(1); //verificar qual o comportamento
-	temp = cmd->exec_path;
-	cmd->exec_path = ft_strjoin(temp, cmd->commands->token);
-	free(temp);
-
+	char	*curr_path;
+	
+	curr_path = ft_strnjoin(3, path, "/", cmd->exec[0]);
+	return(curr_path);
 }
-static char	**create_path(char	***path)
+
+static char	**create_path_list(void)
 {
+	char	**path;
 	char	*temp;
 
+	path = NULL;
 	temp = key_search("PATH");
-	*path = ft_split(temp, ':');
-	return (*path);
+	if (temp)
+		path = ft_split(temp, ':');
+	return (path);
 }
 
-static void	free_path(char **path)
+static void	free_path_list(char **path)
 {
 	int	i;
 

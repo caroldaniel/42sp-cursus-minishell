@@ -6,11 +6,22 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:30:54 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 20:11:37 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 22:30:44 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*	ENVP_CREATE
+**	-----------
+**	DESCRIPTION
+**	This function will malloc(3) and fill in a list of strings with all of the
+**	exportabled environment variables, in order to be further called by execve.
+**	PARAMETERS
+**	-
+**	RETURN VALUES
+**	-
+*/
 
 void	envp_create(void)
 {
@@ -41,6 +52,17 @@ void	envp_create(void)
 	g_data.environ->envp = envp;
 }
 
+/*	ENVP_CLEAR
+**	----------
+**	DESCRIPTION
+**	This function will free all memory allocated in the list of environment 
+**	variables on the global struct.
+**	PARAMETERS
+**	-
+**	RETURN VALUES
+**	-
+*/
+
 void	envp_clear(void)
 {
 	char	**list;
@@ -53,6 +75,18 @@ void	envp_clear(void)
 	free(list);
 	list = NULL;
 }
+
+/*	ENVP_SWAP
+**	---------
+**	DESCRIPTION
+**	This function will free all memory allocated in the list of environment 
+**	variables on the global struct, and then proceed to reallocate a new list
+**	with the current set of variables.
+**	PARAMETERS
+**	-
+**	RETURN VALUES
+**	-
+*/
 
 void envp_swap(void)
 {

@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 09:06:36 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 10:14:15 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 22:36:33 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	syntax_and(t_tkn *tkn)
 {
 	if (tkn->lexema == AND)
 	{
-		error(tkn->token, -3, 2);
+		error(tkn->token, -20, 2);
 		return (0);
 	}
 	return (1);

@@ -6,11 +6,13 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:44:47 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 15:01:42 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 23:40:13 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void free_node(t_hashlist *curr);
 
 /*	HASH_REMOVE
 **	-----------
@@ -24,34 +26,33 @@
 
 void	hash_remove(char *key)
 {
-	t_hashtable	*table;
-	t_hashlist	*last;
+	t_hashlist	*curr;
 	t_hashlist	*prev;
-	t_hashlist	*tmp;
+	int			index;
 
-	table = g_data.environ;
-	tmp = table->list[hash(key, table->size)];
-	last = NULL;
+	index = hash(key, g_data.environ->size);
 	prev = NULL;
-	while (tmp)
+	curr = g_data.environ->list[index];
+	while (curr)
 	{
-		if (!ft_strncmp(tmp->key, key, ft_strlen(key)))
+		if (!ft_strncmp(curr->key, key, ft_strlen(key) + 1))
 		{
-			if (!last)
-				table->list[hash(key, table->size)] = tmp->next;
+			if (!prev)
+				g_data.environ->list[index] = curr->next;
 			else
-			{
-				last = tmp->next;
-				prev->next = last;
-			}
-			free(tmp->key);
-			free(tmp->value);
-			free(tmp);
-			tmp = NULL;
+				prev->next = curr->next;
+			free_node(curr);
 			break ;
 		}
-		prev = tmp;
-		tmp = tmp->next;
+		prev = curr;
+		curr = curr->next;
 	}
-	return ;
+}
+
+static void free_node(t_hashlist *curr)
+{
+	free(curr->key);
+	free(curr->value);
+	free(curr);
+	curr = NULL;
 }

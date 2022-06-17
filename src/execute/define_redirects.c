@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:43:10 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 09:00:16 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 22:47:06 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	define_redirects(void)
 			cmd->fd_in = STDIN_FILENO;
 		if (cmd->fd_out == -2)
 			cmd->fd_out = STDOUT_FILENO;
-//		printf("REDIRECTS\nfd_in = %d\tfd_out = %d\n", cmd->fd_in, cmd->fd_out);
 		cmd = cmd->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:16:03 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/11 10:02:40 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 22:46:22 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	write_to_pipe(char *limiter, int *fd)
 	while (1)
 	{
 		if (!line)
-			error(limiter, -9, 22);
+			error(limiter, -52, 22);
 		if (!line || (!ft_strncmp(limiter, line, len) && line[len] == '\0'))
 			break ;
 		write(*fd, line, ft_strlen(line));
@@ -74,6 +74,6 @@ static void	write_to_pipe(char *limiter, int *fd)
 
 static int	exit_heredoc(void)
 {
-	error(NULL, 0, 11);
+	error(NULL, 0, -54);
 	return (-1);
 }

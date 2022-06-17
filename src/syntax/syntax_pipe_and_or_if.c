@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 09:05:19 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/09 10:13:31 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 22:35:52 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	syntax_pipe_and_or_if(t_tkn *tkn, int pos)
 	{
 		if (pos == 0 || !tkn->next)
 		{
-			error(tkn->token, -3, 2);
+			error(tkn->token, -20, 2);
 			return (0);
 		}
 	}

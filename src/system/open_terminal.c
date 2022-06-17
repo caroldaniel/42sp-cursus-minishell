@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:26:34 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 19:48:31 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/16 22:57:02 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	read_line(void)
 	g_data.parser->input = readline(prompt);
 	free(prompt);
 	if (!g_data.parser->input)
-		error("exit", 2, 0);
+		error("exit", 1, 0);
 	add_history(g_data.parser->input);
 }
 
