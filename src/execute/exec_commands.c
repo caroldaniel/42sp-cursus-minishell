@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/19 14:16:25 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/19 20:45:49 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,10 @@ static void	wait_all_pids(int pid[MAX_PID], int id);
 void	exec_commands(void)
 {
 	t_cmd	*cmd;
-	int		code;
 
 	cmd = g_data.cmd;
-	code = g_data.exit_code;
 	while (cmd)
-	{
-		if (cmd->endpoint == PIPE || cmd->endpoint == -1)
-			exec_pipe_block(&cmd);
-		else if (cmd->endpoint == AND_IF && code)
-			exec_pipe_block(&cmd);
-		else if (cmd->endpoint == OR_IF && !code)
-			exec_pipe_block(&cmd);
-		else
-			cmd = cmd->next;
-	}
+		exec_pipe_block(&cmd);
 }
 
 static void	exec_pipe_block(t_cmd **cmd)
@@ -69,8 +58,6 @@ static void	exec_pipe_block(t_cmd **cmd)
 		}
 		close_fd(*cmd, BOTH);
 		*cmd = (*cmd)->next;
-		if (*cmd && (*cmd)->endpoint > PIPE)
-			break;
 	}
 	wait_all_pids(pid, id);
 }
