@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/06/18 16:43:21 by cado-car         ###   ########.fr        #
+#    Updated: 2022/06/19 11:36:46 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SRC				= main.c\
 				lexical_analysis.c\
 				syntax_analysis.c\
 				syntax_pipe_and_or_if.c\
+				syntax_parenthesis.c\
 				syntax_io_redirect.c\
 				syntax_and.c\
 				syntax_quote.c\
@@ -75,6 +76,7 @@ SRC				= main.c\
 				tkn_dup.c\
 				tkn_remove.c\
 				tkn_len.c\
+				tkn_last.c\
 				command_table.c\
 				command_expansion.c\
 				command_list.c\

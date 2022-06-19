@@ -6,14 +6,16 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/18 21:14:51 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/19 14:16:25 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static void	exec_pipe_block(t_cmd **cmd);
 static void	exec_child(t_cmd *cmd);
 static void dup2_close_fds(t_cmd *cmd);
+static void	wait_all_pids(int pid[MAX_PID], int id);
 
 /*	EXEC_COMMANDS
 **	-------------
@@ -28,37 +30,49 @@ static void dup2_close_fds(t_cmd *cmd);
 void	exec_commands(void)
 {
 	t_cmd	*cmd;
-	pid_t	pid[MAX_PID];
-	int		id;
-	int		max_id;
-	int		wstatus;
+	int		code;
 
 	cmd = g_data.cmd;
-	id = -1;
+	code = g_data.exit_code;
 	while (cmd)
 	{
-		cmd->exec_path = get_path(cmd);
-		if (cmd->fd_in == -1 || cmd->fd_out == -1)
-			exit_errno(cmd->errfile, cmd->errnb);
-		else if (cmd->exec_path && is_forked(cmd) && cmd->exec_path)
+		if (cmd->endpoint == PIPE || cmd->endpoint == -1)
+			exec_pipe_block(&cmd);
+		else if (cmd->endpoint == AND_IF && code)
+			exec_pipe_block(&cmd);
+		else if (cmd->endpoint == OR_IF && !code)
+			exec_pipe_block(&cmd);
+		else
+			cmd = cmd->next;
+	}
+}
+
+static void	exec_pipe_block(t_cmd **cmd)
+{
+	pid_t	pid[MAX_PID];
+	int		id;
+	
+	id = -1;
+	ft_memset(pid, 0, MAX_PID);
+	while (*cmd)
+	{
+		(*cmd)->exec_path = get_path(*cmd);
+		if ((*cmd)->fd_in == -1 || (*cmd)->fd_out == -1)
+			exit_errno((*cmd)->errfile, (*cmd)->errnb);
+		else if ((*cmd)->exec_path && is_forked(*cmd) && (*cmd)->exec_path)
 		{
 			pid[++id] = fork();
 			if (pid[id] == -1)
 				error(NULL, 0, 11);
 			if (pid[id] == 0)
-				exec_child(cmd);
+				exec_child(*cmd);
 		}
-		close_fd(cmd, BOTH);
-		cmd = cmd->next;
+		close_fd(*cmd, BOTH);
+		*cmd = (*cmd)->next;
+		if (*cmd && (*cmd)->endpoint > PIPE)
+			break;
 	}
-	max_id = id;
-	id = -1;
-	while (++id <= max_id)
-	{
-		waitpid(pid[id], &wstatus, 0);
-		if (WIFEXITED(wstatus))
-			g_data.exit_code = WEXITSTATUS(wstatus);
-	}
+	wait_all_pids(pid, id);
 }
 
 static void	exec_child(t_cmd *cmd)
@@ -82,4 +96,18 @@ static void	dup2_close_fds(t_cmd *cmd)
 	if (cmd->fd_out > 2)
 		dup2(cmd->fd_out, STDOUT_FILENO);
 	close_fds();
+}
+
+static void	wait_all_pids(int pid[MAX_PID], int id)
+{
+	int		max_id;
+	int		wstatus;
+
+	max_id = id;
+	id = -1;
+	wstatus = 0;
+	while (++id <= max_id)
+		waitpid(pid[id], &wstatus, 0);
+	if (WIFEXITED(wstatus))
+		g_data.exit_code = WEXITSTATUS(wstatus);
 }

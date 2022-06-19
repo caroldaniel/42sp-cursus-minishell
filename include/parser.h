@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/18 16:34:42 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/19 11:36:55 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ enum e_lexemas {
 	GREAT,
 	DGREAT,
 	AND,
+	PARENTHESIS,
 	PIPE,
 	AND_IF,
 	OR_IF
@@ -59,6 +60,7 @@ typedef struct s_cmd
 	t_tkn			*commands;
 	t_tkn			*redirects;
 	int				endpoint;
+	int				priority_level;
 	int				is_piped;
 	char			**exec;
 	char			*exec_path;
@@ -74,8 +76,8 @@ typedef struct s_cmd
 ** Constants definitions
 */
 
-# define METACHAR	"|<>&"
-# define METACHARS	"|<>& "
+# define METACHAR	"|<>&()"
+# define METACHARS	"|<>&() "
 
 /*
 ** Tokenizer Functions
@@ -92,6 +94,7 @@ void	token_print(void);
 
 t_tkn	*tkn_create(char *token, int flag);
 t_tkn	*tkn_dup(t_tkn *original);
+t_tkn	*tkn_last(t_tkn *tkn);
 void	tkn_remove(t_tkn **list, char *token);
 void	tkn_add_back(t_tkn **list, t_tkn *token);
 size_t	tkn_len(t_tkn *tkn);
@@ -103,6 +106,7 @@ int		lexical_analysis(char *token);
 
 int		syntax_analysis(void);
 int		syntax_pipe_and_or_if(t_tkn *tkn, int pos);
+int		syntax_parenthesis(t_tkn *tkn, t_tkn *prev);
 int		syntax_io_redirect(t_tkn *tkn);
 int		syntax_quote(t_tkn *tkn);
 int		syntax_and(t_tkn *tkn);

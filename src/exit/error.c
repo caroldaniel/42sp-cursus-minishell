@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:19:37 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/18 22:12:15 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/19 07:17:35 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ static void	exec_error(char *s, int flag)
 static void	syntax_error(char *s, int flag)
 {
 	if (flag == -20)
-		dprintf(2, "minishell: syntax error near unexpected token \
-			`%s'\n", s);
+		dprintf(2, "minishell: syntax error near unexpected token `%s'\n", s);
 	if (flag == -21)
-		dprintf(2, "minishell: syntax error near unexpected token \
-			`newline'\n");
+		dprintf(2, "minishell: syntax error near unexpected token `newline'\n");
 	if (flag == -22)
 		dprintf(2, "minishell: quote missing\n");
+	if (flag == -23)
+		dprintf(2, "minishell: closing parenthesis missing\n");
 }
 
 static void	redirect_error(char *s, int flag)

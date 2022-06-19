@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 08:52:45 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/17 00:16:32 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/19 08:52:51 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ static void	syntax_assignment(void);
 int	syntax_analysis(void)
 {
 	t_tkn	*token;
+	t_tkn	*prev;
 	int		pos;
 
 	token = g_data.parser->tokens;
+	prev = NULL;
 	pos = 0;
 	syntax_assignment();
 	while (token)
@@ -41,8 +43,11 @@ int	syntax_analysis(void)
 			return (0);
 		else if (!syntax_and(token))
 			return (0);
+		else if (!syntax_parenthesis(token, prev))
+			return (0);
 		else if (!syntax_quote(token))
 			return (0);
+		prev = token;
 		token = token->next;
 		pos++;
 	}

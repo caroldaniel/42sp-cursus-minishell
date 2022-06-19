@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 20:49:08 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 10:28:07 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/19 09:36:31 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	token_print(void)
 	i = 1;
 	while (node)
 	{
-		printf("\nCOMMAND %d\n", i);
+		printf("\nCOMMAND %d - PRIORITY LEVEL %d\n", i, node->priority_level);
 		commands = node->commands;
 		printf("\t\tCOMMANDS FOR EXECVE\n");
 		while (commands)
@@ -79,5 +79,7 @@ static char	*lexemas_print(int type)
 		return ("PIPE");
 	if (type == AND)
 		return ("AND");
+	if (type == PARENTHESIS)
+		return ("PARENTHESIS");
 	return (NULL);
 }

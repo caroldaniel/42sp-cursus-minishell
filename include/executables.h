@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:37 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/18 20:05:00 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/19 10:43:21 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	open_pipes(void);
 void	define_redirects(void);
 void	exec_commands(void);
 void	exec_commands_signals(void);
-void	exec_pipe(t_cmd **cmd);
 
 /*
 ** Built-ins

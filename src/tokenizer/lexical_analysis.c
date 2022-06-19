@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 09:02:29 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 10:15:58 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/19 06:36:19 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static int	check_token(char *token)
 			return (LESS);
 		if (token[0] == '&')
 			return (AND);
+		if (token[0] == '(' || token[0] == ')')
+			return (PARENTHESIS);
 	}
 	if (ft_strlen(token) == 2)
 	{
