@@ -4,6 +4,7 @@
 		"types.h": "c",
 		"pwd.h": "c",
 		"executables.h": "c",
-		"history.h": "c"
+		"history.h": "c",
+		"limits": "c"
 	}
 }

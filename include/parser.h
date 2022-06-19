@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 10:26:34 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/18 16:34:42 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_parser
 
 typedef struct s_cmd
 {
+	int				id;
 	t_tkn			*commands;
 	t_tkn			*redirects;
 	int				endpoint;
@@ -110,7 +111,7 @@ int		syntax_and(t_tkn *tkn);
 ** Syntax Analysis
 */
 
-t_cmd	*cmd_create(void);
+t_cmd	*cmd_create(int id);
 void	cmd_add_back(t_cmd *node);
 void	cmd_add_front(t_cmd *node);
 

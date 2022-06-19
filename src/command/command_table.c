@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 09:12:29 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 11:24:34 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/18 09:38:32 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,17 @@ void	command_table(void)
 	t_cmd	*cmd_node;
 	t_tkn	*list;
 	int		prev;
+	int		id;
 
 	list = g_data.parser->tokens;
 	prev = -1;
+	id = 0;
 	while (list)
 	{
-		cmd_node = cmd_create();
+		cmd_node = cmd_create(id);
 		cmd_populate(&cmd_node, &list, &prev);
 		cmd_add_back(cmd_node);
+		id++;
 	}
 	command_expansion();
 	command_list();

@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 09:05:44 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 22:36:18 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/17 08:54:49 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	syntax_io_redirect(t_tkn *tkn)
 		}
 		else if (tkn->next->lexema != WORD && tkn->next->lexema != ASSIGN_WORD)
 		{
-			error(tkn->next->token, -3, 2);
+			error(tkn->next->token, -20, 2);
 			return (0);
 		}
 	}

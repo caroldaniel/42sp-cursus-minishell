@@ -6,13 +6,13 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:19:37 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/17 00:19:55 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/18 22:12:15 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	parent_error(char *s, int flag);
+static void	exec_error(char *s, int flag);
 static void	syntax_error(char *s, int flag);
 static void	redirect_error(char *s, int flag);
 static void	exit_minishell(void);
@@ -36,55 +36,59 @@ void	error(char *s, int flag, int code)
 {
 	g_data.exit_code = code;
 	if (flag < 0 && flag > -20)
-		parent_error(s, flag);
+		exec_error(s, flag);
 	if (flag <= -20 && flag > -50)
 		syntax_error(s, flag);
 	if (flag <= -50)
 		redirect_error(s, flag);
 	if (flag == 1)
-		printf("%s\n", s);
+		dprintf(2, "%s\n", s);
 	if (flag == 2)
-		printf("%s: Invalid number of arguments\n", s);
-	if (flag == 3)
-		printf("minishell: %s: Command not found\n", s);
+		dprintf(2, "%s: Invalid number of arguments\n", s);
 	if (flag >= 0)
 		exit_minishell();
+	
 }
 
-static void	parent_error(char *s, int flag)
+static void	exec_error(char *s, int flag)
 {
 	if (flag == -1)
-		printf("minishell: cd: %s not set\n", s);
+		dprintf(2, "minishell: cd: %s not set\n", s);
 	if (flag == -2)
-		printf("minishell: cd: %s: No such file or directory\n", s);
+		dprintf(2, "minishell: cd: %s: No such file or directory\n", s);
 	if (flag == -3)
-		printf("minishell: cd: too many arguments\n");
+		dprintf(2, "minishell: cd: %s not set\n", s);
 	if (flag == -4)
-		printf("minishell: cd: %s not set\n", s);
+		dprintf(2, "minishell: %s: too many arguments\n", s);
+	if (flag == -5)
+		dprintf(2, "%s: Command not found\n", s);
 }
 
 static void	syntax_error(char *s, int flag)
 {
 	if (flag == -20)
-		printf("minishell: syntax error near unexpected token `%s'\n", s);
+		dprintf(2, "minishell: syntax error near unexpected token \
+			`%s'\n", s);
 	if (flag == -21)
-		printf("minishell: syntax error near unexpected token `newline'\n");
+		dprintf(2, "minishell: syntax error near unexpected token \
+			`newline'\n");
 	if (flag == -22)
-		printf("minishell: quote missing\n");
+		dprintf(2, "minishell: quote missing\n");
 }
 
 static void	redirect_error(char *s, int flag)
 {
 	if (flag == -50)
-		printf("minishell: %s: Permission denied\n", s);
+		dprintf(2, "minishell: %s: Permission denied\n", s);
 	if (flag == -51)
-		printf("minishell: %s: No such file or directory\n", s);
+		dprintf(2, "minishell: %s: No such file or directory\n", s);
 	if (flag == -52)
-		printf("minishell: here-document delimited by end-of-file (wanted `%s')\n", s);
+		dprintf(2, "minishell: here-document delimited by end-of-file \
+			(wanted `%s')\n", s);
 	if (flag == -53)
-		printf("Quit (core dumped)\n");
+		dprintf(2, "Quit (core dumped)\n");
 	if (flag == -54)
-		printf("\n");
+		dprintf(2, "\n");
 }
 
 static void	exit_minishell(void)

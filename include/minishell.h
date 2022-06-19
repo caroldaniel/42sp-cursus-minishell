@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:48:20 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 22:24:29 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/17 12:21:30 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void		clear(void);
 void		clear_cmd(void);
 void		clear_parser(void);
 void		clear_tokens(t_tkn **list);
+void		exit_errno(char *errfile, int errnb);
 
 /*
 ** Prompt
@@ -89,7 +90,7 @@ char		*create_prompt(void);
 ** Built-ins
 */
 
-void		ft_exit(void);
+int			ft_exit(char **exec);
 int			ft_echo(char **exec);
 int			ft_export(char **exec);
 int			ft_set(char **exec);

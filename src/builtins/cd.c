@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 08:26:30 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/17 00:17:03 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/17 10:06:31 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_cd(char **exec)
 	parameter = exec[1];
 	ret = 1;
 	if (parameter && exec[2])
-		error(NULL, -3, 1);
+		error("cd", -4, 1);
 	else if (!parameter)
 		ret = cd_variable("HOME");
 	else if (!ft_strncmp(parameter, "-", 2))
@@ -53,7 +53,7 @@ static int	cd_variable(char *variable)
 	path = key_search(variable);
 	ret = 1;
 	if (!path)
-		error(variable, -4, 1);
+		error(variable, -3, 1);
 	else
 	{
 		if (!ft_strncmp("OLDPWD", variable, 6))

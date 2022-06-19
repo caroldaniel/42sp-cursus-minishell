@@ -6,65 +6,65 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:11:00 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/17 00:15:59 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/18 22:14:07 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	path_setup(t_cmd *cmd);
-static char	*get_full_path(t_cmd *cmd, char *path);
+static char	*path_setup(t_cmd *cmd);
 static char	**create_path_list(void);
 static void	free_path_list(char **path);
 
-int	get_path(t_cmd *cmd)
+char	*get_path(t_cmd *cmd)
 {
-	int	ret;
+	char	*path;
 
-	ret = 0;
-	if (!is_builtin(cmd))
+	if (!*cmd->exec)
+		return (NULL);
+	if (is_builtin(cmd))
+		path = ft_strdup(cmd->exec[0]);
+	else
 	{
-		if (!ft_strchr(cmd->exec[0], '/'))
-			ret = path_setup(cmd);
-		else
-			cmd->exec_path = ft_strdup(cmd->exec[0]);
+		path = path_setup(cmd);
+		if (!path)
+		{
+			if (key_location("PATH"))
+				error(cmd->exec[0], -51, 127);
+			else
+				error(cmd->exec[0], -5, 127);
+		}
 	}
-	return (ret);
+	return (path);
 }
 
-static int	path_setup(t_cmd *cmd)
+static char	*path_setup(t_cmd *cmd)
 {
 	char	**path_list;
 	char	*curr_path;
+	char	*path;
 	int		i;
 
+	path = NULL;
 	path_list = create_path_list();
 	if (path_list)
 	{
 		i = -1;
 		while (path_list[++i])
 		{
-			curr_path = get_full_path(cmd, path_list[i]);
+			curr_path = ft_strnjoin(3, path_list[i], "/", cmd->exec[0]);
 			if (access(curr_path, F_OK) == 0)
 			{
-				cmd->exec_path = curr_path;
-				free_path_list(path_list);
-				return (0);
+				path = curr_path;
+				break ;
 			}
 			free(curr_path);
 		}
 		free_path_list(path_list);
 	}
-	error(cmd->commands->token, -51, 127);
-	return (1);
-}
-
-static char	*get_full_path(t_cmd *cmd, char *path)
-{
-	char	*curr_path;
-
-	curr_path = ft_strnjoin(3, path, "/", cmd->exec[0]);
-	return (curr_path);
+	if (!path && !access(cmd->exec[0], F_OK | X_OK))
+		path = ft_strdup(cmd->exec[0]);
+	return (path);
 }
 
 static char	**create_path_list(void)

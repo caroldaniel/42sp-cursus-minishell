@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 17:12:52 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 09:50:14 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/18 16:34:49 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@
 **	A t_cmd node.
 */
 
-t_cmd	*cmd_create(void)
+t_cmd	*cmd_create(int id)
 {
 	t_cmd	*cmd;
 
 	cmd = malloc(sizeof(t_cmd));
 	if (!cmd)
 		error(NULL, 0, 12);
+	cmd->id = id;
 	cmd->commands = NULL;
 	cmd->redirects = NULL;
 	cmd->is_piped = 0;
