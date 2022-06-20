@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:13:34 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/18 21:48:49 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/19 21:41:13 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,6 @@ int	is_forked(t_cmd *cmd)
 	{
 		if (!cmd->is_piped)
 			ft_set(cmd->exec);
-		return (0);
-	}
-	if (!ft_strncmp(cmd->exec_path, "env\0", 4))
-	{
-		exec_builtin(cmd);
 		return (0);
 	}
 	return (1);
