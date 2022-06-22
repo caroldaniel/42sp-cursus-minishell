@@ -6,13 +6,14 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:43:10 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 22:47:06 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/20 11:12:58 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static void	get_fileno(int operator, char *filename, t_cmd *cmd);
+static int	check_fds(t_cmd *cmd);
 
 /*	DEFINE_REDIRECTS
 **	----------------
@@ -24,7 +25,7 @@ static void	get_fileno(int operator, char *filename, t_cmd *cmd);
 **	-
 */
 
-void	define_redirects(void)
+int	define_redirects(void)
 {
 	t_cmd	*cmd;
 	t_tkn	*redirects;
@@ -41,12 +42,11 @@ void	define_redirects(void)
 			redirects = redirects->next;
 			redirects = redirects->next;
 		}
-		if (cmd->fd_in == -2)
-			cmd->fd_in = STDIN_FILENO;
-		if (cmd->fd_out == -2)
-			cmd->fd_out = STDOUT_FILENO;
+		if (!check_fds(cmd))
+			return (0);
 		cmd = cmd->next;
 	}
+	return (1);
 }
 
 static void	get_fileno(int operator, char *filename, t_cmd *cmd)
@@ -72,4 +72,18 @@ static void	get_fileno(int operator, char *filename, t_cmd *cmd)
 	cmd->errnb = errno;
 	if (errno != 0)
 		cmd->errfile = filename;
+}
+
+static int	check_fds(t_cmd *cmd)
+{
+	if (cmd->fd_in == -3)
+	{
+		g_data.exit_code = 130;
+		return (0);
+	}
+	if (cmd->fd_in == -2)
+		cmd->fd_in = STDIN_FILENO;
+	if (cmd->fd_out == -2)
+		cmd->fd_out = STDOUT_FILENO;
+	return (1);
 }

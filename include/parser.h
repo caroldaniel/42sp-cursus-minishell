@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/19 11:36:55 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/21 08:49:41 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,18 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 }	t_cmd;
 
+
+/*
+** Directory list struct (for wildcard)
+*/
+
+typedef struct s_dir
+{
+	int				id;
+	char			*file;
+	struct s_dir	*next;
+} t_dir;
+
 /*
 ** Constants definitions
 */
@@ -130,5 +142,16 @@ void	command_list(void);
 void	tilde_expansion(t_tkn **tkn, int *pos);
 void	variable_expansion(t_tkn **tkn, int *pos);
 void	quote_expansion(t_tkn **tkn, int *pos, char quote);
+
+/*
+** Wildcard utils
+*/
+
+t_dir	*dir_create(char *file, int id);
+t_dir	*dir_populate_list(char *directory);
+void	dir_add_sorted(t_dir **list, t_dir *item);
+void	dir_remove(t_dir **list, int id);
+void	dir_delete(t_dir **list);
+int		wordcmp(char *s1, char *s2);
 
 #endif

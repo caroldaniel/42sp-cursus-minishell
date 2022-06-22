@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:08:52 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/10 13:35:47 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/20 09:51:33 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 void	exec_line(void)
 {
 	open_pipes();
-	define_redirects();
+	if (!define_redirects())
+		return ;
 	exec_commands();
 }

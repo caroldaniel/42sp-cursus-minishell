@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:26:34 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/19 15:50:52 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/22 09:23:59 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,15 @@ static int	parse_line(void);
 
 void	open_terminal(void)
 {
-	change_input_signals();
 	while (1)
 	{
+		change_input_signals();
 		clear_parser();
 		clear_cmd();
 		read_line();
 		if (!parse_line())
 			continue ;
 		exec_line();
-		// token_print();
 	}
 }
 

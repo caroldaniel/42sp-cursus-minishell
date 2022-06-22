@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 06:27:31 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/19 13:59:13 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/20 13:53:05 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	is_parenthesis_closed(void)
 	t_tkn	*tkn;
 	int		count_open;
 	int		count_close;
-	
+
 	tkn = g_data.parser->tokens;
 	count_open = 0;
 	count_close = 0;

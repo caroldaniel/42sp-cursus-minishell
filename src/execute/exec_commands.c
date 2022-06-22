@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/19 20:45:49 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/22 09:22:57 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	exec_pipe_block(t_cmd **cmd);
 static void	exec_child(t_cmd *cmd);
-static void dup2_close_fds(t_cmd *cmd);
+static void	dup2_close_fds(t_cmd *cmd);
 static void	wait_all_pids(int pid[MAX_PID], int id);
 
 /*	EXEC_COMMANDS
@@ -30,19 +30,28 @@ static void	wait_all_pids(int pid[MAX_PID], int id);
 void	exec_commands(void)
 {
 	t_cmd	*cmd;
-
+	// int		lvl;
+	
 	cmd = g_data.cmd;
+	// lvl = 0;
 	while (cmd)
+	{
 		exec_pipe_block(&cmd);
+		// if (cmd->priority_level == lvl)
+		// exec_pipe_block(&cmd);
+		// if (cmd->priority_level > lvl)
+		// lvl = cmd->priority_level;
+	}
 }
 
 static void	exec_pipe_block(t_cmd **cmd)
 {
 	pid_t	pid[MAX_PID];
 	int		id;
-	
+
 	id = -1;
 	ft_memset(pid, 0, MAX_PID);
+	exec_commands_parent_signals();
 	while (*cmd)
 	{
 		(*cmd)->exec_path = get_path(*cmd);
@@ -59,17 +68,18 @@ static void	exec_pipe_block(t_cmd **cmd)
 		close_fd(*cmd, BOTH);
 		*cmd = (*cmd)->next;
 	}
-	wait_all_pids(pid, id);
+	if (id >= 0)
+		wait_all_pids(pid, id);
 }
 
 static void	exec_child(t_cmd *cmd)
 {
+	exec_commands_child_signals();
 	dup2_close_fds(cmd);
 	if (is_builtin(cmd))
-		exec_builtin(cmd);
+		exec_builtin_in_child(cmd);
 	else
 	{
-		exec_commands_signals();
 		execve(cmd->exec_path, cmd->exec, g_data.environ->envp);
 		exit_errno(cmd->exec[0], errno);
 	}
