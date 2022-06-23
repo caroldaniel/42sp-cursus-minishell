@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:16:03 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/17 00:15:33 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/20 10:01:05 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	write_to_pipe(char *limiter, int *fd);
 static int	exit_heredoc(void);
+static int	interrupt_heredoc(int *fd);
 
 /*	GET_HEREDOC
 **	-----------
@@ -32,6 +33,7 @@ int	get_heredoc(char *limiter)
 {
 	int	fd[2];
 	int	pid;
+	int	wstatus;
 
 	if (pipe(fd) == -1)
 		return (exit_heredoc());
@@ -43,8 +45,11 @@ int	get_heredoc(char *limiter)
 		close(fd[0]);
 		write_to_pipe(limiter, &fd[1]);
 	}
-	waitpid(pid, NULL, 0);
+	get_heredoc_parent_signal();
 	close(fd[1]);
+	waitpid(pid, &wstatus, 0);
+	if (WIFEXITED(wstatus) && WEXITSTATUS(wstatus) == 130)
+		return (interrupt_heredoc(fd));
 	return (fd[0]);
 }
 
@@ -53,9 +58,9 @@ static void	write_to_pipe(char *limiter, int *fd)
 	char	*line;
 	int		len;
 
+	get_heredoc_child_signal();
 	line = readline("> ");
 	len = ft_strlen(limiter);
-	get_heredoc_child_signal();
 	while (1)
 	{
 		if (!line)
@@ -72,8 +77,14 @@ static void	write_to_pipe(char *limiter, int *fd)
 	error(NULL, 0, 0);
 }
 
+static int	interrupt_heredoc(int *fd)
+{
+	close(fd[0]);
+	return (-3);
+}
+
 static int	exit_heredoc(void)
 {
 	error(NULL, 0, -54);
-	return (-1);
+	return (-3);
 }

@@ -6,7 +6,11 @@
 /*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:26:34 by cado-car          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/06/22 11:01:59 by fausto           ###   ########.fr       */
+=======
+/*   Updated: 2022/06/22 09:23:59 by cado-car         ###   ########.fr       */
+>>>>>>> 354d6dad538e31b4aed3b518d3318369fe1743b5
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +36,19 @@ static int	parse_line(void);
 
 void	open_terminal(void)
 {
-	change_input_signals();
 	while (1)
 	{
+		change_input_signals();
 		clear_parser();
 		clear_cmd();
 		read_line();
 		if (!parse_line())
 			continue ;
 		exec_line();
+<<<<<<< HEAD
 //		token_print();
+=======
+>>>>>>> 354d6dad538e31b4aed3b518d3318369fe1743b5
 	}
 }
 

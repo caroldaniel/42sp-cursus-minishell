@@ -6,13 +6,13 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:50:11 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/17 10:37:49 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/20 13:54:00 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int is_numberic(char *param);
+static int	is_numberic(char *param);
 
 /*	FT_EXIT
 **	-------
@@ -44,11 +44,11 @@ int	ft_exit(char **exec)
 	return (0);
 }
 
-static int is_numberic(char *param)
+static int	is_numberic(char *param)
 {
 	int	i;
 
-	i = -1; 
+	i = -1;
 	while (param[++i])
 	{
 		if (!ft_isdigit(param[i]) && param[i] != '+' && param[i] != '-')

@@ -6,7 +6,7 @@
 /*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/23 17:34:24 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/23 17:49:25 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	exec_commands(void)
 				cmd = cmd->next;
 				break ;
 			}
-			
 			cmd = cmd->next;
 		}
 	}

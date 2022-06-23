@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:19:37 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/19 07:17:35 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/20 13:53:26 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@ void	error(char *s, int flag, int code)
 		dprintf(2, "%s\n", s);
 	if (flag == 2)
 		dprintf(2, "%s: Invalid number of arguments\n", s);
+	if (flag == 3)
+		dprintf(2, "\n");
 	if (flag >= 0)
 		exit_minishell();
-	
 }
 
 static void	exec_error(char *s, int flag)
@@ -83,10 +84,9 @@ static void	redirect_error(char *s, int flag)
 	if (flag == -51)
 		dprintf(2, "minishell: %s: No such file or directory\n", s);
 	if (flag == -52)
-		dprintf(2, "minishell: here-document delimited by end-of-file \
-			(wanted `%s')\n", s);
+		dprintf(2, "minishell: warning: here-document delimited by end-of-file (wanted `%s')\n", s);
 	if (flag == -53)
-		dprintf(2, "Quit (core dumped)\n");
+		dprintf(2, "Quit\n");
 	if (flag == -54)
 		dprintf(2, "\n");
 }

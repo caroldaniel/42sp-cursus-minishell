@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:48:20 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/17 12:21:30 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/22 09:00:39 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <signal.h>
 # include <sys/wait.h>
 # include <sys/types.h>
+# include <dirent.h>
 # include <fcntl.h>
-
 # include "../libft/libft.h"
 # include "hashmap.h"
 # include "colors.h"
@@ -85,19 +85,5 @@ void		exit_errno(char *errfile, int errnb);
 */
 
 char		*create_prompt(void);
-
-/*
-** Built-ins
-*/
-
-int			ft_exit(char **exec);
-int			ft_echo(char **exec);
-int			ft_export(char **exec);
-int			ft_set(char **exec);
-int			ft_unset(char **exec);
-int			ft_env(char **exec);
-int			ft_cd(char **exec);
-int			ft_pwd(void);
-char		*get_pwd(void);
 
 #endif
