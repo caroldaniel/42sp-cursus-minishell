@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/19 20:45:49 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/23 17:34:24 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,24 @@ void	exec_commands(void)
 
 	cmd = g_data.cmd;
 	while (cmd)
+	{
 		exec_pipe_block(&cmd);
+		while (cmd)
+		{
+			if (cmd->endpoint == AND_IF && g_data.exit_code == 0)
+			{
+				cmd = cmd->next;
+				break ;
+			}
+			if (cmd->endpoint == OR_IF && g_data.exit_code != 0)
+			{
+				cmd = cmd->next;
+				break ;
+			}
+			
+			cmd = cmd->next;
+		}
+	}
 }
 
 static void	exec_pipe_block(t_cmd **cmd)
@@ -57,6 +74,8 @@ static void	exec_pipe_block(t_cmd **cmd)
 				exec_child(*cmd);
 		}
 		close_fd(*cmd, BOTH);
+		if ((*cmd)->endpoint == AND_IF || (*cmd)->endpoint == OR_IF)
+			break ;
 		*cmd = (*cmd)->next;
 	}
 	wait_all_pids(pid, id);
@@ -70,6 +89,7 @@ static void	exec_child(t_cmd *cmd)
 	else
 	{
 		exec_commands_signals();
+		printf("path: %s\n", cmd->exec_path);
 		execve(cmd->exec_path, cmd->exec, g_data.environ->envp);
 		exit_errno(cmd->exec[0], errno);
 	}

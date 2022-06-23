@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:11:00 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/18 22:14:07 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/23 08:59:52 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ static char	*path_setup(t_cmd *cmd)
 	int		i;
 
 	path = NULL;
+	if (ft_strchr(cmd->exec[0], '/') != NULL)
+	{
+		path = ft_strdup(cmd->exec[0]);
+		return (path);
+	}
 	path_list = create_path_list();
 	if (path_list)
 	{
