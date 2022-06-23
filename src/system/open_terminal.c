@@ -6,7 +6,7 @@
 /*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 17:51:58 by fausto            #+#    #+#             */
-/*   Updated: 2022/06/23 17:52:02 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/23 17:52:42 by fausto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,6 @@ void	open_terminal(void)
 		if (!parse_line())
 			continue ;
 		exec_line();
-<<<<<<< HEAD
-//		token_print();
-=======
->>>>>>> 354d6dad538e31b4aed3b518d3318369fe1743b5
 	}
 }
 
