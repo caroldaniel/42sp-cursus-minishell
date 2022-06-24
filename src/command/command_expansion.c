@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:23:12 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/22 09:03:57 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/22 09:51:52 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ static void	token_expansion(t_tkn **tkn)
 	int		pos;
 
 	pos = 0;
-	if ((*tkn)->token[pos] == '~')
+	if (ft_strchr((*tkn)->token, '*'))
+		wildcard_expansion(tkn, &pos);
+	else if ((*tkn)->token[pos] == '~')
 		tilde_expansion(tkn, &pos);
-	// if (ft_strchr((*tkn)->token, '*'))
-	// 	wildcard_expansion(tkn, &pos);
 	while ((*tkn)->token[pos])
 	{	
 		if ((*tkn)->token[pos] == '$')
