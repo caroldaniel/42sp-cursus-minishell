@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fausto <fausto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/23 17:49:25 by fausto           ###   ########.fr       */
+/*   Updated: 2022/06/24 10:39:26 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,10 @@ static void	exec_child(t_cmd *cmd)
 {
 	dup2_close_fds(cmd);
 	if (is_builtin(cmd))
-		exec_builtin(cmd);
+		exec_builtin_in_child(cmd);
 	else
 	{
-		exec_commands_signals();
-		printf("path: %s\n", cmd->exec_path);
+		exec_commands_child_signals();
 		execve(cmd->exec_path, cmd->exec, g_data.environ->envp);
 		exit_errno(cmd->exec[0], errno);
 	}
