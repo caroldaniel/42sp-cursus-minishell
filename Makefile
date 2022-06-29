@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/06/21 09:04:07 by cado-car         ###   ########.fr        #
+#    Updated: 2022/06/24 10:38:17 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,6 @@ SRC				= main.c\
 				tilde_expansion.c\
 				variable_expansion.c\
 				quote_expansion.c\
-				wildcard_expansion.c\
 				exec_line.c\
 				open_pipes.c\
 				define_redirects.c\

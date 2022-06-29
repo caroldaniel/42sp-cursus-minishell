@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:06:40 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/21 08:49:41 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/06/24 08:22:11 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ void	command_list(void);
 void	tilde_expansion(t_tkn **tkn, int *pos);
 void	variable_expansion(t_tkn **tkn, int *pos);
 void	quote_expansion(t_tkn **tkn, int *pos, char quote);
+void	wildcard_expansion(t_tkn **tkn, int *pos);
 
 /*
 ** Wildcard utils
