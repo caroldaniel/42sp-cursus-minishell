@@ -6,13 +6,11 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 17:16:17 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/17 00:21:02 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/07/02 22:47:12 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	clear_exec_list(char **exec);
 
 /*	CLEAR_CMD
 **	---------
@@ -39,6 +37,8 @@ void	clear_cmd(void)
 		clear_tokens(&tmp->commands);
 		clear_tokens(&tmp->redirects);
 		clear_exec_list(tmp->exec);
+		if (tmp->envp)
+			envp_clear(tmp);
 		if (tmp->exec_path)
 			free(tmp->exec_path);
 		free(tmp);
@@ -46,7 +46,7 @@ void	clear_cmd(void)
 	g_data.cmd = NULL;
 }
 
-static void	clear_exec_list(char **exec)
+void	clear_exec_list(char **exec)
 {
 	int	i;
 

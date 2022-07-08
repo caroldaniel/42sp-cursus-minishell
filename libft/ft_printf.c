@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 15:33:12 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/10 09:12:23 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/07/08 13:39:17 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_printf(const char *format, ...)
 	return (len);
 }
 
-int ft_dprintf(int fd, const char *format, ...)
+int	ft_dprintf(int fd, const char *format, ...)
 {
 	int		len;
 	va_list	ap;
@@ -75,5 +75,5 @@ int	ft_vdprintf(int fd, const char *format, va_list ap)
 	}	
 	len = fmt->len;
 	free(fmt);
-	return (len);	
+	return (len);
 }

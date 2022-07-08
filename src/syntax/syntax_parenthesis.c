@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/19 06:27:31 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/20 13:53:05 by cado-car         ###   ########.fr       */
+/*   Created: 2022/07/04 15:19:54 by cado-car          #+#    #+#             */
+/*   Updated: 2022/07/04 15:19:57 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ static int	check_parenthesis(t_tkn *tkn, t_tkn *next)
 		next->lexema == PIPE) && *tkn->token == '(')
 	{
 		error(tkn->token, -20, 2);
+		return (0);
+	}
+	if (next && (next->lexema == ASSIGN_WORD || next->lexema == WORD) && \
+		tkn->token[0] == ')')
+	{
+		error(next->token, -20, 2);
 		return (0);
 	}
 	return (is_parenthesis_closed());

@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 09:48:20 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/22 09:00:39 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/07/05 18:21:28 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void		change_input_signals(void);
 void		error(char *s, int flag, int code);
 void		clear(void);
 void		clear_cmd(void);
+void		clear_exec_list(char **exec);
 void		clear_parser(void);
 void		clear_tokens(t_tkn **list);
 void		exit_errno(char *errfile, int errnb);
@@ -85,5 +86,14 @@ void		exit_errno(char *errfile, int errnb);
 */
 
 char		*create_prompt(void);
+
+/*
+** Environment variable vector utils
+*/
+
+void		envp_create(t_cmd *cmd);
+void		envp_clear(t_cmd *cmd);
+void		envp_swap(t_cmd *cmd);
+size_t		envp_length(char **envp);
 
 #endif

@@ -6,16 +6,14 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:34:51 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/24 10:39:26 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:21:08 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static void	exec_pipe_block(t_cmd **cmd);
-static void	exec_child(t_cmd *cmd);
-static void dup2_close_fds(t_cmd *cmd);
-static void	wait_all_pids(int pid[MAX_PID], int id);
+static void	dup2_close_fds(t_cmd *cmd);
 
 /*	EXEC_COMMANDS
 **	-------------
@@ -56,15 +54,16 @@ static void	exec_pipe_block(t_cmd **cmd)
 {
 	pid_t	pid[MAX_PID];
 	int		id;
-	
+
 	id = -1;
-	ft_memset(pid, 0, MAX_PID);
 	while (*cmd)
 	{
+		exec_commands_parent_signals();
 		(*cmd)->exec_path = get_path(*cmd);
+		envp_create(*cmd);
 		if ((*cmd)->fd_in == -1 || (*cmd)->fd_out == -1)
 			exit_errno((*cmd)->errfile, (*cmd)->errnb);
-		else if ((*cmd)->exec_path && is_forked(*cmd) && (*cmd)->exec_path)
+		else if ((*cmd)->exec_path && is_forked(*cmd))
 		{
 			pid[++id] = fork();
 			if (pid[id] == -1)
@@ -80,7 +79,7 @@ static void	exec_pipe_block(t_cmd **cmd)
 	wait_all_pids(pid, id);
 }
 
-static void	exec_child(t_cmd *cmd)
+void	exec_child(t_cmd *cmd)
 {
 	dup2_close_fds(cmd);
 	if (is_builtin(cmd))
@@ -88,7 +87,7 @@ static void	exec_child(t_cmd *cmd)
 	else
 	{
 		exec_commands_child_signals();
-		execve(cmd->exec_path, cmd->exec, g_data.environ->envp);
+		execve(cmd->exec_path, cmd->exec, cmd->envp);
 		exit_errno(cmd->exec[0], errno);
 	}
 	error(NULL, 0, g_data.exit_code);
@@ -103,11 +102,13 @@ static void	dup2_close_fds(t_cmd *cmd)
 	close_fds();
 }
 
-static void	wait_all_pids(int pid[MAX_PID], int id)
+void	wait_all_pids(int pid[MAX_PID], int id)
 {
 	int		max_id;
 	int		wstatus;
 
+	if (id == -1)
+		return ;
 	max_id = id;
 	id = -1;
 	wstatus = 0;

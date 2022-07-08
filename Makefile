@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 09:39:16 by cado-car          #+#    #+#              #
-#    Updated: 2022/06/24 10:38:17 by cado-car         ###   ########.fr        #
+#    Updated: 2022/07/05 18:21:19 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			= minishell
 LIBFT			= libft.a
 
 #compilation
-CC 				= gcc
+CC 				= cc
 CF 				= -g -Wall -Wextra -Werror
 CFI 			= -I $(INCLUDE)
 CREADLINE		= -lreadline
@@ -25,6 +25,7 @@ OBJ_PATH		= ./obj/
 INCLUDE 		= ./include/
 
 SRC				= main.c\
+				assign_word.c\
 				exit.c\
 				pwd.c\
 				export.c\
@@ -59,7 +60,6 @@ SRC				= main.c\
 				init_parser.c\
 				open_terminal.c\
 				tokenizer.c\
-				token_print.c\
 				token_utils.c\
 				lexical_analysis.c\
 				syntax_analysis.c\
@@ -87,6 +87,7 @@ SRC				= main.c\
 				exec_line.c\
 				open_pipes.c\
 				define_redirects.c\
+				exec_command.c\
 				exec_commands.c\
 				exec_commands_signals.c\
 				exec_builtin.c\
@@ -94,12 +95,6 @@ SRC				= main.c\
 				get_path.c\
 				get_heredoc.c\
 				get_heredoc_signals.c\
-				dir_create.c\
-				dir_populate_list.c\
-				dir_add_sorted.c\
-				dir_remove.c\
-				dir_delete.c\
-				wordcmp.c\
 
 VPATH 			:= $(SRC_PATH)\
 				$(SRC_PATH)builtins\

@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 13:40:35 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 19:27:07 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/07/02 21:52:04 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	init_minishell(char **envp)
 {
 	g_data.environ = init_hashtable();
 	populate_hashmap(envp);
-	envp_create();
 	g_data.parser = NULL;
 	g_data.cmd = NULL;
 	g_data.exit_code = 0;

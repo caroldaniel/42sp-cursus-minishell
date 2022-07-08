@@ -6,13 +6,15 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 08:41:13 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/17 10:52:14 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/07/04 11:00:39 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	print_list(t_hashlist *list);
+static void	execute_env(t_cmd *cmd);
+static void	add_to_envp(t_cmd *cmd, char *variable);
+static int	env_exists(t_cmd *cmd, char *variable);
 
 /*	FT_ENV
 **	------
@@ -24,32 +26,77 @@ static int	print_list(t_hashlist *list);
 **	-
 */
 
-int	ft_env(char **exec)
+int	ft_env(t_cmd *cmd)
 {
-	t_hashtable	*table;
 	size_t		i;
+	char		**exec;
 	int			ret;
 
-	i = 0;
-	table = g_data.environ;
+	exec = cmd->exec;
 	ret = 127;
 	if (!key_search("PATH"))
 		error(exec[0], -51, ret);
 	else if (!exec[1] || !*exec[1])
-		while (i < table->size)
-			ret = print_list(table->list[i++]);
+	{
+		i = -1;
+		while (cmd->envp[++i])
+			printf("%s\n", cmd->envp[i]);
+		ret = 0;
+	}
 	else
-		error(exec[1], -51, ret);
+		execute_env(cmd);
 	return (ret);
 }
 
-static int	print_list(t_hashlist *list)
+static void	execute_env(t_cmd *cmd)
 {
-	while (list)
+	int	pos;
+
+	pos = 0;
+	while (is_assign_word(cmd->exec[++pos]))
+		add_to_envp(cmd, cmd->exec[pos]);
+	change_exec(cmd, pos);
+	exec_command(cmd);
+	error(NULL, 0, g_data.exit_code);
+}
+
+static void	add_to_envp(t_cmd *cmd, char *variable)
+{
+	char	**new_envp;
+	int		i;
+
+	if (env_exists(cmd, variable))
+		return ;
+	new_envp = ft_calloc(sizeof(char *), envp_length(cmd->envp) + 2);
+	if (!new_envp)
+		error(NULL, 0, 11);
+	i = -1;
+	while (cmd->envp[++i])
+		new_envp[i] = ft_strdup(cmd->envp[i]);
+	new_envp[i] = ft_strdup(variable);
+	envp_clear(cmd);
+	cmd->envp = new_envp;
+}
+
+static int	env_exists(t_cmd *cmd, char *variable)
+{
+	int		i;
+	char	*key;
+	size_t	size;
+
+	i = -1;
+	key = get_key(variable);
+	size = ft_strlen(key);
+	while (cmd->envp[++i])
 	{
-		if (list->att == ENV && list->value)
-			printf("%s=%s\n", list->key, list->value);
-		list = list->next;
+		if (!ft_strncmp(cmd->envp[i], key, size) && cmd->envp[i][size] == '=')
+		{
+			free(cmd->envp[i]);
+			cmd->envp[i] = ft_strdup(variable);
+			free(key);
+			return (1);
+		}
 	}
+	free(key);
 	return (0);
 }

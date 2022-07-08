@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:11:50 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/16 18:52:03 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/07/02 21:59:09 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	delete_hashmap(void)
 	while (i < table->size)
 		list_delete(table->list[i++]);
 	free(table->list);
-	envp_clear();
 	free(table);
 }
 

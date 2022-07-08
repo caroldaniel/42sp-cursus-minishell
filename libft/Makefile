@@ -12,7 +12,7 @@
 
 NAME		= libft.a 
 
-CC			= gcc
+CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 LIB			= ar -rcs
 LIB1		= ranlib

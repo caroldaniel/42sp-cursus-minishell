@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:19:37 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/20 13:53:26 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:58:57 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ void	error(char *s, int flag, int code)
 	if (flag <= -50)
 		redirect_error(s, flag);
 	if (flag == 1)
-		dprintf(2, "%s\n", s);
+		ft_dprintf(2, "%s\n", s);
 	if (flag == 2)
-		dprintf(2, "%s: Invalid number of arguments\n", s);
+		ft_dprintf(2, "%s: Invalid number of arguments\n", s);
 	if (flag == 3)
-		dprintf(2, "\n");
+		ft_dprintf(2, "\n");
 	if (flag >= 0)
 		exit_minishell();
 }
@@ -54,41 +54,46 @@ void	error(char *s, int flag, int code)
 static void	exec_error(char *s, int flag)
 {
 	if (flag == -1)
-		dprintf(2, "minishell: cd: %s not set\n", s);
+		ft_dprintf(2, "minishell: cd: %s not set\n", s);
 	if (flag == -2)
-		dprintf(2, "minishell: cd: %s: No such file or directory\n", s);
+		ft_dprintf(2, "minishell: cd: %s: No such file or directory\n", s);
 	if (flag == -3)
-		dprintf(2, "minishell: cd: %s not set\n", s);
+		ft_dprintf(2, "minishell: cd: %s not set\n", s);
 	if (flag == -4)
-		dprintf(2, "minishell: %s: too many arguments\n", s);
+		ft_dprintf(2, "minishell: %s: too many arguments\n", s);
 	if (flag == -5)
-		dprintf(2, "%s: Command not found\n", s);
+		ft_dprintf(2, "%s: Command not found\n", s);
+	if (flag == -6)
+		ft_dprintf(2, "minishell: export: %s: not a valid identifier\n", s);
 }
 
 static void	syntax_error(char *s, int flag)
 {
 	if (flag == -20)
-		dprintf(2, "minishell: syntax error near unexpected token `%s'\n", s);
+		ft_dprintf(2, "minishell: syntax error near unexpected token \
+`%s'\n", s);
 	if (flag == -21)
-		dprintf(2, "minishell: syntax error near unexpected token `newline'\n");
+		ft_dprintf(2, "minishell: syntax error near unexpected token \
+`newline'\n");
 	if (flag == -22)
-		dprintf(2, "minishell: quote missing\n");
+		ft_dprintf(2, "minishell: quote missing\n");
 	if (flag == -23)
-		dprintf(2, "minishell: closing parenthesis missing\n");
+		ft_dprintf(2, "minishell: closing parenthesis missing\n");
 }
 
 static void	redirect_error(char *s, int flag)
 {
 	if (flag == -50)
-		dprintf(2, "minishell: %s: Permission denied\n", s);
+		ft_dprintf(2, "minishell: %s: Permission denied\n", s);
 	if (flag == -51)
-		dprintf(2, "minishell: %s: No such file or directory\n", s);
+		ft_dprintf(2, "minishell: %s: No such file or directory\n", s);
 	if (flag == -52)
-		dprintf(2, "minishell: warning: here-document delimited by end-of-file (wanted `%s')\n", s);
+		ft_dprintf(2, "minishell: warning: here-document delimited by \
+end-of-file (wanted `%s')\n", s);
 	if (flag == -53)
-		dprintf(2, "Quit\n");
+		ft_dprintf(2, "Quit\n");
 	if (flag == -54)
-		dprintf(2, "\n");
+		ft_dprintf(2, "\n");
 }
 
 static void	exit_minishell(void)

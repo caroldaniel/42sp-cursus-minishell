@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 13:10:30 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/10 09:13:23 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/07/08 13:38:03 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,26 @@
 # include <wchar.h>
 # include "libft.h"
 
-# define	HOLDER_CONVERSION "cspdiuxX%o"
-# define	HOLDER_ALL "-0# +123456789*"
-# define	HOLDER_ALL_FLAGS "-0# +"
-# define	HOLDER_JUSTIFY '-'
-# define	HOLDER_PREFIX "# +"
-# define	HOLDER_PAD '0'
-# define	HOLDER_PRECISION '.'
-# define	HOLDER_STAR '*'
+# define HOLDER_CONVERSION	"cspdiuxX%o"
+# define HOLDER_ALL			"-0# +123456789*"
+# define HOLDER_ALL_FLAGS "-0# +"
+# define HOLDER_JUSTIFY '-'
+# define HOLDER_PREFIX "# +"
+# define HOLDER_PAD '0'
+# define HOLDER_PRECISION '.'
+# define HOLDER_STAR '*'
 
-# define	OCTAL_BASE "01234567"
-# define	DECIMAL_BASE "0123456789"
-# define	HEXADECIMAL_U_BASE "0123456789ABCDEF"
-# define	HEXADECIMAL_L_BASE "0123456789abcdef"
+# define OCTAL_BASE "01234567"
+# define DECIMAL_BASE "0123456789"
+# define HEXADECIMAL_U_BASE "0123456789ABCDEF"
+# define HEXADECIMAL_L_BASE "0123456789abcdef"
 
-# define	PTR_HEX_L_PREFIX "0x"
-# define	HEX_U_PREFIX "0X"
-# define	OCT_PREFIX "0"
-# define	MINUS '-'
-# define	PLUS '+'
-# define	SPACE ' '
+# define PTR_HEX_L_PREFIX "0x"
+# define HEX_U_PREFIX "0X"
+# define OCT_PREFIX "0"
+# define MINUS '-'
+# define PLUS '+'
+# define SPACE ' '
 
 typedef struct s_format
 {
@@ -62,7 +62,7 @@ typedef struct s_holder
 }			t_holder;
 
 int			ft_printf(const char *format, ...);
-int 		ft_dprintf(int fd, const char *format, ...);
+int			ft_dprintf(int fd, const char *format, ...);
 int			ft_vprintf(const char *format, va_list ap);
 int			ft_vdprintf(int fd, const char *format, va_list ap);
 

@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_conversion.c                                    :+:      :+:    :+:   */
+/*   ft_printf_conversion.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 16:59:19 by cado-car          #+#    #+#             */
-/*   Updated: 2021/08/20 19:45:59 by cado-car         ###   ########lyon.fr   */
+/*   Updated: 2022/07/08 13:38:25 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
 static void	ft_prefix_ux(t_holder *h);
 
 /*
@@ -59,7 +60,7 @@ void	ft_fill_left_pad(char **src, char padding, int width)
 	strlen = ft_strlen(*src);
 	if (!width || width < (int)strlen)
 		width = strlen;
-	temp = (char *)malloc(width * sizeof(char));
+	temp = (char *)malloc(width * (sizeof(char) + 1));
 	if (!temp)
 		return ;
 	padlen = width - strlen;
@@ -79,7 +80,7 @@ void	ft_fill_right_pad(char **src, char padding, int width)
 	strlen = ft_strlen(*src);
 	if (!width || width < (int)strlen)
 		width = strlen;
-	temp = (char *)malloc(width * sizeof(char));
+	temp = (char *)malloc(width * (sizeof(char) + 1));
 	if (!temp)
 		return ;
 	ft_strlcpy(temp, *src, strlen + 1);

@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 14:19:42 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/17 00:19:17 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/07/04 10:21:47 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_hashlist {
 
 typedef struct s_hashtable {
 	t_hashlist	**list;
-	char		**envp;
 	size_t		size;
 	size_t		count;
 }	t_hashtable;
@@ -37,10 +36,6 @@ typedef struct s_hashtable {
 ** Environment variables list
 */
 
-void		envp_create(void);
-void		envp_clear(void);
-void		envp_swap(void);
-size_t		envp_length(void);
 char		*get_key(char *variable);
 char		*get_value(char *variable);
 

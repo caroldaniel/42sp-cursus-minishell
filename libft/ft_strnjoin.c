@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 13:12:57 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/01 22:40:32 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/07/08 13:44:37 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,40 @@
 
 #include "libft.h"
 
+static void	join_args(int argn, va_list argl, char **result);
+
 char	*ft_strnjoin(int argn, ...)
 {
 	char	*result;
-	char	*buf;
-	char	*tmp;
 	va_list	argl;
-	int		i;
 
 	if (argn == 0)
 		return (NULL);
 	va_start(argl, argn);
 	result = NULL;
+	join_args(argn, argl, &result);
+	va_end(argl);
+	return (result);
+}
+
+static void	join_args(int argn, va_list argl, char **result)
+{
+	char	*buf;
+	char	*tmp;
+	int		i;
+
 	i = -1;
 	while (++i < argn)
 	{
 		buf = va_arg(argl, char *);
 		if (i == 0)
-			result = ft_strdup(buf);
+			*result = ft_strdup(buf);
 		else
 		{
-			tmp = ft_strjoin(result, buf);
-			if (result)
-				free(result);
-			result = tmp;
+			tmp = ft_strjoin(*result, buf);
+			if (*result)
+				free(*result);
+			*result = tmp;
 		}
 	}
-	va_end(argl);
-	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:30:54 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/17 00:18:56 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/07/02 22:57:04 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 **	This function will malloc(3) and fill in a list of strings with all of the
 **	exportabled environment variables, in order to be further called by execve.
 **	PARAMETERS
-**	-
+**	#1. The t_cmd struct of the current command to execute.
 **	RETURN VALUES
 **	-
 */
 
-void	envp_create(void)
+void	envp_create(t_cmd *cmd)
 {
 	t_hashtable	*table;
 	t_hashlist	*list;
@@ -49,7 +49,7 @@ void	envp_create(void)
 		i++;
 	}
 	envp[j] = NULL;
-	g_data.environ->envp = envp;
+	cmd->envp = envp;
 }
 
 /*	ENVP_CLEAR
@@ -58,22 +58,20 @@ void	envp_create(void)
 **	This function will free all memory allocated in the list of environment 
 **	variables on the global struct.
 **	PARAMETERS
-**	-
+**	#1. The t_cmd struct of the current command to execute.
 **	RETURN VALUES
 **	-
 */
 
-void	envp_clear(void)
+void	envp_clear(t_cmd *cmd)
 {
-	char	**list;
 	int		i;	
 
-	list = g_data.environ->envp;
 	i = -1;
-	while (list[++i])
-		free(list[i]);
-	free(list);
-	list = NULL;
+	while (cmd->envp[++i])
+		free(cmd->envp[i]);
+	free(cmd->envp);
+	cmd->envp = NULL;
 }
 
 /*	ENVP_SWAP
@@ -83,13 +81,13 @@ void	envp_clear(void)
 **	variables on the global struct, and then proceed to reallocate a new list
 **	with the current set of variables.
 **	PARAMETERS
-**	-
+**	#1. The t_cmd struct of the current command to execute.
 **	RETURN VALUES
 **	-
 */
 
-void	envp_swap(void)
+void	envp_swap(t_cmd *cmd)
 {
-	envp_clear();
-	envp_create();
+	envp_clear(cmd);
+	envp_create(cmd);
 }

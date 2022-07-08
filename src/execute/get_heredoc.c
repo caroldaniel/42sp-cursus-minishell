@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:16:03 by cado-car          #+#    #+#             */
-/*   Updated: 2022/06/20 10:01:05 by cado-car         ###   ########.fr       */
+/*   Updated: 2022/07/05 18:20:48 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ static int	interrupt_heredoc(int *fd);
 **	-
 */
 
-int	get_heredoc(char *limiter)
+int	get_heredoc(char *filename)
 {
-	int	fd[2];
-	int	pid;
-	int	wstatus;
+	int		fd[2];
+	int		pid;
+	int		wstatus;
 
 	if (pipe(fd) == -1)
 		return (exit_heredoc());
@@ -43,7 +43,7 @@ int	get_heredoc(char *limiter)
 	if (!pid)
 	{
 		close(fd[0]);
-		write_to_pipe(limiter, &fd[1]);
+		write_to_pipe(ft_strdup(filename), &fd[1]);
 	}
 	get_heredoc_parent_signal();
 	close(fd[1]);
@@ -74,6 +74,7 @@ static void	write_to_pipe(char *limiter, int *fd)
 	}
 	free(line);
 	close(*fd);
+	free(limiter);
 	error(NULL, 0, 0);
 }
 
