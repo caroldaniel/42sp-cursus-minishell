@@ -7,7 +7,7 @@
 </h2>
 
 <p align=center>
-	The <b>minishell</b> project was done in collaboration with <a href="https://github.com/FaustoFaggion">Fausto Faggion</a>, a follow cadet at 42. Together, we aimed to create a program that emulates the default behaviour of a shell script command line prompt, executing binaries throught pipes and conditionals, dealing with environment variables and manipulating files through redictions and heredocs. This was, so far, the most complex project that we had to dwell upon so far, not only because of its code complexity, but more so bacause it is really hard to know when to stop: Minishell can be infinite, and is, by all means, always incomplete.
+	The <b>minishell</b> project was done in collaboration with <a href="https://github.com/FaustoFaggion">Fausto Faggion</a>, a follow cadet at 42. Together, we aimed to create a program that emulates the default behaviour of a shell script command line prompt, executing binaries throught pipes and conditionals, dealing with environment variables and manipulating files through redirections and heredocs. This was the most complex project that we had to dwell upon so far, not only because of its code complexity, but more so bacause it is really hard to know when to stop: Minishell can be infinite, and is, by all means, always incomplete.
 
 ---
 <div align=center>
