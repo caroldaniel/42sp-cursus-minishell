@@ -68,7 +68,24 @@ Bonus
 <h2>
 The project
 </h2>
- 
+
+The main idea behind minishell is the ability to decipher what is being written on the prompt by the user, translating it into a structure of data that will be easily understandable by the computer, and therefore appropriately executed. 
+
+The goal is to be as organized and throughful as possible. In order to develop a program that succeeds in this endeavor, we developed a general guideline for the program's workflow:
+
+- As the minishell is initialized, so is the main structure that will centralize all the data that will be necessary for the program to run: exit codes, environ list, command and parser structs - all in one place;
+- During the minishell's initialization, all environment variables of the parent's process will need to be stored and easily accessed. We used a hashtable to do the job;
+- Then, we will need to open the terminal (in a infinite loop - don't sue!) in order to ask the user for a new line to be interpreted;
+- In the loop, we must first change the input signals (ctrl-C, ctrl-D and ctrl-\\);
+- Then, we create a prompt message (all personalized as we so wish) and open the terminal for the user's input;
+- When finished by the user, the program will then proceed to throw the line to the parser function: Tokenize the line (break it into meaningful tokens), analyse it by lexemas, and the syntatically. The order of the words written must make sense, otherwise a syntax error shall appear, and a new line must be prompted;
+- If everything seemes correct, then we must proceed to transform the tokens into command tables: break the tokens into command strutures, in which we will need to analyse what is command, what is redirection, etc;
+- Expand all variables, tildes, quotes and wildcards. Make sure everything is working accordingly to the original shell;
+- Once the command table is complete, we can finaly start the execution!
+- Define the redirections (including prompting for the heredocs as they appear);
+- Create the pipes when necessary;
+- Execute the commands - by forking the process when necessary - some commands - especially those manipulating environment variables, shall be executed only in the parent process so the changes stick;
+- Once it's done, a new line shall be prompted, and the program shall start its process all over again.
 
 ---
 <h2>
