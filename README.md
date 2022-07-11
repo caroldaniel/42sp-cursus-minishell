@@ -14,9 +14,9 @@
 <h2>
 	Final score
 </h2>
-<img src=https://github.com/caroldaniel/caroldaniel-utils/blob/edfb245d0adad2ee2a22aba2e9318bc8a28ea937/minishell_grade.png alt="cado-car's 42Project Score"/>
-<h4>Completed + Bonus</h4>
-<img src=https://github.com/caroldaniel/caroldaniel-utils/blob/edfb245d0adad2ee2a22aba2e9318bc8a28ea937/minishellm.png alt="cado-car's 42Project Badge"/>
+<img src=https://github.com/caroldaniel/caroldaniel-utils/blob/90108bc7e8a2b7490a08cf20c2fd22034bbb08be/minishell_grade.png alt="cado-car's 42Project Score"/>
+<h4>Completed + Incomplete Bonus</h4>
+<img src=https://github.com/caroldaniel/caroldaniel-utils/blob/90108bc7e8a2b7490a08cf20c2fd22034bbb08be/minishellm.png alt="cado-car's 42Project Badge"/>
 </div>
 
 ---
